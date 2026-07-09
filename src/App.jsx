@@ -2568,13 +2568,15 @@ function VisualNovelSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-[#020807] flex items-center justify-center sm:justify-end px-4 sm:px-16" id="vn-branching">
+    <section ref={sectionRef} className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-[#020807] flex items-center justify-center px-4 sm:px-16" id="vn-branching">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img ref={bgRef} src="/asset/vn_bg.png" alt="Forest Background" className="absolute top-[-5%] left-[-5%] w-[110%] h-[110%] object-cover opacity-30 transform-gpu" />
       </div>
       
-      <div className="absolute inset-0 z-10 flex items-end justify-start pointer-events-none">
-        <img ref={mahoutRef} src="/asset/vn_mahout.png" alt="Mahout Silhouette" className="h-[40vh] md:h-[60vh] w-auto max-w-none object-contain opacity-60 origin-bottom mix-blend-screen transform-gpu" style={{ filter: 'contrast(1.2) brightness(0.8)' }} />
+      <div className="absolute inset-0 z-10 flex items-end justify-center pointer-events-none">
+        <div className="relative w-[85vw] sm:w-[35vw] h-[55vh] md:h-[75vh] flex items-end justify-center bg-black/80 shadow-[0_0_50px_rgba(0,0,0,0.8)] border-x border-t border-white/5">
+          <img ref={mahoutRef} src="/asset/vn_mahout.png" alt="Mahout Silhouette" className="h-[50vh] md:h-[65vh] w-auto max-w-none object-contain opacity-60 origin-bottom mix-blend-screen transform-gpu" style={{ filter: 'contrast(1.2) brightness(0.8)' }} />
+        </div>
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-[#020807] via-transparent to-[#020807]/50 opacity-90 z-20 pointer-events-none" />
