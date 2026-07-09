@@ -260,8 +260,17 @@ button { font-family: inherit; border: none; background: none; color: inherit; }
     mask-image: radial-gradient(circle at center, transparent 0, transparent 19.5vw, #000 20vw);
   }
 }
+
 @keyframes scrollDown {
   0% { transform: translateY(-100%); }
   50% { transform: translateY(0); }
   100% { transform: translateY(100%); }
+}
+
+/* ── Golden Tangkahan Text Style ── */
+.text-tangkahan-gold {
+  background: linear-gradient(to bottom, #fdf5a9 0%, #f3d47c 30%, #b38728 60%, #8a5a19 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.4)) drop-shadow(0px 2px 2px rgba(138,90,25,0.6));
 }

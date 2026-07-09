@@ -22,16 +22,12 @@ function HistorySlider() {
     var topImg = topImageRef.current;
     var bottomImg = bottomImageRef.current;
     var handle = handleRef.current;
-    var l1 = label1Ref.current;
-    var l2 = label2Ref.current;
 
     if (!container || !topImgWrap || !topImg || !handle) return;
 
     // Ambient animations
-    var bgTween1 = gsap.to(topImg, { scale: 1.05, duration: 15, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    var bgTween2 = gsap.to(bottomImg, { scale: 1.05, duration: 15, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    var floatTween1 = gsap.to(l1, { y: -15, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    var floatTween2 = gsap.to(l2, { y: 15, duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    const bgTween1 = gsap.to(topImg, { scale: 1.05, duration: 15, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    const bgTween2 = gsap.to(bottomImg, { scale: 1.05, duration: 15, ease: 'sine.inOut', yoyo: true, repeat: -1 });
 
     function updateSlider(clientX) {
       var rect = container.getBoundingClientRect();
@@ -69,8 +65,6 @@ function HistorySlider() {
     return function() {
       bgTween1.kill();
       bgTween2.kill();
-      floatTween1.kill();
-      floatTween2.kill();
       container.removeEventListener('mousedown', onPointerDown);
       container.removeEventListener('mousemove', onPointerMove);
       window.removeEventListener('mouseup', onPointerUp);
@@ -103,22 +97,16 @@ function HistorySlider() {
       >
         {/* Bottom Image (After - Present Day) */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a1f12]">
-          <img ref={bottomImageRef} src="/asset/history-after.png" alt="Present Eco Tourism" className="absolute inset-0 w-full h-full object-cover origin-center" />
+          <img ref={bottomImageRef} src="/asset/asset7-after.jpeg" alt="Present Eco Tourism" className="absolute inset-0 w-full h-full object-cover origin-center" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,31,18,0.6)] to-transparent pointer-events-none" />
-          <div ref={label2Ref} className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 text-right z-10 pointer-events-none drop-shadow-2xl">
-            <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[#4ade80] block mb-2 drop-shadow-md">Present Day</span>
-            <span className="font-display italic text-3xl sm:text-5xl text-white block">Eco Tourism</span>
-          </div>
+
         </div>
 
         {/* Top Image (Before - 1990s) */}
         <div ref={topImageWrapperRef} className="absolute inset-0 z-10 overflow-hidden" style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}>
-          <img ref={topImageRef} src="/asset/history-before.png" alt="1990s Deforestation" className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 contrast-125 origin-center" />
+          <img ref={topImageRef} src="/asset/asset7-before.jpeg" alt="1990s Deforestation" className="absolute inset-0 w-full h-full object-cover origin-center" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,31,18,0.8)] to-transparent pointer-events-none" />
-          <div ref={label1Ref} className="absolute top-8 left-8 sm:top-12 sm:left-12 z-10 pointer-events-none drop-shadow-2xl">
-            <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[#f59e0b] block mb-2 drop-shadow-md">1990s</span>
-            <span className="font-display italic text-3xl sm:text-5xl text-gray-300 block">Deforestation</span>
-          </div>
+
         </div>
 
         {/* The Drag Handle (Sleek Glassmorphic Pill) */}

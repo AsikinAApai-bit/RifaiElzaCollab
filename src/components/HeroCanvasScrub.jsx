@@ -6,6 +6,9 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    ★ HERO — CANVAS SCRUBBING + END PARALLAX ★
    ══════════════════════════════════════════════════ */
+const totalFrames = 240;
+let loadedCount = 0;
+
 function HeroCanvasScrub(props) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
@@ -151,7 +154,7 @@ function HeroCanvasScrub(props) {
       {/* Layer 2 (Flashbang Cover) */}
       <img
         ref={coverRef}
-        src="/asset/cover.jpeg"
+        src="/asset/cover.avif"
         alt="Portal Cover"
         className="absolute inset-0 w-full h-full object-cover origin-center"
         style={{ zIndex: 10 }}

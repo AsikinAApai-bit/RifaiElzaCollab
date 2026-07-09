@@ -493,19 +493,19 @@ function HeroCanvasScrub(props) {
           renderFrame(images[closestIndex]);
         }
         
-        if (frameIndex >= 30 && frameIndex <= 195) {
+        if (frameIndex >= 24 && frameIndex <= 150) {
           if (paradiseRef.current !== 'active') {
              paradiseRef.current = 'active';
              setShowHiddenParadise(true);
              setParadiseOut(false);
              setTimeout(() => setParadiseIn(true), 50);
           }
-        } else if (frameIndex > 195) {
+        } else if (frameIndex > 150) {
           if (paradiseRef.current === 'active') {
              paradiseRef.current = 'after';
              setParadiseOut(true);
           }
-        } else if (frameIndex < 30) {
+        } else if (frameIndex < 24) {
           if (paradiseRef.current !== 'before') {
              paradiseRef.current = 'before';
              setParadiseOut(false);
@@ -516,19 +516,19 @@ function HeroCanvasScrub(props) {
           }
         }
 
-        if (frameIndex >= 105 && frameIndex <= 195) {
+        if (frameIndex >= 54 && frameIndex <= 150) {
           if (harmonyRef.current !== 'active') {
             harmonyRef.current = 'active';
             setShowHarmony(true);
             setHarmonyOut(false);
             setTimeout(() => setHarmonyIn(true), 50);
           }
-        } else if (frameIndex > 195) {
+        } else if (frameIndex > 150) {
           if (harmonyRef.current === 'active') {
             harmonyRef.current = 'after';
             setHarmonyOut(true);
           }
-        } else if (frameIndex < 105) {
+        } else if (frameIndex < 54) {
           if (harmonyRef.current !== 'before') {
             harmonyRef.current = 'before';
             setHarmonyOut(false);
@@ -539,7 +539,7 @@ function HeroCanvasScrub(props) {
           }
         }
 
-        if (frameIndex >= 205 && frameIndex <= 240) {
+        if (frameIndex >= 164 && frameIndex <= 240) {
           if (tangkahanRef.current !== 'active') {
             tangkahanRef.current = 'active';
             setShowTangkahan(true);
@@ -551,7 +551,7 @@ function HeroCanvasScrub(props) {
             tangkahanRef.current = 'after';
             setTangkahanOut(true);
           }
-        } else if (frameIndex < 205) {
+        } else if (frameIndex < 164) {
           if (tangkahanRef.current !== 'before') {
             tangkahanRef.current = 'before';
             setTangkahanOut(false);
@@ -636,7 +636,7 @@ function HeroCanvasScrub(props) {
         </div>
       </div>
 
-      {/* Layer 5 (Frame 030 Subtitle) */}
+      {/* Layer 5 (Frame 024 Subtitle) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 25, top: '-20%' }}>
         {showHiddenParadise && (
           <div 
@@ -657,7 +657,7 @@ function HeroCanvasScrub(props) {
         )}
       </div>
 
-      {/* Layer 6 (Frame 105 Text) */}
+      {/* Layer 6 (Frame 054 Text) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 26, top: '-5%' }}>
         {showHarmony && (
           <div className={`transition-all duration-1000 ease-in-out italic text-[#C4B088] ${harmonyOut ? 'opacity-0 -translate-y-24' : (harmonyIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}`} style={{ fontFamily: '"Oceanside Typewriter", monospace', fontSize: 'clamp(18px, 4vw, 30px)', letterSpacing: '1.5px', textShadow: '0 2px 20px rgba(0,0,0,0.9)' }}>
@@ -673,7 +673,7 @@ function HeroCanvasScrub(props) {
         )}
       </div>
 
-      {/* Layer 7 (Frame 205 TextPressure) */}
+      {/* Layer 7 (Frame 164 TextPressure) */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style={{ zIndex: 27 }}>
         <style>{`
           .tangkahan-bronze-text span {
@@ -921,10 +921,9 @@ function HistorySlider() {
     if (!container || !topImgWrap || !topImg || !handle) return;
 
     // Ambient animations
+    // Ambient animations
     var bgTween1 = gsap.to(topImg, { scale: 1.05, duration: 15, ease: 'sine.inOut', yoyo: true, repeat: -1 });
     var bgTween2 = gsap.to(bottomImg, { scale: 1.05, duration: 15, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    var floatTween1 = gsap.to(l1, { y: -15, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    var floatTween2 = gsap.to(l2, { y: 15, duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
 
     function updateSlider(clientX) {
       var rect = container.getBoundingClientRect();
@@ -962,8 +961,6 @@ function HistorySlider() {
     return function() {
       bgTween1.kill();
       bgTween2.kill();
-      floatTween1.kill();
-      floatTween2.kill();
       container.removeEventListener('mousedown', onPointerDown);
       container.removeEventListener('mousemove', onPointerMove);
       window.removeEventListener('mouseup', onPointerUp);
@@ -983,7 +980,7 @@ function HistorySlider() {
           <span className="eyebrow__line" />
         </div>
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9] text-center" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.02em' }}>
-          Tangkahan's
+          <span className="text-tangkahan-gold">Tangkahan</span>'s
           <br />
           <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.6)' }}>Turning Point</span>
         </h2>
@@ -996,22 +993,16 @@ function HistorySlider() {
       >
         {/* Bottom Image (After - Present Day) */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a1f12]">
-          <img ref={bottomImageRef} src="/asset/asset-7-after.jpeg" alt="Present Eco Tourism" className="absolute inset-0 w-full h-full object-contain origin-center bg-[#0a1f12]" />
+          <img ref={bottomImageRef} src="/asset/asset7-after.jpeg" alt="Present Eco Tourism" className="absolute inset-0 w-full h-full object-contain origin-center bg-[#0a1f12]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,31,18,0.6)] to-transparent pointer-events-none" />
-          <div ref={label2Ref} className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 text-right z-10 pointer-events-none drop-shadow-2xl">
-            <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[#4ade80] block mb-2 drop-shadow-md">Present Day</span>
-            <span className="font-display italic text-3xl sm:text-5xl text-white block">Eco Tourism</span>
-          </div>
+
         </div>
 
         {/* Top Image (Before - 1990s) */}
         <div ref={topImageWrapperRef} className="absolute inset-0 z-10 overflow-hidden" style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}>
-          <img ref={topImageRef} src="/asset/history-before.png" alt="1990s Deforestation" className="absolute inset-0 w-full h-full object-contain grayscale brightness-75 contrast-125 origin-center bg-[#0a1f12]" />
+          <img ref={topImageRef} src="/asset/asset7-before.jpeg" alt="1990s Deforestation" className="absolute inset-0 w-full h-full object-contain origin-center bg-[#0a1f12]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,31,18,0.8)] to-transparent pointer-events-none" />
-          <div ref={label1Ref} className="absolute top-8 left-8 sm:top-12 sm:left-12 z-10 pointer-events-none drop-shadow-2xl">
-            <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[#f59e0b] block mb-2 drop-shadow-md">1990s</span>
-            <span className="font-display italic text-3xl sm:text-5xl text-gray-300 block">Deforestation</span>
-          </div>
+
         </div>
 
         {/* The Drag Handle (Sleek Glassmorphic Pill) */}
@@ -1088,9 +1079,9 @@ function ElephantGallery() {
           <h2 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-8 mt-4" style={{ fontSize: 'clamp(3.5rem, 8vw, 6.5rem)', letterSpacing: '-0.02em' }}>
             Welcome to
             <br />
-            <span className="text-[#C4B088] inline-block ml-16 md:ml-32">Tangkahan</span>
+            <span className="text-tangkahan-gold inline-block ml-16 md:ml-32">Tangkahan</span>
           </h2>
-          <p className="text-white text-lg md:text-2xl leading-relaxed mb-8 text-justify">
+          <p className="text-white text-base md:text-lg leading-relaxed mb-8 text-justify">
             Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
           </p>
           <div className="p-8 md:p-10 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
@@ -2283,350 +2274,49 @@ var TOOLS = [
    SECTION: VISUAL NOVEL — Mahout's Story
    ══════════════════════════════════════════════════ */
 function VisualNovelSection() {
-  const VN_NODES = {
-    start: {
-      id: 'start',
-      text: "Masih tercium.\n\nAroma oli.\nGetah kayu.\nDan asap.",
-      mood: "dark",
-      choices: [
-        { label: "Kau mengingat bau itu?", nextId: "pengakuan" }
-      ]
-    },
-    pengakuan: {
-      id: 'pengakuan',
-      text: "Aku sangat mengenalnya.\n\nKarena dulu...\nakulah yang menebang hutan ini.",
-      mood: "dark",
-      choices: [
-        { label: "Tidakkah kau merasa bersalah?", nextId: "angka" },
-        { label: "Mengapa kau melakukannya?", nextId: "angka" }
-      ]
-    },
-    angka: {
-      id: 'angka',
-      text: "Saat itu, pohon hanyalah angka.\n\nKubik kayu yang ditukar dengan beras.\n\n...Sampai suatu hari, semuanya berhenti.",
-      mood: "dark",
-      choices: [
-        { label: "Apa yang terjadi?", nextId: "sungai_mati" }
-      ]
-    },
-    sungai_mati: {
-      id: 'sungai_mati',
-      text: "Sungai berubah keruh.\n\nLumpur menelan bebatuan.\nDesa kami mengering, dan anak-anak mulai batuk berdarah.",
-      mood: "sad",
-      choices: [
-        { label: "Hutan sedang sekarat.", nextId: "penyesalan" },
-        { label: "Kalian menghancurkan diri sendiri.", nextId: "penyesalan" }
-      ]
-    },
-    penyesalan: {
-      id: 'penyesalan',
-      text: "Ya.\n\nKami sedang menggergaji fondasi rumah kami sendiri.\n\nPenyesalan itu datang, tapi kami tak tahu cara memperbaikinya.",
-      mood: "sad",
-      choices: [
-        { label: "Lalu, bagaimana kalian selamat?", nextId: "truk_datang" }
-      ]
-    },
-    truk_datang: {
-      id: 'truk_datang',
-      text: "Suatu sore...\n\nTruk-truk menderu dari utara.\nMembawa sembilan raksasa kelabu yang kehilangan rumah karena konflik.",
-      mood: "sad",
-      choices: [
-        { label: "Gajah-gajah itu...", nextId: "luka_gajah" }
-      ]
-    },
-    luka_gajah: {
-      id: 'luka_gajah',
-      text: "Ada bekas kawat baja di kaki matriark tertua.\n\nLuka menganga.\nSama seperti luka hutan yang kami tinggalkan.",
-      mood: "sad",
-      choices: [
-        { label: "Apa yang dia lakukan padamu?", nextId: "tatapan" }
-      ]
-    },
-    tatapan: {
-      id: 'tatapan',
-      text: "Dia menatapku.\n\nTidak ada amarah di matanya.\nHanya...\nkesedihan purba yang sangat dalam.",
-      mood: "sad",
-      choices: [
-        { label: "Dia tahu siapa kau.", nextId: "sentuhan" },
-        { label: "Dia memaafkanmu?", nextId: "sentuhan" }
-      ]
-    },
-    sentuhan: {
-      id: 'sentuhan',
-      text: "Perlahan, belalainya menyentuh telapak tanganku.\n\nTangan yang sama...\nyang dulu menghancurkan rumahnya.",
-      mood: "hope",
-      choices: [
-        { label: "Apa yang kau rasakan?", nextId: "buang_gergaji" }
-      ]
-    },
-    buang_gergaji: {
-      id: 'buang_gergaji',
-      text: "Malam itu juga...\n\nAku membuang gergajiku ke dasar jurang.\nAku bersumpah untuk menjadi perisai mereka.",
-      mood: "resolute",
-      choices: [
-        { label: "Apakah semua warga setuju?", nextId: "kawan_lama" }
-      ]
-    },
-    kawan_lama: {
-      id: 'kawan_lama',
-      text: "Tidak.\n\nBeberapa kawan lamaku mencibir.\nBagi mereka, gajah adalah hama.\nHarga gading sanggup membuat manusia buta.",
-      mood: "dark",
-      choices: [
-        { label: "Mereka datang berburu?", nextId: "patroli_malam" }
-      ]
-    },
-    patroli_malam: {
-      id: 'patroli_malam',
-      text: "Malam yang sangat pekat.\n\nAku sedang berpatroli menunggangi sang matriark.\nTerdengar bunyi decak logam senapan di balik semak.",
-      mood: "dark",
-      choices: [
-        { label: "Kawan lamamu?", nextId: "konfrontasi" }
-      ]
-    },
-    konfrontasi: {
-      id: 'konfrontasi',
-      text: "Ya.\n\nSenter mereka menyilaukan mataku.\nLaras senapan diarahkan lurus ke dada gajahku.\n\nAku menahan napas.",
-      mood: "dark",
-      choices: [
-        { label: "Apa yang kau lakukan?", nextId: "suara_bumi" }
-      ]
-    },
-    suara_bumi: {
-      id: 'suara_bumi',
-      text: "Aku tidak melakukan apa-apa.\n\nSang matriark yang mengambil langkah maju.\nIa mengeluarkan getaran rendah yang membuat tanah bergetar hebat.",
-      mood: "resolute",
-      choices: [
-        { label: "Sebuah ancaman.", nextId: "mundur" }
-      ]
-    },
-    mundur: {
-      id: 'mundur',
-      text: "Lebih dari itu.\n\nItu adalah suara rimba yang bangkit kembali.\n\nMereka menjatuhkan senapan dan lari ketakutan.",
-      mood: "resolute",
-      choices: [
-        { label: "Kalian berhasil.", nextId: "tahun_berganti" }
-      ]
-    },
-    tahun_berganti: {
-      id: 'tahun_berganti',
-      text: "Waktu berlalu.\n\nJalur tebangan kini tertutup lumut tebal.\nAir sungai kembali jernih.",
-      mood: "hope",
-      choices: [
-        { label: "Dan desa?", nextId: "anak_desa" }
-      ]
-    },
-    anak_desa: {
-      id: 'anak_desa',
-      text: "Anak-anak kembali bermain air.\n\nMereka menggambar gajah di pasir basah.\nMereka tak pernah lagi tahu bagaimana bau oli dan asap.",
-      mood: "hope",
-      choices: [
-        { label: "Kau telah menebus dosamu.", nextId: "pesan_terakhir" }
-      ]
-    },
-    pesan_terakhir: {
-      id: 'pesan_terakhir',
-      text: "Terkadang aku berpikir...\n\nHutan tidak pernah meminta kita menjadi pahlawan.",
-      mood: "hope",
-      choices: [
-        { label: "Lalu apa yang ia minta?", nextId: "ending_final" }
-      ]
-    },
-    ending_final: {
-      id: 'ending_final',
-      text: "...\n\nIa hanya berharap kita berhenti menjadi musuhnya.",
-      mood: "hope",
-      choices: [
-        { label: "[ Tutup Memori ]", nextId: "end" }
-      ]
-    }
-  };
-
-  
-  
-  const [currentNodeId, setCurrentNodeId] = useState('start');
-  const [lineIndex, setLineIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  
-  const node = VN_NODES[currentNodeId];
-  const textLines = node && node.text ? node.text.split('\n\n').filter(Boolean) : [];
-  const isTextFullyRevealed = lineIndex >= textLines.length - 1;
-  
   const sectionRef = useRef(null);
-  const boxRef = useRef(null);
-  const textContainerRef = useRef(null);
-  const choicesContainerRef = useRef(null);
-  const bgRef = useRef(null);
-  const mahoutRef = useRef(null);
-  const lineRefs = useRef([]);
-
+  
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const floatTween = gsap.to(boxRef.current, { y: -15, duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    return () => { floatTween.kill(); };
+    const bgImg = sectionRef.current?.querySelector('.vn-bg');
+    if (bgImg) {
+      gsap.to(bgImg, { scale: 1.05, duration: 20, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    }
   }, []);
 
-  useEffect(() => {
-    if (!node || currentNodeId === 'end') return;
-    
-    let filterStr = 'contrast(1.2) brightness(0.8)';
-    let bgScale = 1;
-    let mahoutScale = 1;
-    let mahoutX = 0;
-    
-    if (node.mood === 'hope') {
-      filterStr = 'contrast(1.1) brightness(1.2) hue-rotate(-5deg)';
-      bgScale = 1.05;
-      mahoutScale = 1.03;
-    } else if (node.mood === 'sad') {
-      filterStr = 'contrast(1.3) brightness(0.5) sepia(0.3)';
-      bgScale = 0.98;
-      mahoutX = 10;
-    } else if (node.mood === 'resolute') {
-      filterStr = 'contrast(1.25) brightness(1) sepia(0)';
-      bgScale = 1.02;
-      mahoutScale = 1.08;
-      mahoutX = -10;
-    } else if (node.mood === 'dark') {
-      filterStr = 'contrast(1.2) brightness(0.8)';
-    }
-    
-    gsap.to(mahoutRef.current, { filter: filterStr, scale: mahoutScale, x: mahoutX, duration: 1.5, ease: 'power2.inOut' });
-    gsap.to(bgRef.current, { scale: bgScale, duration: 2, ease: 'sine.inOut' });
-    
-  }, [currentNodeId]);
-
-  useEffect(() => {
-    if (!node || currentNodeId === 'end' || textLines.length === 0) return;
-    
-    const currentLineEl = lineRefs.current[lineIndex];
-    if (currentLineEl) {
-      gsap.fromTo(currentLineEl, 
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
-      );
-    }
-    
-    if (isTextFullyRevealed && (!node.choices || node.choices.length === 0)) {
-      const delay = node.delay || 2500;
-      const timeout = setTimeout(() => {
-        if (node.autoNext) handleChoice(node.autoNext);
-      }, delay);
-      return () => clearTimeout(timeout);
-    }
-    
-  }, [lineIndex, currentNodeId, isTextFullyRevealed]);
-
-  useEffect(() => {
-    if (!node || currentNodeId === 'end') return;
-    
-    if (isTextFullyRevealed && node.choices && node.choices.length > 0) {
-      if (choicesContainerRef.current) {
-        const buttons = choicesContainerRef.current.querySelectorAll('button');
-        gsap.fromTo(buttons, 
-          { opacity: 0, x: -20 },
-          { opacity: 1, x: 0, duration: 0.5, stagger: 0.15, ease: 'back.out(1.2)', delay: 0.2 }
-        );
-      }
-    }
-  }, [isTextFullyRevealed, currentNodeId]);
-
-  const handleContainerClick = () => {
-    if (currentNodeId === 'end' || isTransitioning) return;
-    
-    if (!isTextFullyRevealed) {
-      setLineIndex(prev => prev + 1);
-    }
-  };
-
-  const handleChoice = (nextId) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    
-    const tl = gsap.timeline({
-      onComplete: () => {
-        if (nextId === 'end') {
-          gsap.to(boxRef.current, { opacity: 0, y: 40, duration: 1, ease: 'power3.inOut' });
-          setCurrentNodeId('end');
-        } else {
-          setCurrentNodeId(nextId);
-          setLineIndex(0);
-        }
-        setIsTransitioning(false);
-      }
-    });
-    
-    if (choicesContainerRef.current) {
-      const buttons = choicesContainerRef.current.querySelectorAll('button');
-      if (buttons.length > 0) {
-        tl.to(buttons, { opacity: 0, x: 20, stagger: -0.05, duration: 0.3, ease: 'power2.in' }, 0);
-      }
-    }
-    if (textContainerRef.current) {
-      tl.to(textContainerRef.current, { opacity: 0, y: -20, duration: 0.4, ease: 'power2.in' }, 0.1);
-      tl.set(textContainerRef.current, { opacity: 1, y: 0 });
-    }
-  };
-
   return (
-    <section ref={sectionRef} className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-[#020807] flex items-center justify-center px-4 sm:px-16" id="vn-branching">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <img ref={bgRef} src="/asset/vn_bg.png" alt="Forest Background" className="absolute top-[-5%] left-[-5%] w-[110%] h-[110%] object-cover opacity-30 transform-gpu" />
-      </div>
-      
-      <div className="absolute inset-0 z-10 flex items-end justify-center pointer-events-none">
-        <div className="relative w-[85vw] sm:w-[35vw] h-[55vh] md:h-[75vh] flex items-end justify-center bg-black/80 shadow-[0_0_50px_rgba(0,0,0,0.8)] border-x border-t border-white/5">
-          <img ref={mahoutRef} src="/asset/vn_mahout.png" alt="Mahout Silhouette" className="h-[50vh] md:h-[65vh] w-auto max-w-none object-contain opacity-60 origin-bottom mix-blend-screen transform-gpu" style={{ filter: 'contrast(1.2) brightness(0.8)' }} />
-        </div>
+    <section ref={sectionRef} className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-black" id="vn-branching">
+      {/* Background Layer */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/asset/anime_tangkahan_bg.png" 
+          alt="Anime Tangkahan Rainforest" 
+          className="vn-bg w-full h-full object-cover origin-center" 
+        />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#020807] via-transparent to-[#020807]/50 opacity-90 z-20 pointer-events-none" />
-
-      <div className="relative z-30 w-full max-w-2xl pt-20 pointer-events-none">
-        <div ref={boxRef} onClick={handleContainerClick} className="w-full backdrop-blur-2xl bg-[rgba(10,31,18,0.4)] border border-[rgba(74,222,128,0.2)] rounded-[2rem] p-8 sm:p-12 shadow-[0_24px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(74,222,128,0.05)] relative pointer-events-auto cursor-pointer transition-colors hover:bg-[rgba(10,31,18,0.45)]">
-          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(74,222,128,0.08)] to-transparent rounded-[2rem] pointer-events-none" />
+      {/* Dialogue Box Container covering the lower third */}
+      <div className="absolute bottom-0 left-0 w-full h-[33vh] min-h-[220px] z-20 flex flex-col justify-end">
+        {/* The ornate, translucent blue dialogue text box */}
+        <div className="relative w-full h-full bg-[#0f172a]/70 backdrop-blur-md border-t-2 border-[#94a3b8] shadow-[0_-10px_50px_rgba(0,0,0,0.6)]">
+          {/* Decorative silver borders (inner) */}
+          <div className="absolute inset-2 border border-[#94a3b8]/40 pointer-events-none"></div>
           
-          <div className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-[#f59e0b] mb-6 flex items-center gap-3 opacity-80">
-            <span className="w-8 h-px bg-[#f59e0b] block" />
-            Jejak Raksasa di Tangkahan
+          <div className="p-6 md:p-10 lg:px-16 h-full flex flex-col justify-start">
+            {/* Header Area */}
+            <div className="mb-4">
+              <span className="inline-block bg-[#dc2626]/90 text-white font-bold tracking-widest px-4 py-1 text-sm md:text-base border border-[#f87171] shadow-[0_0_10px_rgba(220,38,38,0.5)] uppercase font-mono">
+                Pemandu
+              </span>
+            </div>
+            
+            {/* Main Text */}
+            <p className="font-sans text-white text-lg md:text-xl lg:text-2xl leading-relaxed max-w-5xl" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+              "Selamat datang di Tangkahan, permata ekowisata Sumatera Utara. Di sini, Anda bisa menjelajahi hutan hujan, mandi di sungai jernih, dan bertemu gajah-gajah yang dilindungi. Mari kita mulai pertualangan Anda."
+            </p>
           </div>
           
-          {currentNodeId !== 'end' && node && (
-            <div className="relative min-h-[150px] md:min-h-[200px] flex flex-col justify-between">
-              <div ref={textContainerRef} className="flex flex-col gap-6">
-                {textLines.slice(0, lineIndex + 1).map((line, idx) => (
-                  <p key={idx} ref={el => lineRefs.current[idx] = el} className="font-display italic text-base md:text-xl lg:text-2xl leading-[1.6] text-[#e2f0e6] opacity-0 whitespace-pre-wrap">
-                    {line}
-                  </p>
-                ))}
-              </div>
 
-              {!isTextFullyRevealed && (
-                <div className="absolute bottom-[-20px] right-0 animate-pulse text-[#4ade80] opacity-50 font-mono text-sm tracking-widest">
-                  KLIK UNTUK MELANJUTKAN ▼
-                </div>
-              )}
-
-              {isTextFullyRevealed && node.choices && node.choices.length > 0 && (
-                <div ref={choicesContainerRef} className="mt-8 flex flex-col gap-3" onClick={(e) => e.stopPropagation()}>
-                  {node.choices.map((choice, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleChoice(choice.nextId)}
-                      className="group relative overflow-hidden flex items-center justify-between w-full text-left px-6 py-4 rounded-2xl backdrop-blur-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] transition-colors duration-500 hover:bg-[rgba(74,222,128,0.1)] hover:border-[rgba(74,222,128,0.3)] hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] opacity-0 cursor-pointer"
-                    >
-                      <span className="relative z-10 font-body text-[0.85rem] font-medium tracking-wide text-[#c4dccb] group-hover:text-[#4ade80] transition-colors duration-300">
-                        ▶ {choice.label}
-                      </span>
-                      <span className="relative z-10 font-mono text-[0.8rem] text-[#4ade80] opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                        Lanjut
-                      </span>
-                      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.05)] to-transparent group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </section>
@@ -2919,7 +2609,7 @@ function LocationMapSection() {
           {/* Section eyebrow */}
           <div className="dossier-reveal flex items-center gap-3 mb-5">
             <span className="block w-10 h-0.5 bg-[#4ade80]"></span>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#4ade80]">WHERE IS TANGKAHAN</span>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#4ade80]">WHERE IS <span className="text-tangkahan-gold">TANGKAHAN</span></span>
           </div>
           
           {/* Map container */}
@@ -2953,16 +2643,10 @@ function LocationMapSection() {
             {/* Title */}
             <div>
               <h3 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-2" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', letterSpacing: '-0.02em' }}>
-                where is
+                Where is
                 <br />
-                <span className="inline-block mt-2 font-display uppercase italic" style={{ 
-                  background: 'linear-gradient(to bottom, #fdf5a9 0%, #f3d47c 30%, #b38728 60%, #8a5a19 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.4)) drop-shadow(0px 2px 2px rgba(138,90,25,0.6))',
-                  lineHeight: '1.1'
-                }}>
-                  TANGKAHAN
+                <span className="inline-block mt-2 font-display italic text-tangkahan-gold" style={{ lineHeight: '1.1' }}>
+                  Tangkahan
                 </span>
               </h3>
               
@@ -2970,7 +2654,7 @@ function LocationMapSection() {
               <div className="w-12 h-[2px] bg-gradient-to-r from-[#4ade80] to-transparent mb-5"></div>
               
               {/* Description text */}
-              <p className="font-body text-[0.85rem] text-[#9ca3af] leading-[1.8] text-justify">
+              <p className="font-body text-[0.75rem] text-[#9ca3af] leading-[1.8] text-justify">
                 Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
               </p>
 
@@ -3040,25 +2724,63 @@ function LocationMapSection() {
 function CTAFooter() {
   var ref = useReveal('.rv');
   return (
-    <footer className="relative bg-void px-6 sm:px-10 lg:px-16 overflow-hidden" style={{ paddingTop: 'clamp(5rem,10vw,8rem)', paddingBottom: 'clamp(3rem,6vw,5rem)' }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(74,222,128,0.06) 0%, transparent 70%)' }} />
+    <footer className="relative bg-[#020503] w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
+      {/* Background Image (Yggdrasil Tree) */}
+      <div 
+        className="absolute inset-0 z-0 bg-center bg-cover bg-no-repeat opacity-60 mix-blend-screen"
+        style={{ backgroundImage: "url('/asset/image_23.png')" }} 
+      />
+      
+      {/* Overlay gradient for blending */}
+      <div className="absolute inset-0 pointer-events-none z-0" style={{ background: 'radial-gradient(circle at center, transparent 15%, #020503 85%)' }} />
 
-      <div ref={ref} className="rv mx-auto text-center relative z-10" style={{ maxWidth: '800px' }}>
-        <h2 className="font-display italic text-[#e2f0e6] leading-[1.05]" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.02em' }}>
-          Portal ini
+      {/* Main Content */}
+      <div ref={ref} className="rv mx-auto text-center relative z-10 flex flex-col items-center px-4 mt-12" style={{ maxWidth: '850px' }}>
+        <h2 className="font-display italic text-[#e2e8f0] leading-[1.15] mb-4 text-center select-none" style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)', textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 2px 4px rgba(255,255,255,0.15)' }}>
+          P<span className="relative inline-block">o<span className="absolute -inset-1 border border-[#4ade80] rounded-full scale-110 pointer-events-none shadow-[0_0_10px_rgba(74,222,128,0.6)] animate-pulse"></span></span>rtal ini
           <br />
-          <span className="text-[#4ade80]">tidak menunggu.</span>
+          tidak menunggu.
         </h2>
-        <p className="mt-5 text-[0.85rem] text-[#3d6b4a] max-w-md mx-auto leading-relaxed">
+        <p className="mt-4 mb-10 text-[0.85rem] sm:text-[0.95rem] text-[#6b8571] max-w-md mx-auto leading-relaxed font-sans">
           Gulir kembali ke atas dan rasakan lagi. Atau bawa pengalaman ini ke proyekmu sendiri.
         </p>
-        <button type="button" className="btn btn--primary mt-9" onClick={function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-          <span>Kembali ke Portal</span>
-          <span className="btn__icon" aria-hidden="true">↑</span>
+        <button 
+          type="button" 
+          className="group relative px-10 py-4 rounded-full bg-[#0d1c12] border border-[#20402b] text-white text-[0.7rem] font-bold tracking-[0.2em] uppercase transition-all hover:bg-[#122b1b] hover:border-[#4ade80] shadow-[0_0_15px_rgba(74,222,128,0.12)] hover:shadow-[0_0_30px_rgba(74,222,128,0.35)]"
+          onClick={function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+        >
+          KEMBALI KE PORTAL &uarr;
         </button>
       </div>
 
+      {/* Right UI Sidebar */}
+      <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 flex items-center gap-4 z-20">
+        {/* Floating Silver 4-point Diamond Star */}
+        <div className="animate-[bounce_3s_ease-in-out_infinite] opacity-70">
+          <svg className="w-4 h-4 text-gray-300 drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z" />
+          </svg>
+        </div>
 
+        {/* Track Panel */}
+        <div className="w-10 md:w-11 h-72 rounded-full bg-[#080d0a]/90 backdrop-blur-md border border-[#1b2f21] flex flex-col items-center justify-between py-5 shadow-2xl shadow-black/80 relative">
+          <span className="text-[0.55rem] font-mono tracking-[0.25em] text-[#425f4b] uppercase" style={{ writingMode: 'vertical-rl' }}>SCROLL</span>
+          
+          <div className="w-[1px] h-28 bg-[#16261b] relative my-3 flex flex-col items-center justify-end">
+             {/* Glowing Progress Fill */}
+             <div className="absolute bottom-0 w-full h-[99%] bg-[#4ade80] shadow-[0_0_10px_#4ade80]" />
+             
+             {/* Interactive circular target ring node */}
+             <div className="absolute bottom-[99%] -translate-y-1/2 flex items-center justify-center">
+               <div className="w-2.5 h-2.5 rounded-full bg-[#4ade80] shadow-[0_0_8px_#4ade80]" />
+               <div className="absolute w-5 h-5 rounded-full border border-[#4ade80]/60 animate-ping opacity-75" />
+               <div className="absolute w-5 h-5 rounded-full border border-[#4ade80]/40" />
+             </div>
+          </div>
+          
+          <span className="text-[0.6rem] font-mono tracking-widest text-[#a3c9b0]">99%</span>
+        </div>
+      </div>
     </footer>
   );
 }
@@ -4313,7 +4035,7 @@ function InformationSection() {
         <div className="w-full md:w-1/2 pl-4 sm:pl-10 lg:pl-20 mb-20 md:mb-0 relative z-20">
           <p className="font-mono text-xs uppercase tracking-[0.3em] mb-4 transition-colors duration-[1500ms] ease-in-out" style={{ color: activeColor }}>Essential Lore</p>
           <h2 className="font-display italic text-6xl md:text-8xl text-[#e2f0e6] leading-[0.9]">
-            Tangkahan<br/>
+            <span className="text-tangkahan-gold">Tangkahan</span><br/>
             <span className="text-transparent transition-colors duration-[1500ms] ease-in-out" style={{ WebkitTextStroke: `1px ${strokeColorMap[activeColor]}` }}>Archives</span>
           </h2>
         </div>
