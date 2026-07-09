@@ -991,12 +991,12 @@ function HistorySlider() {
 
       <div 
         ref={containerRef}
-        className="w-full max-w-6xl aspect-[4/5] md:aspect-[21/9] mx-auto rounded-3xl overflow-hidden relative cursor-ew-resize select-none shadow-2xl"
+        className="w-full max-w-6xl aspect-[4/5] md:aspect-[16/9] mx-auto rounded-3xl overflow-hidden relative cursor-ew-resize select-none shadow-2xl"
         style={{ touchAction: 'none', border: '1px solid rgba(74,222,128,0.15)' }}
       >
         {/* Bottom Image (After - Present Day) */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-[#0a1f12]">
-          <img ref={bottomImageRef} src="/asset/history-after.png" alt="Present Eco Tourism" className="absolute inset-0 w-full h-full object-cover origin-center" />
+          <img ref={bottomImageRef} src="/asset/asset-7-after.jpeg" alt="Present Eco Tourism" className="absolute inset-0 w-full h-full object-contain origin-center bg-[#0a1f12]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,31,18,0.6)] to-transparent pointer-events-none" />
           <div ref={label2Ref} className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 text-right z-10 pointer-events-none drop-shadow-2xl">
             <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[#4ade80] block mb-2 drop-shadow-md">Present Day</span>
@@ -1006,7 +1006,7 @@ function HistorySlider() {
 
         {/* Top Image (Before - 1990s) */}
         <div ref={topImageWrapperRef} className="absolute inset-0 z-10 overflow-hidden" style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}>
-          <img ref={topImageRef} src="/asset/history-before.png" alt="1990s Deforestation" className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 contrast-125 origin-center" />
+          <img ref={topImageRef} src="/asset/history-before.png" alt="1990s Deforestation" className="absolute inset-0 w-full h-full object-contain grayscale brightness-75 contrast-125 origin-center bg-[#0a1f12]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,31,18,0.8)] to-transparent pointer-events-none" />
           <div ref={label1Ref} className="absolute top-8 left-8 sm:top-12 sm:left-12 z-10 pointer-events-none drop-shadow-2xl">
             <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[#f59e0b] block mb-2 drop-shadow-md">1990s</span>
@@ -1096,7 +1096,7 @@ function ElephantGallery() {
           <div className="p-8 md:p-10 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
             <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
             <p className="font-mono text-base md:text-xl uppercase tracking-widest text-[#C4B088] font-bold mb-4">FUN FACT!</p>
-            <p className="text-base md:text-lg text-[#e2f0e6] leading-relaxed">
+            <p className="text-sm md:text-base text-[#e2f0e6] leading-relaxed">
               There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. They are specially trained to help rangers patrol the forest and protect it from ilegal logging. 
               <br/><br/>The coolest part is that you can see the harmonious interaction between the local community and the elephants. The community helps to care for them and save their herds from extinction.
             </p>
@@ -2950,18 +2950,26 @@ function LocationMapSection() {
             
             {/* Title */}
             <div>
-              <h3 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-4" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', letterSpacing: '-0.02em' }}>
+              <h3 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-2" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', letterSpacing: '-0.02em' }}>
                 where is
                 <br />
-                <span className="text-[#C4B088]">TANGKAHAN</span>
+                <span className="inline-block mt-2 font-display uppercase italic" style={{ 
+                  background: 'linear-gradient(to bottom, #fdf5a9 0%, #f3d47c 30%, #b38728 60%, #8a5a19 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.4)) drop-shadow(0px 2px 2px rgba(138,90,25,0.6))',
+                  lineHeight: '1.1'
+                }}>
+                  TANGKAHAN
+                </span>
               </h3>
               
               {/* Divider */}
               <div className="w-12 h-[2px] bg-gradient-to-r from-[#4ade80] to-transparent mb-5"></div>
               
               {/* Description text */}
-              <p className="font-body text-[0.95rem] text-[#9ca3af] leading-[1.8] text-justify">
-                Tangkahan is an ecotourism area in Langkat Regency, North Sumatra. This area, which forms part of Taman Nasional Gunung Leuser, offers a unique and unforgettable tourist experience.
+              <p className="font-body text-[0.85rem] text-[#9ca3af] leading-[1.8] text-justify">
+                Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
               </p>
 
               {/* Mini stats */}
