@@ -49,7 +49,7 @@ function StarterPackSection() {
   }, []);
 
   return (
-    <section className="relative px-6 sm:px-10 lg:px-16 overflow-hidden py-40" style={{ background: '#0a1f12' }}>
+    <section className="relative px-6 sm:px-10 lg:px-16 overflow-hidden py-16 md:py-40" style={{ background: '#0a1f12' }}>
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 50%, rgba(74,222,128,0.03) 0%, transparent 100%)' }} />
       
       <div className="mx-auto" style={{ maxWidth: '1400px' }}>

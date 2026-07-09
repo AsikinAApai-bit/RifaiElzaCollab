@@ -647,7 +647,7 @@ function SpotsSection() {
               <ScrollStackItem key={spot.id} itemClassName="overflow-hidden group border border-[rgba(74,222,128,0.15)] bg-[#020807]">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  <img src={spot.img} alt={spot.name} className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105" />
+                  <img src={spot.img} alt={spot.name} className="w-full h-full object-cover transform transition-transform duration-1000 ease-out md:group-hover:scale-105" />
                 </div>
 
                 {/* Gradient Mask */}

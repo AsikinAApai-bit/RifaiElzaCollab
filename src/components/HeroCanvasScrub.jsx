@@ -17,31 +17,34 @@ function HeroCanvasScrub(props) {
 
   // Preload Logic (WebP frames)
   useEffect(() => {
-    let loadedCount = 0;
-    const tempImages = [];
-    const totalFrames = 240;
+    const isMobile = window.innerWidth < 768;
+    const step = isMobile ? 3 : 1;
+    const totalToLoad = Math.floor(totalFrames / step);
 
-    for (let i = 1; i <= totalFrames; i++) {
+    const tempImages = new Array(totalFrames).fill(null);
+
+    for (let i = 1; i <= totalFrames; i += step) {
       const img = new Image();
-      const frameNum = i.toString().padStart(3, '0');
-      img.src = `/asset/frames/frame-${frameNum}.webp`;
+      const frameStr = i.toString().padStart(3, '0');
+      img.src = `/asset/frames/frame-${frameStr}.webp`;
       img.onload = () => {
         loadedCount++;
         if (props.progressRef) {
-          props.progressRef.current = (loadedCount / totalFrames) * 100;
+          props.progressRef.current = (loadedCount / totalToLoad) * 100;
         }
-        if (loadedCount === totalFrames) {
+        
+        tempImages[i - 1] = img;
+
+        if (loadedCount >= totalToLoad) {
           setLoaded(true);
         }
         
-        // Draw first frame immediately
         if (i === 1) {
           requestAnimationFrame(() => {
             renderFrame(img);
           });
         }
       };
-      tempImages.push(img);
     }
     setImages(tempImages);
   }, [props.progressRef]);
@@ -97,8 +100,11 @@ function HeroCanvasScrub(props) {
       duration: 3, // Durasi relatif terhadap ScrollTrigger
       onUpdate: () => {
         const frameIndex = Math.round(frameObj.frame);
-        if (images[frameIndex]) {
-          renderFrame(images[frameIndex]);
+        const isMobile = window.innerWidth < 768;
+        const step = isMobile ? 3 : 1;
+        const closestIndex = Math.floor(frameIndex / step) * step;
+        if (images[closestIndex]) {
+          renderFrame(images[closestIndex]);
         }
       }
     }, 1);

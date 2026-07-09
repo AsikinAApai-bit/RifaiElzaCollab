@@ -32,7 +32,7 @@ function ElephantGallery() {
   }, []);
 
   return (
-    <section className="relative px-6 sm:px-10 lg:px-16 border-t border-[rgba(74,222,128,0.05)]" style={{ paddingTop: '8rem', paddingBottom: '12rem', background: '#020807' }}>
+    <section className="relative px-6 sm:px-10 lg:px-16 border-t border-[rgba(74,222,128,0.05)] pt-16 md:pt-32 pb-24 md:pb-48" style={{ background: '#020807' }}>
       
       {/* SVG Filter for Liquid Distortion */}
       <svg className="hidden">
@@ -60,7 +60,7 @@ function ElephantGallery() {
             <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
             <p className="font-mono text-[0.6rem] uppercase tracking-widest text-[#4ade80] mb-3">Fun Fact</p>
             <p className="text-[0.85rem] text-[#e2f0e6] leading-relaxed">
-              There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. As mentioned earlier, the Sumatran Elephants are trained for patrolling the forest.
+              There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. They are specially trained to help rangers patrol the forest and protect it from ilegal logging. 
               <br/><br/>The coolest part is that you can see the harmonious interaction between the local community and the elephants. The community helps to care for them and save their herds from extinction.
             </p>
           </div>

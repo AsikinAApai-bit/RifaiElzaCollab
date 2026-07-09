@@ -466,7 +466,7 @@ export const StaggeredMenu = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_2.5em_2.5em_2.5em] overflow-y-auto z-10 pointer-events-auto"
+          className="staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_2.5em_2.5em_4em] overflow-y-auto z-10 pointer-events-auto"
           onMouseEnter={handleMouseEnterPanel}
           onMouseLeave={handleMouseLeavePanel}
           aria-hidden={!open}
@@ -492,7 +492,7 @@ export const StaggeredMenu = ({
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
                       onClick={(e) => handleItemClick(e, it.link)}
-                      style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)', color: '#EADCB9' }}
+                      style={{ fontSize: 'clamp(1.4rem, 2.8vw, 2.4rem)', color: '#EADCB9' }}
                     >
                       <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}
@@ -502,7 +502,7 @@ export const StaggeredMenu = ({
                 ))
               ) : (
                 <li className="sm-panel-itemWrap relative overflow-hidden leading-none" aria-hidden="true">
-                  <span className="sm-panel-item relative font-display italic cursor-pointer leading-none tracking-[-1px] transition-[color] duration-200 ease-linear inline-block no-underline pr-[1.4em]" style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)', color: '#EADCB9' }}>
+                  <span className="sm-panel-item relative font-display italic cursor-pointer leading-none tracking-[-1px] transition-[color] duration-200 ease-linear inline-block no-underline pr-[1.4em]" style={{ fontSize: 'clamp(1.4rem, 2.8vw, 2.4rem)', color: '#EADCB9' }}>
                     <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                       No items
                     </span>
@@ -512,7 +512,7 @@ export const StaggeredMenu = ({
             </ul>
 
             {displaySocials && socialItems && socialItems.length > 0 && (
-              <div className="sm-socials mt-auto pt-8 flex flex-col gap-3" aria-label="Social links">
+              <div className="sm-socials mt-auto pt-8 pb-10 flex flex-col gap-3" aria-label="Social links">
                 <h3 className="sm-socials-title m-0 text-xs font-mono uppercase tracking-[0.2em]" style={{ color: 'var(--sm-accent, #4ade80)' }}>Connect</h3>
                 <ul
                   className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"

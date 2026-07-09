@@ -402,30 +402,35 @@ function HeroCanvasScrub(props) {
   // Preload Logic (WebP frames)
   useEffect(() => {
     let loadedCount = 0;
-    const tempImages = [];
     const totalFrames = 240;
+    const isMobile = window.innerWidth < 768;
+    const step = isMobile ? 3 : 1;
+    const totalToLoad = Math.floor(totalFrames / step);
 
-    for (let i = 1; i <= totalFrames; i++) {
+    const tempImages = new Array(totalFrames).fill(null);
+
+    for (let i = 1; i <= totalFrames; i += step) {
       const img = new Image();
-      const frameNum = i.toString().padStart(3, '0');
-      img.src = `/asset/frames/frame-${frameNum}.webp`;
+      const frameStr = i.toString().padStart(3, '0');
+      img.src = `/asset/frames/frame-${frameStr}.webp`;
       img.onload = () => {
         loadedCount++;
         if (props.progressRef) {
-          props.progressRef.current = (loadedCount / totalFrames) * 100;
+          props.progressRef.current = (loadedCount / totalToLoad) * 100;
         }
-        if (loadedCount === totalFrames) {
+        
+        tempImages[i - 1] = img;
+
+        if (loadedCount >= totalToLoad) {
           setLoaded(true);
         }
         
-        // Draw first frame immediately
         if (i === 1) {
           requestAnimationFrame(() => {
             renderFrame(img);
           });
         }
       };
-      tempImages.push(img);
     }
     setImages(tempImages);
   }, [props.progressRef]);
@@ -481,8 +486,11 @@ function HeroCanvasScrub(props) {
       duration: 3, // Durasi relatif terhadap ScrollTrigger
       onUpdate: () => {
         const frameIndex = Math.round(frameObj.frame);
-        if (images[frameIndex]) {
-          renderFrame(images[frameIndex]);
+        const isMobile = window.innerWidth < 768;
+        const step = isMobile ? 3 : 1;
+        const closestIndex = Math.floor(frameIndex / step) * step;
+        if (images[closestIndex]) {
+          renderFrame(images[closestIndex]);
         }
         
         if (frameIndex >= 30 && frameIndex <= 195) {
@@ -633,7 +641,7 @@ function HeroCanvasScrub(props) {
         {showHiddenParadise && (
           <div 
             className={`transition-all duration-1000 ease-in-out uppercase text-white ${paradiseOut ? 'opacity-0 -translate-y-24' : (paradiseIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}`} 
-            style={{ fontFamily: 'Tenada', fontSize: '45px', letterSpacing: '1.5px', textShadow: '0 4px 30px rgba(0,0,0,0.9)' }}
+            style={{ fontFamily: 'Tenada', fontSize: 'clamp(24px, 5vw, 45px)', letterSpacing: '1.5px', textShadow: '0 4px 30px rgba(0,0,0,0.9)' }}
           >
             <TextType 
               text="The Hidden Paradise"
@@ -652,7 +660,7 @@ function HeroCanvasScrub(props) {
       {/* Layer 6 (Frame 105 Text) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 26, top: '-5%' }}>
         {showHarmony && (
-          <div className={`transition-all duration-1000 ease-in-out italic text-[#C4B088] ${harmonyOut ? 'opacity-0 -translate-y-24' : (harmonyIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}`} style={{ fontFamily: '"Oceanside Typewriter", monospace', fontSize: '30px', letterSpacing: '1.5px', textShadow: '0 2px 20px rgba(0,0,0,0.9)' }}>
+          <div className={`transition-all duration-1000 ease-in-out italic text-[#C4B088] ${harmonyOut ? 'opacity-0 -translate-y-24' : (harmonyIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}`} style={{ fontFamily: '"Oceanside Typewriter", monospace', fontSize: 'clamp(18px, 4vw, 30px)', letterSpacing: '1.5px', textShadow: '0 2px 20px rgba(0,0,0,0.9)' }}>
             <DecryptedText
               text="where every leaf tells a story of harmony"
               speed={40}
@@ -667,20 +675,61 @@ function HeroCanvasScrub(props) {
 
       {/* Layer 7 (Frame 205 TextPressure) */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style={{ zIndex: 27 }}>
+        <style>{`
+          .tangkahan-bronze-text span {
+            background: linear-gradient(to bottom, #fdf5a9 0%, #f3d47c 30%, #b38728 60%, #8a5a19 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.6));
+          }
+          .tangkahan-bronze-text.stroke span::after {
+            -webkit-text-stroke-color: rgba(138, 90, 25, 0.5) !important;
+          }
+          .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+          }
+          .custom-slider::-moz-range-thumb {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            border: none;
+          }
+        `}</style>
         {showTangkahan && (
-          <div className={`w-[80%] flex flex-col items-center justify-center px-6 sm:px-10 lg:px-16 transition-all duration-1000 ease-in-out ${tangkahanOut ? 'opacity-0 -translate-y-24' : (tangkahanIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}`} style={{ height: '300px' }}>
-            <TextPressure
-              text="TANGKAHAN"
-              flex={true}
-              alpha={false}
-              stroke={true}
-              width={true}
-              weight={true}
-              italic={true}
-              textColor="#EAEAB9"
-              strokeColor="#727E58"
-              minFontSize={36}
-            />
+          <div className={`w-[80%] flex flex-col items-center justify-center px-6 sm:px-10 lg:px-16 transition-all duration-1000 ease-in-out ${tangkahanOut ? 'opacity-0 -translate-y-24' : (tangkahanIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}`} style={{ height: 'auto', minHeight: '350px' }}>
+            
+            <div className="relative mb-6 w-full pointer-events-auto">
+              <TextPressure
+                text="TANGKAHAN"
+                flex={true}
+                alpha={false}
+                stroke={true}
+                width={true}
+                weight={true}
+                italic={true}
+                textColor="#f3d47c"
+                strokeColor="#8a5a19"
+                minFontSize={36}
+                className="tangkahan-bronze-text"
+              />
+            </div>
+
+            <div className="flex flex-col items-center w-full max-w-md mt-8 pointer-events-auto">
+              <span className="font-mono text-xs tracking-[0.2em] uppercase text-[#EADCB9] mb-4">SLIDE TO UNLOCK THE MAGIC</span>
+
+
+              <span className="font-sans text-[0.65rem] text-[rgba(255,255,255,0.6)] mt-6 text-center max-w-[80%] leading-relaxed tracking-wide">
+                Experience an authentic connection with nature and community-led conservation in the heart of Sumatra.
+              </span>
+            </div>
           </div>
         )}
       </div>
@@ -778,7 +827,7 @@ function StatsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="stats" className="relative px-6 sm:px-10 lg:px-16 py-32 overflow-hidden" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.85) 0%, rgba(10,31,18,0.9) 100%), url("/asset/asset5.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+    <section ref={sectionRef} id="stats" className="relative px-6 sm:px-10 lg:px-16 py-16 md:py-32 overflow-hidden" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.85) 0%, rgba(10,31,18,0.9) 100%), url("/asset/asset5.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-8 justify-between items-center md:items-start text-center md:text-left">
         
         <div className="flex flex-col items-center md:items-start">
@@ -1035,23 +1084,20 @@ function ElephantGallery() {
 
       <div className="mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10" style={{ maxWidth: '1200px' }}>
         <div className="lg:w-1/2 relative">
-          <div className="eyebrow mb-6">
-            <span className="eyebrow__line" />
-            <span className="eyebrow__text">An introduction to our eco-tourism</span>
-          </div>
-          <h2 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.02em' }}>
+
+          <h2 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-8 mt-4" style={{ fontSize: 'clamp(3.5rem, 8vw, 6.5rem)', letterSpacing: '-0.02em' }}>
             Welcome to
             <br />
             <span className="text-[#C4B088] inline-block ml-16 md:ml-32">Tangkahan</span>
           </h2>
-          <p className="text-[#EADCB9] leading-relaxed mb-8 text-justify">
+          <p className="text-white text-lg md:text-2xl leading-relaxed mb-8 text-justify">
             Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
           </p>
-          <div className="p-6 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
+          <div className="p-8 md:p-10 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
             <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-            <p className="font-mono text-sm md:text-base uppercase tracking-widest text-[#C4B088] font-bold mb-3">FUN FACT!</p>
-            <p className="text-[0.85rem] text-[#e2f0e6] leading-relaxed">
-              There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. As mentioned earlier, the Sumatran Elephants are trained for patrolling the forest.
+            <p className="font-mono text-base md:text-xl uppercase tracking-widest text-[#C4B088] font-bold mb-4">FUN FACT!</p>
+            <p className="text-base md:text-lg text-[#e2f0e6] leading-relaxed">
+              There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. They are specially trained to help rangers patrol the forest and protect it from ilegal logging. 
               <br/><br/>The coolest part is that you can see the harmonious interaction between the local community and the elephants. The community helps to care for them and save their herds from extinction.
             </p>
           </div>
@@ -1282,6 +1328,7 @@ const ScrollStack = ({
   const setupLenis = React.useCallback(() => {
     if (!Lenis) return;
     if (useWindowScroll) {
+      const isMobile = window.innerWidth < 768;
       const lenis = new Lenis({
         duration: 1.2,
         easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1290,7 +1337,8 @@ const ScrollStack = ({
         infinite: false,
         wheelMultiplier: 1,
         lerp: 0.1,
-        syncTouch: true,
+        smoothTouch: false,
+        syncTouch: !isMobile,
         syncTouchLerp: 0.075
       });
 
@@ -1318,6 +1366,7 @@ const ScrollStack = ({
       const scroller = scrollerRef.current;
       if (!scroller) return;
 
+      const isMobile = window.innerWidth < 768;
       const lenis = new Lenis({
         wrapper: scroller,
         content: scroller.querySelector('.scroll-stack-inner'),
@@ -1328,7 +1377,8 @@ const ScrollStack = ({
         infinite: false,
         wheelMultiplier: 1,
         lerp: 0.1,
-        syncTouch: true,
+        smoothTouch: false,
+        syncTouch: !isMobile,
         syncTouchLerp: 0.075
       });
 
@@ -2524,7 +2574,7 @@ function VisualNovelSection() {
       </div>
       
       <div className="absolute inset-0 z-10 flex items-end justify-start pointer-events-none">
-        <img ref={mahoutRef} src="/asset/vn_mahout.png" alt="Mahout Silhouette" className="w-[120vw] sm:w-[65vw] max-w-4xl object-contain opacity-60 origin-bottom mix-blend-screen transform-gpu" style={{ filter: 'contrast(1.2) brightness(0.8)' }} />
+        <img ref={mahoutRef} src="/asset/vn_mahout.png" alt="Mahout Silhouette" className="h-[40vh] md:h-[60vh] w-auto max-w-none object-contain opacity-60 origin-bottom mix-blend-screen transform-gpu" style={{ filter: 'contrast(1.2) brightness(0.8)' }} />
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-[#020807] via-transparent to-[#020807]/50 opacity-90 z-20 pointer-events-none" />
@@ -2539,10 +2589,10 @@ function VisualNovelSection() {
           </div>
           
           {currentNodeId !== 'end' && node && (
-            <div className="relative min-h-[260px] flex flex-col justify-between">
+            <div className="relative min-h-[150px] md:min-h-[200px] flex flex-col justify-between">
               <div ref={textContainerRef} className="flex flex-col gap-6">
                 {textLines.slice(0, lineIndex + 1).map((line, idx) => (
-                  <p key={idx} ref={el => lineRefs.current[idx] = el} className="font-display italic text-xl sm:text-2xl lg:text-3xl leading-[1.6] text-[#e2f0e6] opacity-0 whitespace-pre-wrap">
+                  <p key={idx} ref={el => lineRefs.current[idx] = el} className="font-display italic text-base md:text-xl lg:text-2xl leading-[1.6] text-[#e2f0e6] opacity-0 whitespace-pre-wrap">
                     {line}
                   </p>
                 ))}
@@ -2619,7 +2669,7 @@ function JungleSecretsSection() {
               <ScrollStackItem key={secret.id} itemClassName="overflow-hidden group border border-[rgba(74,222,128,0.15)] bg-[#020807]">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  <img src={secret.img} alt={secret.name} className="w-full h-full object-cover transform transition-transform duration-1000 ease-out group-hover:scale-105 opacity-80 mix-blend-luminosity group-hover:mix-blend-normal" />
+                  <img src={secret.img} alt={secret.name} className="w-full h-full object-cover transform transition-transform duration-1000 ease-out md:group-hover:scale-105 opacity-80 mix-blend-luminosity group-hover:mix-blend-normal" />
                 </div>
 
                 {/* Gradient Mask */}
@@ -2846,7 +2896,7 @@ function LocationMapSection() {
   }, []);
 
   return (
-    <section id="location" ref={sectionRef} className="relative w-full py-24 lg:py-32 overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.92) 0%, rgba(10,31,18,0.95) 50%, rgba(2,8,7,0.92) 100%), url("/asset/asset4.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+    <section id="location" ref={sectionRef} className="relative w-full py-16 md:py-24 lg:py-32 overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.92) 0%, rgba(10,31,18,0.95) 50%, rgba(2,8,7,0.92) 100%), url("/asset/asset4.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       
       {/* Background decoration: Grid lines */}
       <div className="absolute top-1/4 left-0 w-full h-[1px] bg-[rgba(74,222,128,0.08)] dossier-line-h"></div>
@@ -2901,9 +2951,9 @@ function LocationMapSection() {
             {/* Title */}
             <div>
               <h3 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-4" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', letterSpacing: '-0.02em' }}>
-                The Hidden
+                where is
                 <br />
-                <span className="text-[#C4B088]">Paradise</span>
+                <span className="text-[#C4B088]">TANGKAHAN</span>
               </h3>
               
               {/* Divider */}
@@ -2911,24 +2961,26 @@ function LocationMapSection() {
               
               {/* Description text */}
               <p className="font-body text-[0.95rem] text-[#9ca3af] leading-[1.8] text-justify">
-                Tangkahan is an ecotourism area in Langkat Regency, North Sumatra. This area, which forms part of Taman Nasional Gunung Leuser, offers a unique and unforgettable tourist experience. Surrounded by ancient rainforest, crystal-clear rivers, and the gentle presence of Sumatran elephants.
+                Tangkahan is an ecotourism area in Langkat Regency, North Sumatra. This area, which forms part of Taman Nasional Gunung Leuser, offers a unique and unforgettable tourist experience.
               </p>
 
               {/* Mini stats */}
               <div className="flex gap-6 mt-6 mb-6">
                 <div>
                   <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">Altitude</p>
-                  <p className="font-display italic text-xl text-[#e2f0e6]">~200m</p>
+                  <p className="font-display italic text-xl text-[#e2f0e6]">200m</p>
                 </div>
                 <div className="w-px bg-[rgba(74,222,128,0.15)]"></div>
                 <div>
                   <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">From Medan</p>
-                  <p className="font-display italic text-xl text-[#e2f0e6]">~3 hrs</p>
+                  <p className="font-display italic text-xl text-[#e2f0e6]">3 hrs</p>
+                  <p className="text-[0.65rem] text-[#9ca3af] mt-1">by car or bus</p>
                 </div>
                 <div className="w-px bg-[rgba(74,222,128,0.15)]"></div>
                 <div>
                   <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">Best Season</p>
                   <p className="font-display italic text-xl text-[#e2f0e6]">Jun–Sep</p>
+                  <p className="text-[0.65rem] text-[#9ca3af] mt-1">less rain</p>
                 </div>
               </div>
             </div>
@@ -3992,6 +4044,7 @@ function CanopyAtlasSection() {
         maxVerticalRotationDeg={6}
         segments={20}
         dragDampening={2.4}
+        dragSensitivity={window.innerWidth < 768 ? 10 : 20}
       />
     </section>
   );
