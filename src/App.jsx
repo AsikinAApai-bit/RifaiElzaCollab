@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import * as ogl from 'ogl';
+import StaggeredMenu from './components/StaggeredMenu';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,7 +63,7 @@ function LoadingScreen(props) {
       </div>
       <div className="loading-brand">
         <span className="loading-brand__pre">8LEPHANT</span>
-        <span className="loading-brand__name">Naturae</span>
+        <span className="loading-brand__name"></span>
       </div>
       <span ref={depthRef} className="loading-depth">Memuat 0 frame</span>
     </div>
@@ -135,27 +136,48 @@ function Header() {
     return function () { window.removeEventListener('scroll', onScroll); };
   }, []);
 
+  const menuItems = [
+    { label: 'Portal', ariaLabel: 'Go to Portal section', link: '#portal' },
+    { label: 'The River', ariaLabel: 'Go to Behind the Portal section', link: '#sungai' },
+    { label: 'Elephants', ariaLabel: 'Go to Elephant Gallery', link: '#elephants' },
+    { label: 'Rimba', ariaLabel: 'Go to Technique section', link: '#rimba' },
+    { label: 'History', ariaLabel: 'Go to History section', link: '#history' },
+    { label: 'Spots', ariaLabel: 'Go to Spots section', link: '#spots' },
+    { label: 'Secrets', ariaLabel: 'Go to Jungle Secrets section', link: '#jungle-secrets' },
+    { label: 'Location', ariaLabel: 'Go to Location Map', link: '#location' },
+    { label: 'Information', ariaLabel: 'Go to Information section', link: '#information' },
+  ];
+
+  const socialItems = [
+    { label: 'Instagram', link: '#' },
+    { label: 'WhatsApp', link: '#' },
+  ];
+
   return (
-    <header ref={headerRef} className="header">
-      <div className="flex items-center justify-between h-full px-6 sm:px-10 lg:px-16 mx-auto" style={{ maxWidth: '1400px' }}>
-        <a href="#" className="group relative inline-flex items-baseline gap-1.5">
-          <span className="font-display text-3xl font-black text-[#678A44] leading-none italic transition-colors duration-300 group-hover:text-[#e2f0e6]">8</span>
-          <span className="font-body text-[0.8rem] font-semibold tracking-[0.22em] uppercase text-[#94B474]">Lephant</span>
-          <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#4ade80] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
-        </a>
-        <nav className="hidden md:flex items-center gap-8">
-          {['Portal', 'Sungai', 'Rimba'].map(function (item) {
-            return (
-              <a key={item} href={'#' + item.toLowerCase()} className="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#6b9f7a] relative pb-0.5 transition-colors duration-300 hover:text-[#e2f0e6] group">
-                {item}
-                <span className="absolute bottom-0 left-0 right-0 h-px bg-[#4ade80] scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100 group-hover:origin-left" />
-              </a>
-            );
-          })}
-        </nav>
-      </div>
-      <div ref={progressRef} className="header__progress" />
-    </header>
+    <>
+      <header ref={headerRef} className="header">
+        <div className="flex items-center justify-between h-full px-6 sm:px-10 lg:px-16 mx-auto" style={{ maxWidth: '1400px' }}>
+          <a href="#" className="group relative inline-flex items-baseline gap-1.5">
+            <span className="font-display text-3xl font-black text-[#678A44] leading-none italic transition-colors duration-300 group-hover:text-[#e2f0e6]">8</span>
+            <span className="font-body text-[0.8rem] font-semibold tracking-[0.22em] uppercase text-[#94B474]">Lephant</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#4ade80] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+          </a>
+        </div>
+        <div ref={progressRef} className="header__progress" />
+      </header>
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={true}
+        menuButtonColor="#EADCB9"
+        openMenuButtonColor="#C4B088"
+        changeMenuColorOnOpen={true}
+        colors={['#0d2916', '#132e1a']}
+        accentColor="#4ade80"
+      />
+    </>
   );
 }
 
@@ -437,7 +459,7 @@ function HeroCanvasScrub(props) {
       scrollTrigger: {
         trigger: wrapRef.current,
         start: 'top top',
-        end: '+=700%', // Diperpanjang agar scroll frame animasi terasa lebih lambat
+        end: '+=1100%', // Diperpanjang agar scroll frame animasi terasa lebih lambat
         pin: true,
         scrub: 1,
         anticipatePin: 1,
@@ -615,12 +637,12 @@ function HeroCanvasScrub(props) {
           >
             <TextType 
               text="The Hidden Paradise"
-              typingSpeed={80}
+              typingSpeed={40}
               pauseDuration={2400}
               showCursor={true}
               cursorCharacter="●"
               variableSpeedEnabled
-              variableSpeed={{ min: 60, max: 150 }}
+              variableSpeed={{ min: 30, max: 80 }}
               loop={false}
             />
           </div>
@@ -903,7 +925,7 @@ function HistorySlider() {
   }, []);
 
   return (
-    <section className="relative px-6 sm:px-10 lg:px-16 overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '10rem', background: '#0a1f12' }}>
+    <section id="history" className="relative px-6 sm:px-10 lg:px-16 overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '10rem', background: '#0a1f12' }}>
       
       <div className="relative z-10 mx-auto max-w-6xl mb-12 flex flex-col items-center">
         <div className="eyebrow mb-6">
@@ -993,7 +1015,7 @@ function ElephantGallery() {
   }, []);
 
   return (
-    <section className="relative px-6 sm:px-10 lg:px-16 border-t border-[rgba(74,222,128,0.05)] bg-[#020807]" style={{ paddingTop: '8rem', paddingBottom: '12rem' }}>
+    <section id="elephants" className="relative px-6 sm:px-10 lg:px-16 border-t border-[rgba(74,222,128,0.05)] bg-[#020807]" style={{ paddingTop: '8rem', paddingBottom: '12rem' }}>
       
       {/* Section Background Image */}
       <div 
@@ -1020,14 +1042,14 @@ function ElephantGallery() {
           <h2 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.02em' }}>
             Welcome to
             <br />
-            <span className="text-[#C4B088]">Tangkahan</span>
+            <span className="text-[#C4B088] inline-block ml-16 md:ml-32">Tangkahan</span>
           </h2>
-          <p className="text-[#EADCB9] leading-relaxed mb-8">
+          <p className="text-[#EADCB9] leading-relaxed mb-8 text-justify">
             Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
           </p>
-          <div className="p-6 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[rgba(10,31,18,0.5)] backdrop-blur-md relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
-            <p className="font-mono text-[0.6rem] uppercase tracking-widest text-[#4ade80] mb-3">Why Tangkahan</p>
+          <div className="p-6 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
+            <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+            <p className="font-mono text-sm md:text-base uppercase tracking-widest text-[#C4B088] font-bold mb-3">FUN FACT!</p>
             <p className="text-[0.85rem] text-[#e2f0e6] leading-relaxed">
               There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. As mentioned earlier, the Sumatran Elephants are trained for patrolling the forest.
               <br/><br/>The coolest part is that you can see the harmonious interaction between the local community and the elephants. The community helps to care for them and save their herds from extinction.
@@ -2772,31 +2794,6 @@ function StarterPackSection() {
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION: THE TECHNIQUE — editorial cards
-   ══════════════════════════════════════════════════ */
-
-var TECHNIQUES = [
-  {
-    phase: '01',
-    title: 'Portal Terbuka',
-    desc: 'Gambar statis hutan dengan lubang putih di-scale hingga 80× — lubang menelan seluruh viewport. Power4.in membuat percepatan dramatis.',
-    accent: '#678A44',
-  },
-  {
-    phase: '02',
-    title: 'Flashbang Reveal',
-    desc: 'Pada momen tepat lubang putih memenuhi layar, opacity di-snap ke 0 — mengekspos canvas di bawahnya dalam satu kedipan mata.',
-    accent: '#f59e0b',
-  },
-  {
-    phase: '03',
-    title: 'River Scrub',
-    desc: '240 frame WebP di-preload sebagai Image objects. GSAP onUpdate menggambar frame sesuai posisi scroll — kamu adalah pengontrol waktu.',
-    accent: '#fb7185',
-  },
-];
-
-/* ══════════════════════════════════════════════════
    SECTION: LOCATION MAP
    ══════════════════════════════════════════════════ */
 function LocationMapSection() {
@@ -2849,110 +2846,126 @@ function LocationMapSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-32 overflow-hidden min-h-[80vh] flex items-center" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.85) 0%, rgba(10,31,18,0.9) 100%), url("/asset/asset4.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+    <section id="location" ref={sectionRef} className="relative w-full py-24 lg:py-32 overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.92) 0%, rgba(10,31,18,0.95) 50%, rgba(2,8,7,0.92) 100%), url("/asset/asset4.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       
       {/* Background decoration: Grid lines */}
-      <div className="absolute top-1/4 left-0 w-full h-[1px] bg-[rgba(74,222,128,0.1)] dossier-line-h"></div>
-      <div className="absolute top-3/4 left-0 w-full h-[1px] bg-[rgba(74,222,128,0.1)] dossier-line-h"></div>
-      <div className="absolute top-0 left-1/4 w-[1px] h-full bg-[rgba(74,222,128,0.1)] dossier-line-v"></div>
-      <div className="absolute top-0 left-3/4 w-[1px] h-full bg-[rgba(74,222,128,0.1)] dossier-line-v"></div>
+      <div className="absolute top-1/4 left-0 w-full h-[1px] bg-[rgba(74,222,128,0.08)] dossier-line-h"></div>
+      <div className="absolute top-3/4 left-0 w-full h-[1px] bg-[rgba(74,222,128,0.08)] dossier-line-h"></div>
+      <div className="absolute top-0 left-1/4 w-[1px] h-full bg-[rgba(74,222,128,0.08)] dossier-line-v"></div>
+      <div className="absolute top-0 left-3/4 w-[1px] h-full bg-[rgba(74,222,128,0.08)] dossier-line-v"></div>
       
       {/* Background decoration: Crosshairs */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.3)] font-mono text-sm pointer-events-none">+</div>
-      <div className="absolute top-1/4 left-3/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.3)] font-mono text-sm pointer-events-none">+</div>
-      <div className="absolute top-3/4 left-1/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.3)] font-mono text-sm pointer-events-none">+</div>
-      <div className="absolute top-3/4 left-3/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.3)] font-mono text-sm pointer-events-none">+</div>
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.2)] font-mono text-sm pointer-events-none">+</div>
+      <div className="absolute top-1/4 left-3/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.2)] font-mono text-sm pointer-events-none">+</div>
+      <div className="absolute top-3/4 left-1/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.2)] font-mono text-sm pointer-events-none">+</div>
+      <div className="absolute top-3/4 left-3/4 -translate-x-1/2 -translate-y-1/2 text-[rgba(74,222,128,0.2)] font-mono text-sm pointer-events-none">+</div>
 
-      <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 relative z-10">
+      <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-stretch justify-center gap-8 lg:gap-0 relative z-10">
         
-        {/* Massive Coordinate Typography */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end">
-          <div className="w-full max-w-xl">
-            <div className="dossier-reveal flex items-center gap-3 mb-6">
-              <span className="block w-10 h-0.5 bg-[#4ade80]"></span>
-              <span className="font-mono text-sm uppercase tracking-widest text-[#4ade80]">WHERE IS TANGKAHAN</span>
-            </div>
-            <div className="dossier-reveal w-full rounded-2xl overflow-hidden border border-[rgba(74,222,128,0.2)] shadow-2xl relative" style={{ height: '300px' }}>
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15924.939221147772!2d98.0573908!3d3.693766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30373809650d03bb%3A0xc669ef0faee2e896!2sTangkahan%20CRU!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0 bg-[#020807]"
-              ></iframe>
+        {/* ═══ MAP AREA (Hijau) ═══ */}
+        <div className="w-full lg:w-[55%] flex flex-col">
+          {/* Section eyebrow */}
+          <div className="dossier-reveal flex items-center gap-3 mb-5">
+            <span className="block w-10 h-0.5 bg-[#4ade80]"></span>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#4ade80]">WHERE IS TANGKAHAN</span>
+          </div>
+          
+          {/* Map container */}
+          <div className="dossier-reveal relative flex-1 rounded-2xl lg:rounded-r-none overflow-hidden shadow-2xl" style={{ minHeight: '380px', border: '1px solid rgba(74,222,128,0.2)' }}>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15924.939221147772!2d98.0573908!3d3.693766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30373809650d03bb%3A0xc669ef0faee2e896!2sTangkahan%20CRU!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, position: 'absolute', inset: 0, zIndex: 1 }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="bg-[#020807]"
+            ></iframe>
+
+            {/* Top-left coordinate badge */}
+            <div className="absolute top-4 left-4 z-20 px-3 py-1.5 rounded-lg backdrop-blur-md font-mono text-[0.65rem] tracking-wider text-[#4ade80] pointer-events-none" style={{ background: 'rgba(2,8,7,0.7)', border: '1px solid rgba(74,222,128,0.15)' }}>
+              3.6938° N, 98.0574° E
             </div>
           </div>
         </div>
 
-        {/* Content & The Action Button */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-          <div className="w-full max-w-lg">
-            <p className="dossier-reveal font-body text-lg text-[#9ca3af] leading-relaxed">
-              Tangkahan is an ecotourism area in Langkat Regency, North Sumatra. This area, which forms part of Taman Nasional Gunung Leuser, offers a unique and unforgettable tourist experience.
-            </p>
+        {/* ═══ TEXT BOX + NAVIGATION (Oren + Ungu) ═══ */}
+        <div className="w-full lg:w-[45%] flex flex-col">
+          {/* Spacer for eyebrow alignment on desktop */}
+          <div className="hidden lg:block mb-5" style={{ height: 'calc(0.75rem + 12px)' }}></div>
+          
+          {/* Glass card */}
+          <div className="dossier-reveal flex-1 rounded-2xl lg:rounded-l-none p-8 lg:p-10 flex flex-col justify-between" style={{ background: 'linear-gradient(160deg, rgba(10,31,18,0.6) 0%, rgba(2,8,7,0.8) 100%)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(74,222,128,0.1)', borderLeft: 'none' }}>
             
+            {/* Title */}
+            <div>
+              <h3 className="font-display italic text-[#e2f0e6] leading-[1.05] mb-4" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', letterSpacing: '-0.02em' }}>
+                The Hidden
+                <br />
+                <span className="text-[#C4B088]">Paradise</span>
+              </h3>
+              
+              {/* Divider */}
+              <div className="w-12 h-[2px] bg-gradient-to-r from-[#4ade80] to-transparent mb-5"></div>
+              
+              {/* Description text */}
+              <p className="font-body text-[0.95rem] text-[#9ca3af] leading-[1.8] text-justify">
+                Tangkahan is an ecotourism area in Langkat Regency, North Sumatra. This area, which forms part of Taman Nasional Gunung Leuser, offers a unique and unforgettable tourist experience. Surrounded by ancient rainforest, crystal-clear rivers, and the gentle presence of Sumatran elephants.
+              </p>
+
+              {/* Mini stats */}
+              <div className="flex gap-6 mt-6 mb-6">
+                <div>
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">Altitude</p>
+                  <p className="font-display italic text-xl text-[#e2f0e6]">~200m</p>
+                </div>
+                <div className="w-px bg-[rgba(74,222,128,0.15)]"></div>
+                <div>
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">From Medan</p>
+                  <p className="font-display italic text-xl text-[#e2f0e6]">~3 hrs</p>
+                </div>
+                <div className="w-px bg-[rgba(74,222,128,0.15)]"></div>
+                <div>
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">Best Season</p>
+                  <p className="font-display italic text-xl text-[#e2f0e6]">Jun–Sep</p>
+                </div>
+              </div>
+            </div>
+
+            {/* ═══ Navigation Button (Ungu) ═══ */}
             <a 
               href="https://maps.google.com/?q=Tangkahan+CRU" 
               target="_blank"
               rel="noreferrer"
-              className="dossier-reveal inline-flex items-center gap-3 px-8 py-4 mt-8 rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(10,31,18,0.4)] backdrop-blur-md text-[#4ade80] font-mono text-xs tracking-widest uppercase hover:bg-[#4ade80] hover:text-[#020807] transition-colors duration-500 group"
+              className="group relative inline-flex items-center gap-4 w-full px-7 py-5 mt-6 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-lg"
+              style={{ background: 'linear-gradient(135deg, rgba(74,222,128,0.12) 0%, rgba(10,31,18,0.5) 100%)', border: '1px solid rgba(74,222,128,0.2)' }}
             >
-              Open in Maps
-              <svg className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {/* Hover fill */}
+              <span className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Pin icon */}
+              <span className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full shrink-0 transition-colors duration-500" style={{ background: 'rgba(74,222,128,0.15)', border: '1px solid rgba(74,222,128,0.3)' }}>
+                <svg className="w-5 h-5 text-[#4ade80] group-hover:text-[#020807] transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              
+              {/* Text */}
+              <div className="relative z-10 flex-1">
+                <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] group-hover:text-[#020807] transition-colors duration-500 mb-0.5">Navigate to</p>
+                <p className="font-display text-lg italic text-[#e2f0e6] group-hover:text-[#020807] transition-colors duration-500">Google Maps</p>
+              </div>
+              
+              {/* Arrow */}
+              <svg className="relative z-10 w-5 h-5 text-[#4ade80] group-hover:text-[#020807] group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </a>
           </div>
         </div>
 
-      </div>
-    </section>
-  );
-}
-
-function TechniqueSection() {
-  var ref = useReveal('.rv', { stagger: 0.1 });
-  return (
-    <section id="rimba" className="relative px-6 sm:px-10 lg:px-16 border-t border-[rgba(74,222,128,0.05)]" style={{ paddingTop: 'clamp(5rem,10vw,9rem)', paddingBottom: 'clamp(5rem,10vw,9rem)', background: 'linear-gradient(180deg, #0a1f12 0%, #020807 100%)' }}>
-      <div ref={ref} className="mx-auto" style={{ maxWidth: '1100px' }}>
-        <div className="rv mb-14 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-
-            <h2 className="font-display italic text-[#e2f0e6] leading-[1.05]" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.02em' }}>
-              Tangkahan's
-              <br className="hidden sm:block" />
-              <span className="text-[#C4B088]"> JOURNEY</span>
-            </h2>
-          </div>
-          <p className="max-w-xs text-[0.8rem] text-[#3d6b4a] leading-relaxed">
-            Setiap transisi didesain tanpa generic boilerplate. Sepenuhnya custom, sepenuhnya sinematik.
-          </p>
-        </div>
-
-        <div className="space-y-0">
-          {TECHNIQUES.map(function (t, i) {
-            return (
-              <div key={t.phase} className="rv flex gap-5 sm:gap-8 pb-10 last:pb-0">
-                <div className="flex flex-col items-center pt-1.5 shrink-0">
-                  <span className="h-3 w-3 rounded-full shrink-0" style={{ background: t.accent, boxShadow: '0 0 12px ' + t.accent + '99' }} />
-                  {i < TECHNIQUES.length - 1 && <span className="mt-2 w-px flex-1" style={{ background: 'linear-gradient(to bottom, ' + t.accent + '33, transparent)' }} />}
-                </div>
-                <div className="pb-2">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em]" style={{ color: t.accent + 'cc' }}>
-                      Phase {t.phase}
-                    </p>
-                  </div>
-                  <h3 className="mt-3 font-display text-2xl sm:text-3xl italic text-[#e2f0e6]">{t.title}</h3>
-                  <p className="mt-2 max-w-xl text-[0.85rem] text-[#6b9f7a] leading-relaxed">{t.desc}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
@@ -2983,17 +2996,7 @@ function CTAFooter() {
         </button>
       </div>
 
-      <div className="mt-20 pt-8 border-t border-[rgba(74,222,128,0.06)] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4" style={{ maxWidth: '1300px' }}>
-        <div className="flex items-baseline gap-1.5">
-          <span className="font-body text-[0.55rem] font-semibold tracking-[0.2em] uppercase text-[#2e5c3d]">8LEPHANT</span>
-          <span className="font-display text-sm font-black text-[#4ade80] italic">Naturae</span>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-[0.6rem] text-[#2e5c3d] font-mono tracking-wider">
-          <span>React + Tailwind + GSAP + Canvas API</span>
-          <span className="hidden sm:inline">·</span>
-          <span>Antigravity Motion · Flashbang Scrub · MMXXVI</span>
-        </div>
-      </div>
+
     </footer>
   );
 }
@@ -3066,8 +3069,7 @@ const getDataNumber = (el, name, fallback) => {
 };
 
 function buildItems(pool, seg) {
-  const step = seg > 1 ? 68 / (seg - 1) : 0;
-  const xCols = Array.from({ length: seg }, (_, i) => -37 + i * step);
+  const xCols = Array.from({ length: seg }, (_, i) => -37 + i * 2);
   const evenYs = [-4, -2, 0, 2, 4];
   const oddYs = [-3, -1, 1, 3, 5];
 
@@ -3957,7 +3959,40 @@ function CanopyAtlasSection() {
           DRAG TO EXPLORE &middot; CLICK TO ENLARGE
         </p>
       </div>
-      <DomeGallery overlayBlurColor="#020807" grayscale={true} />
+      <DomeGallery 
+        images={[
+          { src: '/asset/elephant_hero.png', alt: 'Elephant Hero' },
+          { src: '/asset/elephant_camp.png', alt: 'Elephant Camp' },
+          { src: '/asset/hot_springs.png', alt: 'Hot Springs' },
+          { src: '/asset/bat_cave.png', alt: 'Bat Cave' },
+          { src: '/asset/forest_trail.png', alt: 'Forest Trail' },
+          { src: '/asset/history-before.png', alt: 'History Before' },
+          { src: '/asset/history-after.png', alt: 'History After' },
+          { src: '/asset/info_1.png', alt: 'Info 1' },
+          { src: '/asset/info_2.png', alt: 'Info 2' },
+          { src: '/asset/info_3.png', alt: 'Info 3' },
+          { src: '/asset/info_4.png', alt: 'Info 4' },
+          { src: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=800&auto=format&fit=crop', alt: 'Jungle Canopy' },
+          { src: 'https://images.unsplash.com/photo-1544252890-a7d1b3127888?q=80&w=800&auto=format&fit=crop', alt: 'Elephant in River' },
+          { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=800&auto=format&fit=crop', alt: 'Rainforest' },
+          { src: 'https://images.unsplash.com/photo-1540206395-68808572332f?q=80&w=800&auto=format&fit=crop', alt: 'Misty Mountains' },
+          { src: 'https://images.unsplash.com/photo-1589139855580-0433d7d74ccf?q=80&w=800&auto=format&fit=crop', alt: 'Elephant Walking' },
+          { src: 'https://images.unsplash.com/photo-1518182170546-076616fdacfb?q=80&w=800&auto=format&fit=crop', alt: 'Lush Greenery' },
+          { src: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=800&auto=format&fit=crop', alt: 'Tropical Forest' },
+          { src: 'https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=800&auto=format&fit=crop', alt: 'Sumatran Elephant' },
+          { src: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=800&auto=format&fit=crop', alt: 'River stream' },
+          { src: 'https://images.unsplash.com/photo-1542401886-65d6c61db217?q=80&w=800&auto=format&fit=crop', alt: 'Deserted jungle path' },
+          { src: 'https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=800&auto=format&fit=crop', alt: 'River in forest' },
+          { src: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3?q=80&w=800&auto=format&fit=crop', alt: 'Deep tropical foliage' }
+        ]}
+        overlayBlurColor="#020807" 
+        grayscale={false} 
+        fit={0.75}
+        minRadius={800}
+        maxVerticalRotationDeg={6}
+        segments={20}
+        dragDampening={2.4}
+      />
     </section>
   );
 }
@@ -4182,6 +4217,7 @@ function InformationSection() {
 
   return (
     <section 
+      id="information"
       className="relative w-full h-[800px] md:h-screen overflow-hidden flex items-center bg-[#020807]"
     >
       {/* Dynamic Background Images */}
@@ -5018,7 +5054,7 @@ function App() {
         <BeyondSection />
         <LocationMapSection />
         <ElephantGallery />
-        <TechniqueSection />
+
         <HistorySlider />
         <SpotsSection />
         <JungleSecretsSection />

@@ -43,7 +43,7 @@ function LoadingScreen(props) {
       </div>
       <div className="loading-brand">
         <span className="loading-brand__pre">Regnum</span>
-        <span className="loading-brand__name">Naturae</span>
+        <span className="loading-brand__name"></span>
       </div>
       <span ref={depthRef} className="loading-depth">Memuat 0 frame</span>
     </div>

@@ -1,17 +1,35 @@
-import React, { useState, useEffect, useRef, useLayoutEffect, useCallback, useMemo, forwardRef, Children, cloneElement, isValidElement } from 'react';
-import gsap from 'gsap';
+import { useEffect, useMemo, useRef, useCallback } from 'react';
+import { useGesture } from '@use-gesture/react';
 
 const DEFAULT_IMAGES = [
-  { src: '/asset/elephant_hero.png', alt: 'Elephant Hero' },
-  { src: '/asset/elephant_camp.png', alt: 'Elephant Camp' },
-  { src: '/asset/hot_springs.png', alt: 'Hot Springs' },
-  { src: '/asset/bat_cave.png', alt: 'Bat Cave' },
-  { src: '/asset/forest_trail.png', alt: 'Forest Trail' },
-  { src: '/asset/elephant_hero.png', alt: 'Elephant Hero 2' },
-  { src: '/asset/elephant_camp.png', alt: 'Elephant Camp 2' },
-  { src: '/asset/hot_springs.png', alt: 'Hot Springs 2' },
-  { src: '/asset/bat_cave.png', alt: 'Bat Cave 2' },
-  { src: '/asset/forest_trail.png', alt: 'Forest Trail 2' }
+  {
+    src: 'https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Abstract art'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Modern sculpture'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Digital artwork'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Contemporary art'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Geometric pattern'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Textured surface'
+  },
+  {
+    src: 'https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large',
+    alt: 'Social media image'
+  }
 ];
 
 const DEFAULTS = {
@@ -89,8 +107,7 @@ function computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments) {
   return { rotateX, rotateY };
 }
 
-
-function DomeGallery({
+export default function DomeGallery({
   images = DEFAULT_IMAGES,
   fit = 0.5,
   fitBasis = 'auto',
@@ -283,118 +300,94 @@ function DomeGallery({
     [dragDampening, maxVerticalRotationDeg, stopInertia]
   );
 
-  useEffect(() => {
-    const el = mainRef.current;
-    if (!el) return;
+  useGesture(
+    {
+      onDragStart: ({ event }) => {
+        if (focusedElRef.current) return;
+        stopInertia();
 
-    let isDown = false;
-    let lastX = 0;
-    let lastY = 0;
-    let timeDown = 0;
-    let velX = 0;
-    let velY = 0;
+        pointerTypeRef.current = event.pointerType || 'mouse';
+        if (pointerTypeRef.current === 'touch') event.preventDefault();
+        if (pointerTypeRef.current === 'touch') lockScroll();
+        draggingRef.current = true;
+        cancelTapRef.current = false;
+        movedRef.current = false;
+        startRotRef.current = { ...rotationRef.current };
+        startPosRef.current = { x: event.clientX, y: event.clientY };
+        const potential = event.target.closest?.('.item__image');
+        tapTargetRef.current = potential || null;
+      },
+      onDrag: ({ event, last, velocity: velArr = [0, 0], direction: dirArr = [0, 0], movement }) => {
+        if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
 
-    const onPointerDown = (e) => {
-      if (focusedElRef.current) return;
-      stopInertia();
-      pointerTypeRef.current = e.pointerType || 'mouse';
-      if (pointerTypeRef.current === 'touch') {
-          // allow default on touch for scrolling unless we prevent it in move
-      }
-      draggingRef.current = true;
-      cancelTapRef.current = false;
-      movedRef.current = false;
-      startRotRef.current = { ...rotationRef.current };
-      startPosRef.current = { x: e.clientX, y: e.clientY };
-      lastX = e.clientX;
-      lastY = e.clientY;
-      timeDown = performance.now();
-      const potential = e.target.closest?.('.item__image');
-      tapTargetRef.current = potential || null;
-      isDown = true;
-    };
+        if (pointerTypeRef.current === 'touch') event.preventDefault();
 
-    const onPointerMove = (e) => {
-      if (!isDown || focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
-      if (pointerTypeRef.current === 'touch') e.preventDefault();
+        const dxTotal = event.clientX - startPosRef.current.x;
+        const dyTotal = event.clientY - startPosRef.current.y;
 
-      const dxTotal = e.clientX - startPosRef.current.x;
-      const dyTotal = e.clientY - startPosRef.current.y;
+        if (!movedRef.current) {
+          const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
+          if (dist2 > 16) movedRef.current = true;
+        }
 
-      if (!movedRef.current) {
-        const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
-        if (dist2 > 16) movedRef.current = true;
-      }
+        const nextX = clamp(
+          startRotRef.current.x - dyTotal / dragSensitivity,
+          -maxVerticalRotationDeg,
+          maxVerticalRotationDeg
+        );
+        const nextY = startRotRef.current.y + dxTotal / dragSensitivity;
 
-      const nextX = clamp(
-        startRotRef.current.x - dyTotal / dragSensitivity,
-        -maxVerticalRotationDeg,
-        maxVerticalRotationDeg
-      );
-      const nextY = startRotRef.current.y + dxTotal / dragSensitivity;
+        const cur = rotationRef.current;
+        if (cur.x !== nextX || cur.y !== nextY) {
+          rotationRef.current = { x: nextX, y: nextY };
+          applyTransform(nextX, nextY);
+        }
 
-      const cur = rotationRef.current;
-      if (cur.x !== nextX || cur.y !== nextY) {
-        rotationRef.current = { x: nextX, y: nextY };
-        applyTransform(nextX, nextY);
-      }
-      
-      const now = performance.now();
-      const dt = Math.max(1, now - timeDown);
-      velX = (e.clientX - lastX) / dt;
-      velY = (e.clientY - lastY) / dt;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      timeDown = now;
-    };
+        if (last) {
+          draggingRef.current = false;
+          let isTap = false;
 
-    const onPointerUp = (e) => {
-      if (!isDown) return;
-      isDown = false;
-      
-      draggingRef.current = false;
-      let isTap = false;
+          if (startPosRef.current) {
+            const dx = event.clientX - startPosRef.current.x;
+            const dy = event.clientY - startPosRef.current.y;
+            const dist2 = dx * dx + dy * dy;
+            const TAP_THRESH_PX = pointerTypeRef.current === 'touch' ? 10 : 6;
+            if (dist2 <= TAP_THRESH_PX * TAP_THRESH_PX) {
+              isTap = true;
+            }
+          }
 
-      if (startPosRef.current) {
-        const dx = e.clientX - startPosRef.current.x;
-        const dy = e.clientY - startPosRef.current.y;
-        const dist2 = dx * dx + dy * dy;
-        const TAP_THRESH_PX = pointerTypeRef.current === 'touch' ? 10 : 6;
-        if (dist2 <= TAP_THRESH_PX * TAP_THRESH_PX) {
-          isTap = true;
+          let [vMagX, vMagY] = velArr;
+          const [dirX, dirY] = dirArr;
+          let vx = vMagX * dirX;
+          let vy = vMagY * dirY;
+
+          if (!isTap && Math.abs(vx) < 0.001 && Math.abs(vy) < 0.001 && Array.isArray(movement)) {
+            const [mx, my] = movement;
+            vx = (mx / dragSensitivity) * 0.02;
+            vy = (my / dragSensitivity) * 0.02;
+          }
+
+          if (!isTap && (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005)) {
+            startInertia(vx, vy);
+          }
+          startPosRef.current = null;
+          cancelTapRef.current = !isTap;
+
+          if (isTap && tapTargetRef.current && !focusedElRef.current) {
+            openItemFromElement(tapTargetRef.current);
+          }
+          tapTargetRef.current = null;
+
+          if (cancelTapRef.current) setTimeout(() => (cancelTapRef.current = false), 120);
+          if (movedRef.current) lastDragEndAt.current = performance.now();
+          movedRef.current = false;
+          if (pointerTypeRef.current === 'touch') unlockScroll();
         }
       }
-
-      if (!isTap && (Math.abs(velX) > 0.05 || Math.abs(velY) > 0.05)) {
-        // Adjust velocity for inertia matching useGesture's format
-        startInertia(velX * 10, velY * 10); 
-      }
-      startPosRef.current = null;
-      cancelTapRef.current = !isTap;
-
-      if (isTap && tapTargetRef.current && !focusedElRef.current) {
-        openItemFromElement(tapTargetRef.current);
-      }
-      tapTargetRef.current = null;
-
-      if (cancelTapRef.current) setTimeout(() => (cancelTapRef.current = false), 120);
-      if (movedRef.current) lastDragEndAt.current = performance.now();
-      movedRef.current = false;
-      if (pointerTypeRef.current === 'touch') unlockScroll();
-    };
-
-    el.addEventListener('pointerdown', onPointerDown);
-    window.addEventListener('pointermove', onPointerMove, { passive: false });
-    window.addEventListener('pointerup', onPointerUp);
-    window.addEventListener('pointercancel', onPointerUp);
-
-    return () => {
-      el.removeEventListener('pointerdown', onPointerDown);
-      window.removeEventListener('pointermove', onPointerMove);
-      window.removeEventListener('pointerup', onPointerUp);
-      window.removeEventListener('pointercancel', onPointerUp);
-    };
-  }, [dragSensitivity, maxVerticalRotationDeg, startInertia, unlockScroll, lockScroll]);
+    },
+    { target: mainRef, eventOptions: { passive: false } }
+  );
 
   useEffect(() => {
     const scrim = scrimRef.current;
@@ -736,16 +729,16 @@ function DomeGallery({
       }
     }
     
-    /* body.dg-scroll-lock {
-      position: fixed !important;
-      top: 0;
-      left: 0;
-      width: 100% !important;
-      height: 100% !important;
-      overflow: hidden !important;
-      touch-action: none !important;
-      overscroll-behavior: contain !important;
-    } */
+    // body.dg-scroll-lock {
+    //   position: fixed !important;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100% !important;
+    //   height: 100% !important;
+    //   overflow: hidden !important;
+    //   touch-action: none !important;
+    //   overscroll-behavior: contain !important;
+    // }
     .item__image {
       position: absolute;
       inset: 10px;
@@ -759,7 +752,6 @@ function DomeGallery({
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
     }
-    .item__image:hover { filter: none !important; }
     .item__image--reference {
       position: absolute;
       inset: 10px;
@@ -908,5 +900,3 @@ function DomeGallery({
     </>
   );
 }
-
-export default DomeGallery;
