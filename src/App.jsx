@@ -1095,8 +1095,8 @@ function ElephantGallery() {
           <div className="p-8 md:p-10 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
             <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
             <p className="font-mono text-base md:text-xl uppercase tracking-widest text-[#C4B088] font-bold mb-4">FUN FACT!</p>
-            <p className="text-sm md:text-base text-[#e2f0e6] leading-relaxed">
-              There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. They are specially trained to help rangers patrol the forest and protect it from ilegal logging. 
+            <p className="text-sm md:text-base text-[#e2f0e6] leading-relaxed text-justify">
+              There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. They are specially trained to help rangers patrol the forest and protect it from illegal logging. 
               <br/><br/>The coolest part is that you can see the harmonious interaction between the local community and the elephants. The community helps to care for them and save their herds from extinction.
             </p>
           </div>
