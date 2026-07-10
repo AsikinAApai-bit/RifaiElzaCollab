@@ -2662,7 +2662,7 @@ function LocationMapSection() {
               <div className="w-12 h-[2px] bg-gradient-to-r from-[#4ade80] to-transparent mb-5"></div>
               
               {/* Description text */}
-              <p className="font-body text-[0.75rem] text-[#9ca3af] leading-[1.8] text-justify">
+              <p className="font-body text-sm md:text-base text-[#9ca3af] leading-[1.8] text-justify">
                 Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
               </p>
 
