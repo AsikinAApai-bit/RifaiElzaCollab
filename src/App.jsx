@@ -704,7 +704,7 @@ function HeroCanvasScrub(props) {
           }
         `}</style>
         {showTangkahan && (
-          <div className={`w-[80%] flex flex-col items-center justify-center px-6 sm:px-10 lg:px-16 transition-all duration-1000 ease-in-out ${tangkahanOut ? 'opacity-0 -translate-y-24' : (tangkahanIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}`} style={{ height: 'auto', minHeight: '350px' }}>
+          <div className={`w-[80%] flex flex-col items-center justify-center px-6 sm:px-10 lg:px-16 transition-all duration-1000 ease-in-out ${tangkahanOut ? 'opacity-0 -translate-y-4' : (tangkahanIn ? 'opacity-100 translate-y-20' : 'opacity-0 translate-y-32')}`} style={{ height: 'auto', minHeight: '350px' }}>
             
             <div className="relative mb-6 w-full pointer-events-auto">
               <TextPressure
@@ -722,11 +722,19 @@ function HeroCanvasScrub(props) {
               />
             </div>
 
-            <div className="flex flex-col items-center w-full max-w-md mt-8 pointer-events-auto">
-              <span className="font-mono text-xs tracking-[0.2em] uppercase text-[#EADCB9] mb-4">SLIDE TO UNLOCK THE MAGIC</span>
+            <div className="flex flex-col items-center w-full max-w-md mt-10 pointer-events-auto">
+              <div className="relative flex flex-col items-center justify-center w-full min-h-[120px]">
+                <img 
+                  src="/asset/asset9.png" 
+                  alt="Slide Curve" 
+                  className="w-[512px] md:w-[640px] h-auto opacity-25 filter drop-shadow-[0_2px_10px_rgba(243,212,124,0.2)] select-none pointer-events-none transform -translate-y-16 md:-translate-y-20" 
+                />
+                <span className="absolute font-mono text-sm md:text-base tracking-[0.25em] uppercase text-[#EADCB9] -translate-y-10 md:-translate-y-12 select-none text-center">
+                  SLIDE TO UNLOCK THE MAGIC
+                </span>
+              </div>
 
-
-              <span className="font-sans text-[0.65rem] text-[rgba(255,255,255,0.6)] mt-6 text-center max-w-[80%] leading-relaxed tracking-wide">
+              <span className="font-sans text-[0.65rem] text-[rgba(255,255,255,0.6)] -mt-10 md:-mt-14 text-center max-w-[80%] leading-relaxed tracking-wide">
                 Experience an authentic connection with nature and community-led conservation in the heart of Sumatra.
               </span>
             </div>
