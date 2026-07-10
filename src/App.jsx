@@ -1090,7 +1090,7 @@ function ElephantGallery() {
             <span className="text-tangkahan-gold inline-block ml-16 md:ml-32">Tangkahan</span>
           </h2>
           <p className="text-[#9ca3af] text-base md:text-lg leading-relaxed mb-8 text-justify">
-            Tangkahan, also known as ‘The Hidden Paradise’, is a well-known ecotourism destination in North Sumatra that borders Gunung Leuser National Park. Administratively, it is located in the villages of Namo Sialang and Sei Serdang, Batang Serangan Subdistrict, Langkat Regency.
+            Tangkahan was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
           </p>
           <div className="p-8 md:p-10 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
             <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
@@ -1102,7 +1102,7 @@ function ElephantGallery() {
           </div>
         </div>
         
-        <div className="lg:w-1/2 w-full">
+        <div className="lg:w-1/2 w-full mt-8 lg:mt-16">
           <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-2xl" style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
             <img 
               ref={imgRef}
