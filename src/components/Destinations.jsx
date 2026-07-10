@@ -591,7 +591,7 @@ function CircularGallery({
   );
 }
 
-function SpotsSection() {
+function Destinations() {
   var SPOTS = [
     { id: 'spot-1', name: 'Elephant Camp', img: '/asset/elephant_camp.png', desc: 'See them up close, interact with them and help bathe the elephants in the river.' },
     { id: 'spot-2', name: 'Hot Springs', img: '/asset/hot_springs.png', desc: 'A natural hot spring pool by the river, best after a long journey in the jungle!' },
@@ -682,4 +682,4 @@ function SpotsSection() {
   );
 }
 
-export default SpotsSection;
+export default Destinations;

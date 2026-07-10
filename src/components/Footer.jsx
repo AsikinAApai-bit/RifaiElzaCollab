@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
    CTA FOOTER
    ══════════════════════════════════════════════════ */
 
-function CTAFooter() {
+function Footer() {
   var ref = useReveal('.rv');
   return (
     <footer className="relative bg-void px-6 sm:px-10 lg:px-16 overflow-hidden" style={{ paddingTop: 'clamp(5rem,10vw,8rem)', paddingBottom: 'clamp(3rem,6vw,5rem)' }}>
@@ -45,4 +45,4 @@ function CTAFooter() {
 }
 
 
-export default CTAFooter;
+export default Footer;

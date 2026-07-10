@@ -6,39 +6,161 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    SECTION: VISUAL NOVEL — Mahout's Story
    ══════════════════════════════════════════════════ */
-function VisualNovelSection() {
+function InteractiveStory() {
   var VN_NODES = {
     start: {
       id: 'start',
-      text: "Hutan ini dulu menangis karena keserakahan kami...",
+      text: "Masih tercium.\n\nAroma oli.\nGetah kayu.\nDan asap.",
       mood: "dark",
       choices: [
-        { label: "Mengapa kalian berhenti?", nextId: "alasan_berhenti" },
-        { label: "Apakah kalian tidak menyesal?", nextId: "penyesalan" }
+        { label: "Kau mengingat bau itu?", nextId: "pengakuan" }
       ]
     },
-    alasan_berhenti: {
-      id: 'alasan_berhenti',
-      text: "Karena sembilan raksasa yang terluka datang dari Aceh. Kami melihat pantulan dosa kami di mata mereka.",
-      mood: "hope",
+    pengakuan: {
+      id: 'pengakuan',
+      text: "Aku sangat mengenalnya.\n\nKarena dulu...\nakulah yang menebang hutan ini.",
+      mood: "dark",
       choices: [
-        { label: "Lalu apa yang terjadi?", nextId: "ending_pelindung" }
+        { label: "Tidakkah kau merasa bersalah?", nextId: "angka" },
+        { label: "Mengapa kau melakukannya?", nextId: "angka" }
+      ]
+    },
+    angka: {
+      id: 'angka',
+      text: "Saat itu, pohon hanyalah angka.\n\nKubik kayu yang ditukar dengan beras.\n\n...Sampai suatu hari, semuanya berhenti.",
+      mood: "dark",
+      choices: [
+        { label: "Apa yang terjadi?", nextId: "sungai_mati" }
+      ]
+    },
+    sungai_mati: {
+      id: 'sungai_mati',
+      text: "Sungai berubah keruh.\n\nLumpur menelan bebatuan.\nDesa kami mengering, dan anak-anak mulai batuk berdarah.",
+      mood: "sad",
+      choices: [
+        { label: "Hutan sedang sekarat.", nextId: "penyesalan" },
+        { label: "Kalian menghancurkan diri sendiri.", nextId: "penyesalan" }
       ]
     },
     penyesalan: {
       id: 'penyesalan',
-      text: "Sangat menyesal. Sungai mengering dan desa kami memanas. Kami hampir kehilangan segalanya hingga gajah-gajah itu tiba.",
+      text: "Ya.\n\nKami sedang menggergaji fondasi rumah kami sendiri.\n\nPenyesalan itu datang, tapi kami tak tahu cara memperbaikinya.",
       mood: "sad",
       choices: [
-        { label: "Bagaimana sekarang?", nextId: "ending_pelindung" }
+        { label: "Lalu, bagaimana kalian selamat?", nextId: "truk_datang" }
       ]
     },
-    ending_pelindung: {
-      id: 'ending_pelindung',
-      text: "Kini kami meletakkan gergaji dan memegang tongkat. Kami adalah pelindung mereka.",
+    truk_datang: {
+      id: 'truk_datang',
+      text: "Suatu sore...\n\nTruk-truk menderu dari utara.\nMembawa sembilan raksasa kelabu yang kehilangan rumah karena konflik.",
+      mood: "sad",
+      choices: [
+        { label: "Gajah-gajah itu...", nextId: "luka_gajah" }
+      ]
+    },
+    luka_gajah: {
+      id: 'luka_gajah',
+      text: "Ada bekas kawat baja di kaki matriark tertua.\n\nLuka menganga.\nSama seperti luka hutan yang kami tinggalkan.",
+      mood: "sad",
+      choices: [
+        { label: "Apa yang dia lakukan padamu?", nextId: "tatapan" }
+      ]
+    },
+    tatapan: {
+      id: 'tatapan',
+      text: "Dia menatapku.\n\nTidak ada amarah di matanya.\nHanya...\nkesedihan purba yang sangat dalam.",
+      mood: "sad",
+      choices: [
+        { label: "Dia tahu siapa kau.", nextId: "sentuhan" },
+        { label: "Dia memaafkanmu?", nextId: "sentuhan" }
+      ]
+    },
+    sentuhan: {
+      id: 'sentuhan',
+      text: "Perlahan, belalainya menyentuh telapak tanganku.\n\nTangan yang sama...\nyang dulu menghancurkan rumahnya.",
+      mood: "hope",
+      choices: [
+        { label: "Apa yang kau rasakan?", nextId: "buang_gergaji" }
+      ]
+    },
+    buang_gergaji: {
+      id: 'buang_gergaji',
+      text: "Malam itu juga...\n\nAku membuang gergajiku ke dasar jurang.\nAku bersumpah untuk menjadi perisai mereka.",
       mood: "resolute",
       choices: [
-        { label: "Selesai (Tutup Memori)", nextId: "end" }
+        { label: "Apakah semua warga setuju?", nextId: "kawan_lama" }
+      ]
+    },
+    kawan_lama: {
+      id: 'kawan_lama',
+      text: "Tidak.\n\nBeberapa kawan lamaku mencibir.\nBagi mereka, gajah adalah hama.\nHarga gading sanggup membuat manusia buta.",
+      mood: "dark",
+      choices: [
+        { label: "Mereka datang berburu?", nextId: "patroli_malam" }
+      ]
+    },
+    patroli_malam: {
+      id: 'patroli_malam',
+      text: "Malam yang sangat pekat.\n\nAku sedang berpatroli menunggangi sang matriark.\nTerdengar bunyi decak logam senapan di balik semak.",
+      mood: "dark",
+      choices: [
+        { label: "Kawan lamamu?", nextId: "konfrontasi" }
+      ]
+    },
+    konfrontasi: {
+      id: 'konfrontasi',
+      text: "Ya.\n\nSenter mereka menyilaukan mataku.\nLaras senapan diarahkan lurus ke dada gajahku.\n\nAku menahan napas.",
+      mood: "dark",
+      choices: [
+        { label: "Apa yang kau lakukan?", nextId: "suara_bumi" }
+      ]
+    },
+    suara_bumi: {
+      id: 'suara_bumi',
+      text: "Aku tidak melakukan apa-apa.\n\nSang matriark yang mengambil langkah maju.\nIa mengeluarkan getaran rendah yang membuat tanah bergetar hebat.",
+      mood: "resolute",
+      choices: [
+        { label: "Sebuah ancaman.", nextId: "mundur" }
+      ]
+    },
+    mundur: {
+      id: 'mundur',
+      text: "Lebih dari itu.\n\nItu adalah suara rimba yang bangkit kembali.\n\nMereka menjatuhkan senapan dan lari ketakutan.",
+      mood: "resolute",
+      choices: [
+        { label: "Kalian berhasil.", nextId: "tahun_berganti" }
+      ]
+    },
+    tahun_berganti: {
+      id: 'tahun_berganti',
+      text: "Waktu berlalu.\n\nJalur tebangan kini tertutup lumut tebal.\nAir sungai kembali jernih.",
+      mood: "hope",
+      choices: [
+        { label: "Dan desa?", nextId: "anak_desa" }
+      ]
+    },
+    anak_desa: {
+      id: 'anak_desa',
+      text: "Anak-anak kembali bermain air.\n\nMereka menggambar gajah di pasir basah.\nMereka tak pernah lagi tahu bagaimana bau oli dan asap.",
+      mood: "hope",
+      choices: [
+        { label: "Kau telah menebus dosamu.", nextId: "pesan_terakhir" }
+      ]
+    },
+    pesan_terakhir: {
+      id: 'pesan_terakhir',
+      text: "Terkadang aku berpikir...\n\nHutan tidak pernah meminta kita menjadi pahlawan.",
+      mood: "hope",
+      choices: [
+        { label: "Lalu apa yang ia minta?", nextId: "ending_final" }
+      ]
+    },
+    ending_final: {
+      id: 'ending_final',
+      text: "...\n\nIa hanya berharap kita berhenti menjadi musuhnya.",
+      mood: "hope",
+      choices: [
+        { label: "[ Tutup Memori ]", nextId: "end" }
       ]
     }
   };
@@ -73,6 +195,25 @@ function VisualNovelSection() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var floatTween = gsap.to(boxRef.current, { y: -15, duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
     return function() { floatTween.kill(); };
+  }, []);
+
+  React.useLayoutEffect(function() {
+    if (!sectionRef.current) return;
+    
+    // Create a pinning effect so the user is "stuck" here for a while to interact
+    var pinTrigger = ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "center center",
+      end: "+=1500", // Requires 1500px of scrolling to escape
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      refreshPriority: 1,
+    });
+
+    return function() {
+      pinTrigger.kill();
+    };
   }, []);
 
   React.useEffect(function() {
@@ -138,40 +279,40 @@ function VisualNovelSection() {
   }
 
   return (
-    <section ref={sectionRef} className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-[#020807] flex items-center justify-center sm:justify-end px-4 sm:px-16" id="vn-branching">
+    <section ref={sectionRef} className="relative z-50 w-full h-[100svh] min-h-[600px] overflow-hidden bg-void flex items-center justify-center px-4 sm:px-8" id="vn-branching">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img ref={bgRef} src="/asset/vn_bg.png" alt="Forest Background" className="absolute top-[-5%] left-[-5%] w-[110%] h-[110%] object-cover opacity-30 transform-gpu" />
       </div>
       
-      <div className="absolute inset-0 z-10 flex items-end justify-start pointer-events-none">
-        <img ref={mahoutRef} src="/asset/vn_mahout.png" alt="Mahout Silhouette" className="w-[120vw] sm:w-[65vw] max-w-4xl object-contain opacity-60 origin-bottom mix-blend-screen transform-gpu" style={{ filter: 'contrast(1.2) brightness(0.8)' }} />
+      <div className="absolute inset-0 z-10 flex items-end justify-center pointer-events-none">
+        <img ref={mahoutRef} src="/asset/vn_mahout.png" alt="Mahout Silhouette" className="w-[120vw] sm:w-[50vw] max-w-3xl object-contain opacity-60 origin-bottom mix-blend-screen transform-gpu" style={{ filter: 'contrast(1.2) brightness(0.8)' }} />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#020807] via-transparent to-[#020807]/50 opacity-90 z-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#020807] via-[#020807]/40 to-transparent opacity-90 z-20 pointer-events-none" />
 
-      <div className="relative z-30 w-full max-w-2xl pt-20 pointer-events-none">
-        <div ref={boxRef} className="w-full backdrop-blur-2xl bg-[rgba(10,31,18,0.4)] border border-[rgba(74,222,128,0.2)] rounded-[2rem] p-8 sm:p-12 shadow-[0_24px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(74,222,128,0.05)] relative pointer-events-auto">
-          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(74,222,128,0.08)] to-transparent rounded-[2rem] pointer-events-none" />
+      <div className="relative z-30 w-full max-w-3xl pointer-events-none translate-y-16">
+        <div ref={boxRef} className="w-full backdrop-blur-2xl bg-[rgba(10,31,18,0.6)] border border-[rgba(74,222,128,0.15)] rounded-xl sm:rounded-2xl p-6 md:p-8 shadow-[0_24px_80px_rgba(0,0,0,0.6)] relative pointer-events-auto">
+          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(74,222,128,0.05)] to-transparent rounded-xl sm:rounded-2xl pointer-events-none" />
           
-          <div className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-[#f59e0b] mb-6 flex items-center gap-3 opacity-80">
-            <span className="w-8 h-px bg-[#f59e0b] block" />
+          <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#f59e0b] mb-4 flex items-center gap-3 opacity-90">
+            <span className="w-6 h-px bg-[#f59e0b] block" />
             Jejak Raksasa di Tangkahan
           </div>
           
           {currentNodeId !== 'end' && node && (
-            <div className="relative min-h-[260px] flex flex-col justify-between">
-              <p ref={textRef} className="font-display italic text-xl sm:text-2xl lg:text-3xl leading-[1.6] text-[#e2f0e6] opacity-0">
+            <div className="relative min-h-[120px] flex flex-col justify-between">
+              <p ref={textRef} className="font-display italic text-lg sm:text-xl md:text-2xl leading-[1.5] text-[#e2f0e6] opacity-0 whitespace-pre-wrap">
                 {node.text}
               </p>
 
-              <div ref={choicesContainerRef} className="mt-8 flex flex-col gap-3">
+              <div ref={choicesContainerRef} className="mt-6 flex flex-col gap-2 max-w-lg w-full">
                 {node.choices.map(function(choice, idx) {
                   return (
                     <button
                       key={idx}
                       ref={addToChoiceRefs}
                       onClick={function() { handleChoice(choice.nextId); }}
-                      className="group relative overflow-hidden flex items-center justify-between w-full text-left px-6 py-4 rounded-2xl backdrop-blur-md bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] transition-all duration-500 hover:bg-[rgba(74,222,128,0.1)] hover:border-[rgba(74,222,128,0.3)] hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] opacity-0 cursor-pointer"
+                      className="group relative overflow-hidden flex items-center justify-between w-full text-left px-5 py-3 rounded-xl backdrop-blur-md bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.05)] transition-all duration-300 hover:bg-[rgba(74,222,128,0.15)] hover:border-[rgba(74,222,128,0.4)] opacity-0 cursor-pointer"
                     >
                       <span className="relative z-10 font-body text-[0.85rem] font-medium tracking-wide text-[#c4dccb] group-hover:text-[#4ade80] transition-colors duration-300">
                         {choice.label}
@@ -193,7 +334,7 @@ function VisualNovelSection() {
 }
 
 
-function StarterPackSection() {
+function TravelEssentials() {
   var sectionRef = React.useRef(null);
   var cardsRef = React.useRef([]);
 
@@ -326,4 +467,4 @@ function StarterPackSection() {
 }
 
 
-export default VisualNovelSection;
+export default InteractiveStory;

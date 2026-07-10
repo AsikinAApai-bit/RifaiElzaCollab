@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
    SECTION: BEYOND THE PORTAL — editorial content
    ══════════════════════════════════════════════════ */
 
-function BeyondSection() {
+function BEHINDTHEPORTAL() {
   var ref = useReveal('.rv');
   return (
     <section id="sungai" className="relative px-6 sm:px-10 lg:px-16" style={{ paddingTop: 'clamp(6rem,12vw,10rem)', paddingBottom: 'clamp(6rem,12vw,10rem)', background: 'linear-gradient(180deg, #020807 0%, #0a1f12 100%)' }}>
@@ -35,4 +35,4 @@ function BeyondSection() {
 }
 
 
-export default BeyondSection;
+export default BEHINDTHEPORTAL;

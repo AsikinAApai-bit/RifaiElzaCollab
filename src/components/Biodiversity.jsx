@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollStack, ScrollStackItem } from './ScrollStack';
 
-function JungleSecretsSection() {
+function Biodiversity() {
   var SECRETS = [
     { id: 'sec-1', name: 'Prologue', img: '/asset/TheStoryofTangkahan1.jpeg', subtitle: '', desc: "For decades, Tangkahan faced severe threats from rampant illegal logging. They live depended entirely on exploiting the forest." },
     { id: 'sec-2', name: 'The Turning Point:', img: '/asset/TheStoryofTangkahan2.jpeg', subtitle: '', desc: "Realizing the destruction, the local community took a bold step. In 2001, they formed the Tangkahan Tourism Institute (LPT) and officially banned illegal logging. They chose a sustainable path, transforming their village into an eco-tourism destination." },
@@ -73,4 +73,4 @@ function JungleSecretsSection() {
   );
 }
 
-export default JungleSecretsSection;
+export default Biodiversity;

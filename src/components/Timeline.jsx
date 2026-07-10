@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    SECTION: HISTORY — Scrub Text Reveal
    ══════════════════════════════════════════════════ */
-function HistorySlider() {
+function Timeline() {
   var containerRef = React.useRef(null);
   var topImageWrapperRef = React.useRef(null);
   var topImageRef = React.useRef(null);
@@ -131,4 +131,4 @@ function HistorySlider() {
 }
 
 
-export default HistorySlider;
+export default Timeline;

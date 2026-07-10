@@ -4,6 +4,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import * as ogl from 'ogl';
 import StaggeredMenu from './components/StaggeredMenu';
+import InteractiveStory from './components/InteractiveStory';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -138,14 +139,17 @@ function Header() {
 
   const menuItems = [
     { label: 'Portal', ariaLabel: 'Go to Portal section', link: '#portal' },
+    { label: 'Rimba', ariaLabel: 'Go to Rimba section', link: '#rimba' },
     { label: 'The River', ariaLabel: 'Go to Behind the Portal section', link: '#sungai' },
-    { label: 'Elephants', ariaLabel: 'Go to Elephant Gallery', link: '#elephants' },
-    { label: 'Rimba', ariaLabel: 'Go to Technique section', link: '#rimba' },
-    { label: 'History', ariaLabel: 'Go to History section', link: '#history' },
-    { label: 'Spots', ariaLabel: 'Go to Spots section', link: '#spots' },
-    { label: 'Secrets', ariaLabel: 'Go to Jungle Secrets section', link: '#jungle-secrets' },
     { label: 'Location', ariaLabel: 'Go to Location Map', link: '#location' },
+    { label: 'Elephants', ariaLabel: 'Go to Elephant Gallery', link: '#elephants' },
+    { label: 'History', ariaLabel: 'Go to History section', link: '#history' },
+    { label: 'Secrets', ariaLabel: 'Go to Jungle Secrets section', link: '#jungle-secrets' },
+    { label: 'Spots', ariaLabel: 'Go to Spots section', link: '#spots' },
+    { label: 'Starter Pack', ariaLabel: 'Go to Starter Pack section', link: '#starterpack' },
+    { label: 'Story', ariaLabel: 'Go to Interactive Story section', link: '#vn-branching' },
     { label: 'Information', ariaLabel: 'Go to Information section', link: '#information' },
+    { label: 'Atlas', ariaLabel: 'Go to Forest Atlas section', link: '#atlas' },
   ];
 
   const socialItems = [
@@ -378,7 +382,7 @@ function DepthSidebar() {
     fadeDelay,
    ★ HERO — CANVAS SCRUBBING + END PARALLAX ★
    ══════════════════════════════════════════════════ */
-function HeroCanvasScrub(props) {
+function SCROLL240FRAME(props) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
   const coverRef = useRef(null);
@@ -464,10 +468,11 @@ function HeroCanvasScrub(props) {
       scrollTrigger: {
         trigger: wrapRef.current,
         start: 'top top',
-        end: '+=1100%', // Diperpanjang agar scroll frame animasi terasa lebih lambat
+        end: '+=1400%', // Diperpanjang agar ada ruang untuk "magnet" di akhir
         pin: true,
         scrub: 1,
         anticipatePin: 1,
+        refreshPriority: 10,
       }
     });
 
@@ -572,6 +577,10 @@ function HeroCanvasScrub(props) {
       duration: 1
     }, 3);
 
+    // Phase 5 (The Magnet / Pinning Pause)
+    // Memberikan jeda di mana user harus scroll lebih banyak sebelum pindah ke section berikutnya
+    tl.to({}, { duration: 1.5 });
+
     return () => {
       if(tl.scrollTrigger) tl.scrollTrigger.kill();
       tl.kill();
@@ -612,7 +621,7 @@ function HeroCanvasScrub(props) {
         style={{ zIndex: 10 }}
       />
       
-      {/* Dark gradient overlay blending into StatsSection */}
+      {/* Dark gradient overlay blending into SedikitIlmu */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#020807]" style={{ zIndex: 15 }} />
 
       {/* Layer 3 (Typography) */}
@@ -784,17 +793,18 @@ function useReveal(selector, opts) {
 /* ══════════════════════════════════════════════════
    SECTION: HEARTBEAT COUNTER (STATS)
    ══════════════════════════════════════════════════ */
-function StatsSection() {
+function SedikitIlmu() {
   const sectionRef = useRef(null);
   const num1Ref = useRef(null);
   const num2Ref = useRef(null);
   const num3Ref = useRef(null);
   const num4Ref = useRef(null);
+  const bgRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Counter animation logic
-      const animateCounter = (ref, targetValue, duration) => {
+      const animateCounter = (ref, targetValue, duration, padZero = false) => {
         const obj = { val: 0 };
         gsap.to(obj, {
           val: targetValue,
@@ -806,7 +816,8 @@ function StatsSection() {
           },
           onUpdate: () => {
             if (ref.current) {
-              ref.current.innerText = Math.floor(obj.val).toLocaleString();
+              let val = Math.floor(obj.val);
+              ref.current.innerText = padZero ? String(val).padStart(2, '0') : val.toLocaleString();
             }
           }
         });
@@ -814,7 +825,7 @@ function StatsSection() {
 
       animateCounter(num1Ref, 17000, 2.5);
       animateCounter(num2Ref, 1000, 2.5);
-      animateCounter(num3Ref, 10, 2);
+      animateCounter(num3Ref, 9, 2, true);
       animateCounter(num4Ref, 1, 1.5);
       
       // Text reveal
@@ -829,14 +840,32 @@ function StatsSection() {
           start: "top 75%",
         }
       });
+
+      // Parallax background
+      gsap.fromTo(bgRef.current,
+        { y: "-15%" },
+        {
+          y: "15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} id="stats" className="relative px-6 sm:px-10 lg:px-16 py-16 md:py-32 overflow-hidden" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.85) 0%, rgba(10,31,18,0.9) 100%), url("/asset/asset5.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-8 justify-between items-center md:items-start text-center md:text-left">
+    <section ref={sectionRef} id="rimba" className="relative px-6 sm:px-10 lg:px-16 py-16 md:py-32 overflow-hidden bg-[#020807]">
+      <div ref={bgRef} className="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center z-0 pointer-events-none" style={{ backgroundImage: 'url("/asset/asset5.jpeg")' }} />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[rgba(2,8,7,0.85)] to-[rgba(10,31,18,0.9)] pointer-events-none" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-8 justify-between items-center md:items-start text-center md:text-left">
         
         <div className="flex flex-col items-center md:items-start">
           <div className="font-display italic text-[#C4B088] leading-none" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}>
@@ -883,11 +912,36 @@ function StatsSection() {
    SECTION: BEYOND THE PORTAL — editorial content
    ══════════════════════════════════════════════════ */
 
-function BeyondSection() {
+function BEHINDTHEPORTAL() {
+  const sectionRef = useRef(null);
+  const bgRef = useRef(null);
   var ref = useReveal('.rv');
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(bgRef.current,
+        { y: "-15%" },
+        {
+          y: "15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="sungai" className="relative px-6 sm:px-10 lg:px-16" style={{ paddingTop: 'clamp(6rem,12vw,10rem)', paddingBottom: 'clamp(6rem,12vw,10rem)', backgroundImage: 'url("/asset/asset5.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-      <div ref={ref} className="mx-auto" style={{ maxWidth: '1300px' }}>
+    <section ref={sectionRef} id="sungai" className="relative px-6 sm:px-10 lg:px-16 overflow-hidden bg-[#0a1f12]" style={{ paddingTop: 'clamp(6rem,12vw,10rem)', paddingBottom: 'clamp(6rem,12vw,10rem)' }}>
+      <div ref={bgRef} className="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center z-0 pointer-events-none" style={{ backgroundImage: 'url("/asset/asset5.jpeg")' }} />
+      <div className="absolute inset-0 z-0 bg-[rgba(10,31,18,0.3)] pointer-events-none" />
+      <div ref={ref} className="relative z-10 mx-auto" style={{ maxWidth: '1300px' }}>
         {/* Offset text block — NOT centered, NOT grid */}
         <div className="rv sm:ml-[15%] lg:ml-[20%] max-w-xl">
           <div className="eyebrow mb-5">
@@ -907,7 +961,7 @@ function BeyondSection() {
 /* ══════════════════════════════════════════════════
    SECTION: HISTORY — Scrub Text Reveal
    ══════════════════════════════════════════════════ */
-function HistorySlider() {
+function Timeline() {
   var containerRef = React.useRef(null);
   var topImageWrapperRef = React.useRef(null);
   var topImageRef = React.useRef(null);
@@ -1037,31 +1091,7 @@ function HistorySlider() {
 /* ══════════════════════════════════════════════════
    SECTION: ELEPHANT GALLERY — Hover Distortion
    ══════════════════════════════════════════════════ */
-function ElephantGallery() {
-  var imgRef = React.useRef(null);
-  var filterRef = React.useRef(null);
-
-  React.useEffect(function() {
-    var img = imgRef.current;
-    var filter = filterRef.current;
-    if (!img || !filter || window.matchMedia('(hover: none)').matches) return;
-
-    var hoverTl = gsap.timeline({ paused: true });
-    hoverTl.to(filter, { attr: { scale: 30 }, duration: 0.8, ease: "power2.out" })
-           .to(img, { scale: 1.05, duration: 1.5, ease: "power2.out" }, 0);
-
-    function onEnter() { hoverTl.play(); }
-    function onLeave() { hoverTl.reverse(); }
-
-    img.addEventListener('mouseenter', onEnter);
-    img.addEventListener('mouseleave', onLeave);
-
-    return function() {
-      img.removeEventListener('mouseenter', onEnter);
-      img.removeEventListener('mouseleave', onLeave);
-    };
-  }, []);
-
+function SumatranElephant() {
   return (
     <section id="elephants" className="relative px-6 sm:px-10 lg:px-16 border-t border-[rgba(74,222,128,0.05)] bg-[#020807]" style={{ paddingTop: '8rem', paddingBottom: '12rem' }}>
       
@@ -1072,14 +1102,6 @@ function ElephantGallery() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#020807] via-transparent to-[#020807] opacity-70 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#020807] via-[rgba(2,8,7,0.7)] to-transparent pointer-events-none" />
-
-      {/* SVG Filter for Liquid Distortion */}
-      <svg className="hidden">
-        <filter id="liquid">
-          <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" />
-          <feDisplacementMap ref={filterRef} in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </svg>
 
       <div className="mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10" style={{ maxWidth: '1200px' }}>
         <div className="lg:w-1/2 relative">
@@ -1102,14 +1124,12 @@ function ElephantGallery() {
           </div>
         </div>
         
-        <div className="lg:w-1/2 w-full mt-8 lg:mt-16">
+        <div className="lg:w-1/2 w-full mt-8 lg:mt-16 group cursor-crosshair">
           <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-2xl" style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
             <img 
-              ref={imgRef}
               src="/asset/awasjatoh.jpeg" 
               alt="Sumatran Elephant in Tangkahan" 
-              className="w-full h-full object-cover transition-all duration-700 grayscale hover:grayscale-0"
-              style={{ filter: 'url(#liquid)', cursor: 'crosshair' }}
+              className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#020807] via-transparent to-transparent opacity-60 pointer-events-none" />
           </div>
@@ -2074,7 +2094,7 @@ function CircularGallery({
   );
 }
 
-function SpotsSection() {
+function Destinations() {
   
 
   const SPOTS = [
@@ -2086,11 +2106,11 @@ function SpotsSection() {
   ];
 
   const VARIANTS = {
-    'variant-1': { imgClass: 'top-[10%] right-[5%] md:right-[10%] md:top-[15%] w-[60%] md:w-[35%] aspect-[4/5]', textClass: 'bottom-[10%] md:bottom-[20%] left-[5%] md:left-[15%]' },
-    'variant-2': { imgClass: 'bottom-[10%] md:bottom-[15%] left-[5%] md:left-[15%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'top-[15%] md:top-[25%] right-[5%] md:right-[15%]' },
-    'variant-3': { imgClass: 'top-[20%] left-[10%] md:left-[20%] w-[70%] md:w-[35%] aspect-square', textClass: 'bottom-[15%] md:bottom-[25%] right-[5%] md:right-[15%]' },
-    'variant-4': { imgClass: 'bottom-[15%] md:bottom-[20%] right-[5%] md:right-[15%] w-[65%] md:w-[40%] aspect-[4/3]', textClass: 'top-[15%] md:top-[20%] left-[5%] md:left-[15%]' },
-    'variant-5': { imgClass: 'top-[15%] right-[10%] md:right-[20%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'bottom-[20%] md:bottom-[30%] left-[5%] md:left-[15%]' }
+    'variant-1': { imgClass: 'top-[10%] right-[5%] md:right-[10%] md:top-[15%] w-[60%] md:w-[35%] aspect-[4/5]', textClass: 'bottom-[10%] md:bottom-[20%] left-[10%] md:left-[25%]' },
+    'variant-2': { imgClass: 'bottom-[10%] md:bottom-[15%] left-[5%] md:left-[15%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'top-[15%] md:top-[25%] right-[10%] md:right-[20%]' },
+    'variant-3': { imgClass: 'top-[20%] left-[10%] md:left-[20%] w-[70%] md:w-[35%] aspect-square', textClass: 'bottom-[15%] md:bottom-[25%] right-[10%] md:right-[20%]' },
+    'variant-4': { imgClass: 'bottom-[15%] md:bottom-[20%] right-[5%] md:right-[15%] w-[65%] md:w-[40%] aspect-[4/3]', textClass: 'top-[15%] md:top-[20%] left-[10%] md:left-[25%]' },
+    'variant-5': { imgClass: 'top-[15%] right-[10%] md:right-[20%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'bottom-[20%] md:bottom-[30%] left-[10%] md:left-[25%]' }
   };
 
   const [activeSpot, setActiveSpot] = useState(null);
@@ -2238,7 +2258,7 @@ function SpotsSection() {
         <div className="w-[30%] md:w-1/4 h-full flex flex-col justify-center pl-6 md:pl-12 z-20 pointer-events-auto relative">
           <div className="eyebrow mb-4 opacity-70">
             <span className="eyebrow__line w-8 bg-[#C88D83]" />
-            <span className="eyebrow__text tracking-[0.2em] font-sans text-[#C88D83]">ARCHIVE</span>
+            <span className="eyebrow__text tracking-[0.2em] font-sans text-[#C88D83]">RECOMMENDATION</span>
           </div>
           
           <div className="flex flex-col gap-5 items-start">
@@ -2264,28 +2284,14 @@ function SpotsSection() {
             className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000 z-10 ${activeSpot ? 'opacity-0' : 'opacity-100'}`}
           >
             <div className="flex items-center gap-6">
-              <span 
-                className="font-serif italic text-[12rem] md:text-[18rem] leading-none drop-shadow-2xl"
-                style={{
-                  background: 'linear-gradient(135deg, #E6C2BF 0%, #C88D83 40%, #A25C54 100%)',
-                  WebkitBackgroundClip: 'text',
-                  color: 'transparent',
-                  filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.5))'
-                }}
-              >
+              <span className="font-serif italic text-[12rem] md:text-[18rem] leading-none text-tangkahan-gold">
                 5
               </span>
               <div className="flex flex-col justify-center gap-1">
-                <span 
-                  className="font-serif text-4xl md:text-6xl drop-shadow-xl"
-                  style={{ color: '#C88D83' }}
-                >
+                <span className="font-serif text-4xl md:text-6xl drop-shadow-xl text-white">
                   Best Spots
                 </span>
-                <span 
-                  className="font-serif italic text-5xl md:text-7xl drop-shadow-xl"
-                  style={{ color: '#C88D83' }}
-                >
+                <span className="font-serif italic text-5xl md:text-7xl drop-shadow-xl text-white">
                   to Visit
                 </span>
               </div>
@@ -2329,60 +2335,8 @@ var TOOLS = [
   { id: 't9', name: 'Trek Boots', category: 'Footwear', img: '/asset/tool_binoculars_1782866982113.png', class: 'rotate-[-1deg] translate-y-2' }
 ];
 
-/* ══════════════════════════════════════════════════
-   SECTION: VISUAL NOVEL — Mahout's Story
-   ══════════════════════════════════════════════════ */
-function VisualNovelSection() {
-  const sectionRef = useRef(null);
-  
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const bgImg = sectionRef.current?.querySelector('.vn-bg');
-    if (bgImg) {
-      gsap.to(bgImg, { scale: 1.05, duration: 20, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    }
-  }, []);
 
-  return (
-    <section ref={sectionRef} className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-black" id="vn-branching">
-      {/* Background Layer */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/asset/anime_tangkahan_bg.png" 
-          alt="Anime Tangkahan Rainforest" 
-          className="vn-bg w-full h-full object-cover origin-center" 
-        />
-      </div>
-
-      {/* Dialogue Box Container covering the lower third */}
-      <div className="absolute bottom-0 left-0 w-full h-[33vh] min-h-[220px] z-20 flex flex-col justify-end">
-        {/* The ornate, translucent blue dialogue text box */}
-        <div className="relative w-full h-full bg-[#0f172a]/70 backdrop-blur-md border-t-2 border-[#94a3b8] shadow-[0_-10px_50px_rgba(0,0,0,0.6)]">
-          {/* Decorative silver borders (inner) */}
-          <div className="absolute inset-2 border border-[#94a3b8]/40 pointer-events-none"></div>
-          
-          <div className="p-6 md:p-10 lg:px-16 h-full flex flex-col justify-start">
-            {/* Header Area */}
-            <div className="mb-4">
-              <span className="inline-block bg-[#dc2626]/90 text-white font-bold tracking-widest px-4 py-1 text-sm md:text-base border border-[#f87171] shadow-[0_0_10px_rgba(220,38,38,0.5)] uppercase font-mono">
-                Pemandu
-              </span>
-            </div>
-            
-            {/* Main Text */}
-            <p className="font-sans text-white text-lg md:text-xl lg:text-2xl leading-relaxed max-w-5xl" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
-              "Selamat datang di Tangkahan, permata ekowisata Sumatera Utara. Di sini, Anda bisa menjelajahi hutan hujan, mandi di sungai jernih, dan bertemu gajah-gajah yang dilindungi. Mari kita mulai pertualangan Anda."
-            </p>
-          </div>
-          
-
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function JungleSecretsSection() {
+function Biodiversity() {
   var SECRETS = [
     { id: 'sec-1', name: 'Prologue', img: '/asset/TheStoryofTangkahan1.jpeg', subtitle: '', desc: "For decades, Tangkahan faced severe threats from rampant illegal logging. They live depended entirely on exploiting the forest." },
     { id: 'sec-2', name: 'The Turning Point:', img: '/asset/TheStoryofTangkahan2.jpeg', subtitle: '', desc: "Realizing the destruction, the local community took a bold step. In 2001, they formed the Tangkahan Tourism Institute (LPT) and officially banned illegal logging. They chose a sustainable path, transforming their village into an eco-tourism destination." },
@@ -2455,7 +2409,7 @@ function JungleSecretsSection() {
 }
 
 
-function StarterPackSection() {
+function StarterPack() {
   var sectionRef = React.useRef(null);
   var cardsRef = React.useRef([]);
 
@@ -2489,7 +2443,7 @@ function StarterPackSection() {
   }, []);
 
   return (
-    <section className="relative px-6 sm:px-10 lg:px-16 overflow-hidden py-40" style={{ background: '#0a1f12' }}>
+    <section id="starterpack" className="relative px-6 sm:px-10 lg:px-16 overflow-hidden py-40" style={{ background: '#0a1f12' }}>
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 50%, rgba(74,222,128,0.03) 0%, transparent 100%)' }} />
       
       <div className="mx-auto" style={{ maxWidth: '1400px' }}>
@@ -2498,12 +2452,12 @@ function StarterPackSection() {
         <div className="mb-24 sm:mb-32 pl-4 sm:pl-20 lg:pl-32 relative z-10">
           <div className="eyebrow mb-4">
             <span className="eyebrow__line" style={{ width: '60px' }} />
-            <span className="eyebrow__text">Essential Tools</span>
+            <span className="eyebrow__text">Preparation</span>
           </div>
           <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.02em' }}>
-            Bekal
+            Starter
             <br />
-            <span className="text-transparent ml-12 sm:ml-24" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.7)' }}>Penjelajah</span>
+            <span className="text-transparent ml-12 sm:ml-24" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.7)' }}>Pack</span>
           </h2>
         </div>
 
@@ -2596,8 +2550,9 @@ function StarterPackSection() {
 /* ══════════════════════════════════════════════════
    SECTION: LOCATION MAP
    ══════════════════════════════════════════════════ */
-function LocationMapSection() {
+function LocationMap() {
   const sectionRef = useRef(null);
+  const bgRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -2641,12 +2596,29 @@ function LocationMapSection() {
           start: "top 75%",
         }
       });
+
+      // Parallax background
+      gsap.fromTo(bgRef.current,
+        { y: "-15%" },
+        {
+          y: "15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="location" ref={sectionRef} className="relative w-full py-16 md:py-24 lg:py-32 overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.92) 0%, rgba(10,31,18,0.95) 50%, rgba(2,8,7,0.92) 100%), url("/asset/asset4.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+    <section id="location" ref={sectionRef} className="relative w-full py-16 md:py-24 lg:py-32 overflow-hidden min-h-[85vh] flex items-center bg-[#020807]">
+      <div ref={bgRef} className="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center z-0 pointer-events-none" style={{ backgroundImage: 'url("/asset/asset4.jpeg")' }} />
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,8,7,0.92) 0%, rgba(10,31,18,0.95) 50%, rgba(2,8,7,0.92) 100%)' }} />
       
       {/* Background decoration: Grid lines */}
       <div className="absolute top-1/4 left-0 w-full h-[1px] bg-[rgba(74,222,128,0.08)] dossier-line-h"></div>
@@ -2719,8 +2691,8 @@ function LocationMapSection() {
               {/* Mini stats */}
               <div className="flex gap-6 mt-6 mb-6">
                 <div>
-                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">Altitude</p>
-                  <p className="font-display italic text-xl text-[#e2f0e6]">200m</p>
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#4ade80] mb-1">certified for</p>
+                  <p className="font-display italic text-xl text-[#e2f0e6]">the explorers</p>
                 </div>
                 <div className="w-px bg-[rgba(74,222,128,0.15)]"></div>
                 <div>
@@ -2779,7 +2751,7 @@ function LocationMapSection() {
    CTA FOOTER
    ══════════════════════════════════════════════════ */
 
-function CTAFooter() {
+function Footer() {
   var ref = useReveal('.rv');
   return (
     <footer className="relative bg-[#020503] w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
@@ -3790,9 +3762,9 @@ function DomeGallery({
 /* ══════════════════════════════════════════════════
    SECTION: CANOPY ATLAS (Dome Gallery)
    ══════════════════════════════════════════════════ */
-function CanopyAtlasSection() {
+function ForestAtlas() {
   return (
-    <section className="relative w-full h-screen bg-[#020807] overflow-hidden">
+    <section id="atlas" className="relative w-full h-screen bg-[#020807] overflow-hidden">
       <div className="absolute top-10 md:top-20 left-0 w-full z-20 px-4 sm:px-8 text-center pointer-events-none">
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.02em' }}>
           The Canopy Atlas
@@ -3915,14 +3887,17 @@ const CardSwap = ({
   const tlRef = useRef(null);
   const intervalRef = useRef();
   const container = useRef(null);
+  const isSwapping = useRef(false);
 
   useEffect(() => {
     const total = refs.length;
     refs.forEach((r, i) => placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
 
     const swap = () => {
+      if (isSwapping.current) return;
       if (order.current.length < 2) return;
 
+      isSwapping.current = true;
       const [front, ...rest] = order.current;
       
       if (onActiveChange) {
@@ -3980,14 +3955,29 @@ const CardSwap = ({
 
       tl.call(() => {
         order.current = [...rest, front];
+        isSwapping.current = false;
       });
+    };
+
+    const onClick = () => {
+      if (isSwapping.current) {
+        if (tlRef.current && tlRef.current.paused()) {
+          tlRef.current.play();
+          clearInterval(intervalRef.current);
+          intervalRef.current = window.setInterval(swap, delay);
+        }
+        return;
+      }
+      clearInterval(intervalRef.current);
+      swap();
+      intervalRef.current = window.setInterval(swap, delay);
     };
 
     const node = container.current;
     intervalRef.current = window.setInterval(swap, delay);
 
     if (node) {
-      node.addEventListener('click', swap);
+      node.addEventListener('click', onClick);
     }
 
     if (pauseOnHover && node) {
@@ -3997,12 +3987,14 @@ const CardSwap = ({
       };
       const resume = () => {
         tlRef.current?.play();
+        clearInterval(intervalRef.current);
         intervalRef.current = window.setInterval(swap, delay);
       };
       node.addEventListener('mouseenter', pause);
       node.addEventListener('mouseleave', resume);
       return () => {
-        node.removeEventListener('click', swap);
+        tlRef.current?.kill();
+        node.removeEventListener('click', onClick);
         node.removeEventListener('mouseenter', pause);
         node.removeEventListener('mouseleave', resume);
         clearInterval(intervalRef.current);
@@ -4010,7 +4002,8 @@ const CardSwap = ({
     }
     
     return () => {
-      if (node) node.removeEventListener('click', swap);
+      tlRef.current?.kill();
+      if (node) node.removeEventListener('click', onClick);
       clearInterval(intervalRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -4047,14 +4040,17 @@ const CardSwap = ({
 /* ══════════════════════════════════════════════════
    SECTION: INFORMATION (CardSwap)
    ══════════════════════════════════════════════════ */
-function InformationSection() {
+function VisitorInfo() {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const infoData = [
-    { category: "INITIATIVE", title: "Donate Clean Water", desc: "Every family in North Sumatra deserves access to clean drinking water. Support underprivileged families with a water filter to help them save money and improve their health.", color: "#0ea5e9", img: "/asset/info_1.png" },
-    { category: "FAQ", title: "Getting to Tangkahan", desc: "Located in North Sumatra, on the border of Leuser National Park. 3 hours from Medan. June-September has less rain, but embrace the rainforest showers!", color: "#4ade80", img: "/asset/info_2.png" },
-    { category: "FAQ", title: "Duration & Stay", desc: "We recommend staying 3-5 days. Perfect for meeting locals, bonfire dinners, jungle trekking, and tubing.", color: "#f59e0b", img: "/asset/info_3.png" },
-    { category: "FAQ", title: "Elephant Interaction", desc: "The herd is used to human interaction under mahout supervision. You can feed, bathe, and walk with them. Elephant rides are strictly not allowed.", color: "#a855f7", img: "/asset/info_4.png" }
+    { category: "FAQ", title: "Getting to Tangkahan", desc: "The journey from Medan takes about 3 to 4 hours. Entering the park is highly affordable: Rp 5,000 for WNI and around Rp 150,000 for WNA.", color: "#4ade80", img: "/asset/info_1.png" },
+    { category: "INITIATIVE", title: "Water Donation", desc: "a small action that goes directly toward maintaining the village's clean water infrastructure. By pitching in, you help protect the river's purity and ensure that both local families and eco-lodges have continuous access to safe, clean water.", link: "https://tangkahan.id/id/donate/", linkText: "click to learn more", color: "#0ea5e9", img: "/asset/info_2.png" },
+    { category: "FAQ", title: "Where to stay?", desc: "Cozy, rustic wooden bungalows built right along the riverbank. Top popular choices include Mega Inn, Tangkahan Jungle Lodge, and Green Lodge.", color: "#f59e0b", img: "/asset/info_3.png" },
+    { category: "FAQ", title: "Cash Preferred", desc: "There are still no physical ATMs in Tangkahan, but digital payments or transfers are often accepted now. However, it's best to bring some cash just in case the jungle signal drops.", color: "#ec4899", img: "/asset/info_4.png" },
+    { category: "SOUVENIR", title: "The Community Craft", desc: "Before you leave, make sure to stop by the Tangkahan Community Craft Center, located right near the main suspension bridge by the visitor center. Here u can buy; Pure Wild Honey, Unique Wood Carvings, Jungle Spa Soaps, Handwoven Bags, and many more handmade's craft!", color: "#ef4444", img: "/asset/info_5.png" },
+    { category: "FAQ", title: "Elephant Interaction", desc: "The herd is used to human interaction under mahout supervision. You can feed, bathe, and walk with them. Elephant rides are strictly not allowed.", color: "#a855f7", img: "/asset/info_6.png" },
+    { category: "ACTIVITY", title: "Jungle Trekking", desc: "Explore the dense Leuser ecosystem. Discover hidden waterfalls, unique flora, and perhaps spot wild orangutans swinging through the canopy above.", color: "#14b8a6", img: "/asset/info_7.png" }
   ];
   
   const activeColor = infoData[activeIndex]?.color || '#4ade80';
@@ -4064,7 +4060,10 @@ function InformationSection() {
     "#0ea5e9": "rgba(14,165,233,0.5)",
     "#4ade80": "rgba(74,222,128,0.5)",
     "#f59e0b": "rgba(245,158,11,0.5)",
-    "#a855f7": "rgba(168,85,247,0.5)"
+    "#a855f7": "rgba(168,85,247,0.5)",
+    "#ef4444": "rgba(239,68,68,0.5)",
+    "#14b8a6": "rgba(20,184,166,0.5)",
+    "#ec4899": "rgba(236,72,153,0.5)"
   };
 
   return (
@@ -4100,7 +4099,7 @@ function InformationSection() {
       
       <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center w-full h-full">
         <div className="w-full md:w-1/2 pl-4 sm:pl-10 lg:pl-20 mb-20 md:mb-0 relative z-20">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] mb-4 transition-colors duration-[1500ms] ease-in-out" style={{ color: activeColor }}>FAQ</p>
+          <p className="font-mono text-xl md:text-2xl font-bold uppercase tracking-[0.3em] mb-4 transition-colors duration-[1500ms] ease-in-out" style={{ color: activeColor }}>FAQ</p>
           <h2 className="font-display italic text-6xl md:text-8xl leading-[0.9]">
             <span className="text-white">All About</span><br/>
             <span className="text-tangkahan-gold">Tangkahan</span>
@@ -4120,6 +4119,20 @@ function InformationSection() {
                 <p className="font-mono text-[0.65rem] tracking-[0.2em] mb-4 uppercase transition-colors duration-1000" style={{ color: item.color }}>{item.category}</p>
                 <h3 className="font-display italic text-3xl md:text-4xl text-white mb-6 leading-[1.1]">{item.title}</h3>
                 <p className="font-body text-[#c4dccb] leading-relaxed text-sm">{item.desc}</p>
+                {item.link && (
+                  <a 
+                    href={item.link} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="group relative inline-flex items-center gap-3 w-max px-5 py-3 mt-6 rounded-lg overflow-hidden transition-all duration-500"
+                    style={{ background: 'rgba(2,8,7,0.5)', border: `1px solid ${strokeColorMap[item.color] || 'rgba(255,255,255,0.2)'}` }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <span className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500" style={{ backgroundColor: item.color }} />
+                    <span className="font-mono text-[0.65rem] tracking-[0.15em] uppercase relative z-10 text-white">{item.linkText}</span>
+                    <svg className="w-3.5 h-3.5 relative z-10 text-white transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </a>
+                )}
               </Card>
             ))}
           </CardSwap>
@@ -4893,7 +4906,7 @@ function TextPressureBanner() {
   );
 }
 
-function App() {
+function Cover() {
   var loadedState = React.useState(false);
   var loaded = loadedState[0];
   var setLoaded = loadedState[1];
@@ -4908,19 +4921,19 @@ function App() {
       <Header />
       <DepthSidebar />
       <main>
-        <HeroCanvasScrub progressRef={progressRef} />
-        <StatsSection />
-        <BeyondSection />
-        <LocationMapSection />
-        <ElephantGallery />
-        <HistorySlider />
-        <JungleSecretsSection />
-        <SpotsSection />
-        <StarterPackSection />
-        <VisualNovelSection />
-        <InformationSection />
-        <CanopyAtlasSection />
-        <CTAFooter />
+        <SCROLL240FRAME progressRef={progressRef} />
+        <SedikitIlmu />
+        <BEHINDTHEPORTAL />
+        <LocationMap />
+        <SumatranElephant />
+        <Timeline />
+        <Biodiversity />
+        <Destinations />
+        <StarterPack />
+        <InteractiveStory />
+        <VisitorInfo />
+        <ForestAtlas />
+        <Footer />
       </main>
     </React.Fragment>
   );
@@ -4928,4 +4941,4 @@ function App() {
 
 
 
-export default App;
+export default Cover;

@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    SECTION: LOCATION MAP
    ══════════════════════════════════════════════════ */
-function LocationMapSection() {
+function LocationMap() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -118,4 +118,4 @@ function LocationMapSection() {
 
 
 
-export default LocationMapSection;
+export default LocationMap;

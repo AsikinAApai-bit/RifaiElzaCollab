@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    SECTION: ELEPHANT GALLERY — Hover Distortion
    ══════════════════════════════════════════════════ */
-function ElephantGallery() {
+function SumatranElephant() {
   var imgRef = React.useRef(null);
   var filterRef = React.useRef(null);
 
@@ -89,4 +89,4 @@ function ElephantGallery() {
 }
 
 
-export default ElephantGallery;
+export default SumatranElephant;

@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    SECTION: CANOPY ATLAS (Dome Gallery)
    ══════════════════════════════════════════════════ */
-function CanopyAtlasSection() {
+function ForestAtlas() {
   return (
     <section className="relative w-full h-screen bg-[#020807] overflow-hidden">
       <div className="absolute top-10 md:top-20 left-0 w-full z-20 px-4 sm:px-8 text-center pointer-events-none">
@@ -58,4 +58,4 @@ function CanopyAtlasSection() {
 
 
 
-export default CanopyAtlasSection;
+export default ForestAtlas;

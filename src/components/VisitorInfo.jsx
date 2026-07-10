@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    SECTION: INFORMATION (CardSwap)
    ══════════════════════════════════════════════════ */
-function InformationSection() {
+function VisitorInfo() {
   const infoData = [
     { category: "INITIATIVE", title: "Donate Clean Water", desc: "Every family in North Sumatra deserves access to clean drinking water. Support underprivileged families with a water filter to help them save money and improve their health." },
     { category: "FAQ", title: "Getting to Tangkahan", desc: "Located in North Sumatra, on the border of Leuser National Park. 3 hours from Medan. June-September has less rain, but embrace the rainforest showers!" },
@@ -43,4 +43,4 @@ function InformationSection() {
 }
 
 
-export default InformationSection;
+export default VisitorInfo;

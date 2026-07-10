@@ -15,7 +15,7 @@ var TOOLS = [
   { id: 't9', name: 'Trek Boots', category: 'Footwear', img: '/asset/tool_binoculars_1782866982113.png', class: 'rotate-[-1deg] translate-y-2' }
 ];
 
-function StarterPackSection() {
+function TravelEssentials() {
   var sectionRef = React.useRef(null);
   var cardsRef = React.useRef([]);
 
@@ -153,4 +153,4 @@ function StarterPackSection() {
   );
 }
 
-export default StarterPackSection;
+export default TravelEssentials;

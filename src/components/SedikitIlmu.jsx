@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════
    SECTION: HEARTBEAT COUNTER (STATS)
    ══════════════════════════════════════════════════ */
-function StatsSection() {
+function SedikitIlmu() {
   const sectionRef = useRef(null);
   const num1Ref = useRef(null);
   const num2Ref = useRef(null);
@@ -102,4 +102,4 @@ function StatsSection() {
 }
 
 
-export default StatsSection;
+export default SedikitIlmu;

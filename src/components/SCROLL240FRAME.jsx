@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const totalFrames = 240;
 let loadedCount = 0;
 
-function HeroCanvasScrub(props) {
+function SCROLL240FRAME(props) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
   const coverRef = useRef(null);
@@ -189,4 +189,4 @@ function HeroCanvasScrub(props) {
 
 
 
-export default HeroCanvasScrub;
+export default SCROLL240FRAME;
