@@ -2263,40 +2263,48 @@ function SpotsSection() {
         </div>
       </div>
       
-      {/* Navigation List (Z-20) */}
-      <div className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20 pointer-events-auto">
-        <div className="eyebrow mb-4 opacity-70">
-          <span className="eyebrow__line w-8 bg-[#C88D83]" />
-          <span className="eyebrow__text tracking-[0.2em] font-sans text-[#C88D83]">ARCHIVE</span>
+      {/* 3-Column Layout Strict Containers */}
+      <div className="absolute inset-0 flex">
+        {/* Left Nav (25% width) */}
+        <div className="w-[30%] md:w-1/4 h-full flex flex-col justify-center pl-6 md:pl-12 z-20 pointer-events-auto relative">
+          <div className="eyebrow mb-4 opacity-70">
+            <span className="eyebrow__line w-8 bg-[#C88D83]" />
+            <span className="eyebrow__text tracking-[0.2em] font-sans text-[#C88D83]">ARCHIVE</span>
+          </div>
+          
+          <div className="flex flex-col gap-5 items-start">
+            {SPOTS.map((spot) => (
+              <button
+                key={spot.id}
+                onMouseEnter={() => handleMouseEnter(spot)}
+                onMouseLeave={handleMouseLeave}
+                className={`text-left font-sans font-medium text-sm md:text-base tracking-[0.25em] uppercase transition-all duration-500 hover:text-[#E6C2BF] hover:translate-x-2 ${
+                  activeSpot && activeSpot.id === spot.id ? 'text-[#E6C2BF] translate-x-2' : 'text-[#C88D83]'
+                }`}
+              >
+                {spot.name}
+              </button>
+            ))}
+          </div>
         </div>
-        
-        <div className="flex flex-col gap-5 items-start">
-          {SPOTS.map((spot) => (
-            <button
-              key={spot.id}
-              onMouseEnter={() => handleMouseEnter(spot)}
-              onMouseLeave={handleMouseLeave}
-              className={`text-left font-sans font-medium text-sm md:text-base tracking-[0.25em] uppercase transition-all duration-500 hover:text-[#E6C2BF] hover:translate-x-2 ${
-                activeSpot && activeSpot.id === spot.id ? 'text-[#E6C2BF] translate-x-2' : 'text-[#C88D83]'
-              }`}
-            >
-              {spot.name}
-            </button>
-          ))}
-        </div>
-      </div>
 
-      {/* Preview Container (Z-10) */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {/* Aperture Image */}
-        <div ref={previewImgContainerRef} className="absolute overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)' }}>
-          <img ref={previewImgElRef} src="" alt="Spot Preview" className="w-full h-full object-cover filter grayscale-[30%] contrast-[1.1] brightness-90" />
-        </div>
-        
-        {/* Preview Text */}
-        <div ref={previewTextRef} className="absolute flex flex-col gap-3 opacity-0">
-          <h3 ref={titleRef} className="font-display italic text-5xl md:text-6xl text-[#e2f0e6]"></h3>
-          <p ref={descRef} className="font-body text-sm md:text-base text-[#6b9f7a] leading-relaxed max-w-sm text-justify mt-4"></p>
+        {/* Right Content Area (75% width) */}
+        <div className="w-[70%] md:w-3/4 h-full relative z-10 pointer-events-none">
+          {/* Preview Container (Z-10) */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            {/* Aperture Image */}
+            <div ref={previewImgContainerRef} className="absolute overflow-hidden shadow-2xl rounded-2xl" style={{ clipPath: 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)' }}>
+              <img ref={previewImgElRef} src="" alt="Spot Preview" className="w-full h-full object-cover filter grayscale-[10%] contrast-[1.1] brightness-90" />
+              {/* Gradient Overlay for Text Contrast */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"></div>
+            </div>
+            
+            {/* Preview Text */}
+            <div ref={previewTextRef} className="absolute flex flex-col gap-3 opacity-0 p-6 md:p-12">
+              <h3 ref={titleRef} className="font-display italic text-4xl md:text-6xl text-[#e2f0e6]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}></h3>
+              <p ref={descRef} className="font-body text-sm md:text-base text-gray-200 leading-relaxed max-w-sm text-justify mt-2 drop-shadow-md"></p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
