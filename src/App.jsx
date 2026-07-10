@@ -2230,38 +2230,7 @@ function SpotsSection() {
       </div>
       <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#1a4a5a]/80 to-[#0a192f]/95 mix-blend-multiply"></div>
       
-      {/* Center Default Title */}
-      <div 
-        className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000 z-10 ${activeSpot ? 'opacity-0' : 'opacity-100'}`}
-      >
-        <div className="flex items-center gap-6">
-          <span 
-            className="font-serif italic text-[12rem] md:text-[18rem] leading-none drop-shadow-2xl"
-            style={{
-              background: 'linear-gradient(135deg, #E6C2BF 0%, #C88D83 40%, #A25C54 100%)',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.5))'
-            }}
-          >
-            5
-          </span>
-          <div className="flex flex-col justify-center gap-1">
-            <span 
-              className="font-serif text-4xl md:text-6xl drop-shadow-xl"
-              style={{ color: '#C88D83' }}
-            >
-              Best Spots
-            </span>
-            <span 
-              className="font-serif italic text-5xl md:text-7xl drop-shadow-xl"
-              style={{ color: '#C88D83' }}
-            >
-              to Visit
-            </span>
-          </div>
-        </div>
-      </div>
+
       
       {/* 3-Column Layout Strict Containers */}
       <div className="absolute inset-0 flex">
@@ -2290,6 +2259,39 @@ function SpotsSection() {
 
         {/* Right Content Area (75% width) */}
         <div className="w-[70%] md:w-3/4 h-full relative z-10 pointer-events-none">
+          {/* Center Default Title */}
+          <div 
+            className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000 z-10 ${activeSpot ? 'opacity-0' : 'opacity-100'}`}
+          >
+            <div className="flex items-center gap-6">
+              <span 
+                className="font-serif italic text-[12rem] md:text-[18rem] leading-none drop-shadow-2xl"
+                style={{
+                  background: 'linear-gradient(135deg, #E6C2BF 0%, #C88D83 40%, #A25C54 100%)',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.5))'
+                }}
+              >
+                5
+              </span>
+              <div className="flex flex-col justify-center gap-1">
+                <span 
+                  className="font-serif text-4xl md:text-6xl drop-shadow-xl"
+                  style={{ color: '#C88D83' }}
+                >
+                  Best Spots
+                </span>
+                <span 
+                  className="font-serif italic text-5xl md:text-7xl drop-shadow-xl"
+                  style={{ color: '#C88D83' }}
+                >
+                  to Visit
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* Preview Container (Z-10) */}
           <div className="absolute inset-0 z-10 pointer-events-none">
             {/* Aperture Image */}
