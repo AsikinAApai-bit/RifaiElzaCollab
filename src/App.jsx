@@ -984,13 +984,13 @@ function HistorySlider() {
       <div className="relative z-10 mx-auto max-w-6xl mb-12 flex flex-col items-center">
         <div className="eyebrow mb-6">
           <span className="eyebrow__line" />
-          <span className="eyebrow__text">The Transformation</span>
+          <span className="eyebrow__text">The Turning Point</span>
           <span className="eyebrow__line" />
         </div>
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9] text-center" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.02em' }}>
-          <span className="text-tangkahan-gold">Tangkahan</span>'s
+          <span className="inline-block -translate-x-12 sm:-translate-x-24">From Them to Us:</span>
           <br />
-          <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.6)' }}>Turning Point</span>
+          <span className="inline-block translate-x-12 sm:translate-x-24" style={{ color: '#c8b07a' }}>A Responsibility</span>
         </h2>
       </div>
 
@@ -1089,13 +1089,13 @@ function ElephantGallery() {
             <br />
             <span className="text-tangkahan-gold inline-block ml-16 md:ml-32">Tangkahan</span>
           </h2>
-          <p className="text-white text-base md:text-lg leading-relaxed mb-8 text-justify">
-            Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
+          <p className="text-[#9ca3af] text-base md:text-lg leading-relaxed mb-8 text-justify">
+            Tangkahan, also known as ‘The Hidden Paradise’, is a well-known ecotourism destination in North Sumatra that borders Gunung Leuser National Park. Administratively, it is located in the villages of Namo Sialang and Sei Serdang, Batang Serangan Subdistrict, Langkat Regency.
           </p>
           <div className="p-8 md:p-10 border border-[rgba(74,222,128,0.15)] rounded-2xl bg-[#4c543d]/80 backdrop-blur-md relative overflow-hidden group">
             <div className="absolute inset-0 bg-[#4ade80] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
             <p className="font-mono text-base md:text-xl uppercase tracking-widest text-[#C4B088] font-bold mb-4">FUN FACT!</p>
-            <p className="text-sm md:text-base text-[#e2f0e6] leading-relaxed text-justify">
+            <p className="text-sm md:text-base text-[#9ca3af] leading-relaxed text-justify">
               There are 9 Sumatran Elephants in Tangkahan, rescued from conflict in Banda Aceh. They are specially trained to help rangers patrol the forest and protect it from illegal logging. 
               <br/><br/>The coolest part is that you can see the harmonious interaction between the local community and the elephants. The community helps to care for them and save their herds from extinction.
             </p>
@@ -2078,17 +2078,19 @@ function SpotsSection() {
   
 
   const SPOTS = [
-    { id: 'spot-1', name: 'Elephant Camp', img: '/asset/elephant_camp.png', desc: 'See them up close, interact with them and help bathe the elephants in the river.', variantClass: 'variant-1' },
-    { id: 'spot-2', name: 'Hot Springs', img: '/asset/hot_springs.png', desc: 'A natural hot spring pool by the river, best after a long journey in the jungle!', variantClass: 'variant-2' },
-    { id: 'spot-3', name: 'Bat Cave', img: '/asset/bat_cave.png', desc: 'Not far from Tangkahan, there is a natural cave inhabited by a colony of bats.', variantClass: 'variant-3' },
-    { id: 'spot-4', name: 'Forest Trail', img: '/asset/forest_trail.png', desc: 'Explore the forest with a local guide to observe the immense biodiversity.', variantClass: 'variant-4' }
+    { id: 'spot-1', name: 'Elephant Camp', img: '/asset/ElephantCAMP.jpeg', desc: 'With only 250.000 - Rp 350.000 / pax, we can see the elephants up close, interact with them also help bathe them', variantClass: 'variant-1' },
+    { id: 'spot-2', name: 'Hot springs and River', img: '/asset/hot-springs-and-river.jpeg', desc: 'To navigate the river on a tube and relax in the natural hot springs, you can pay 200.000 / pax (the river tubing trip, and tube rental, local guide, and hot spring access are included).', variantClass: 'variant-2' },
+    { id: 'spot-3', name: 'Bat cave', img: '/asset/bat_cave.png', desc: 'Not far from Tangkahan, there is a natural cave inhabited by a colony of bats that only cost 50.000 - 100.000 / pax to explore!', variantClass: 'variant-3' },
+    { id: 'spot-4', name: 'Forest tracking trail', img: '/asset/forest_trail.png', desc: 'To explore the forest with a local certified guide and observe the biodiversity, you can spend 450.000 / pax (for the half-day trek, and national park entrance fees are included)', variantClass: 'variant-4' },
+    { id: 'spot-5', name: 'Suspension Bridge', img: '/asset/suspension-bridge.jpeg', desc: 'Take in the ultimate jungle perspective from the suspension bridge at a mere 5.000 / pax (includes the entry fee and endless sightseeing opportunities).', variantClass: 'variant-5' }
   ];
 
   const VARIANTS = {
-    'variant-1': { imgClass: 'top-[10%] right-[10%] md:right-[15%] md:top-[15%] w-[60%] md:w-[35%] aspect-[4/5]', textClass: 'bottom-[10%] md:bottom-[20%] left-[10%] md:left-[25%]' },
-    'variant-2': { imgClass: 'bottom-[10%] md:bottom-[15%] left-[10%] md:left-[20%] w-[60%] md:w-[40%] aspect-[3/4]', textClass: 'top-[15%] md:top-[25%] right-[10%] md:right-[20%]' },
-    'variant-3': { imgClass: 'top-[20%] left-[20%] md:left-[30%] w-[70%] md:w-[40%] aspect-square', textClass: 'bottom-[15%] md:bottom-[25%] right-[10%] md:right-[15%]' },
-    'variant-4': { imgClass: 'bottom-[15%] md:bottom-[20%] right-[10%] md:right-[20%] w-[65%] md:w-[45%] aspect-[4/3]', textClass: 'top-[15%] md:top-[20%] left-[10%] md:left-[25%]' }
+    'variant-1': { imgClass: 'top-[10%] right-[5%] md:right-[10%] md:top-[15%] w-[60%] md:w-[35%] aspect-[4/5]', textClass: 'bottom-[10%] md:bottom-[20%] left-[5%] md:left-[15%]' },
+    'variant-2': { imgClass: 'bottom-[10%] md:bottom-[15%] left-[5%] md:left-[15%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'top-[15%] md:top-[25%] right-[5%] md:right-[15%]' },
+    'variant-3': { imgClass: 'top-[20%] left-[10%] md:left-[20%] w-[70%] md:w-[35%] aspect-square', textClass: 'bottom-[15%] md:bottom-[25%] right-[5%] md:right-[15%]' },
+    'variant-4': { imgClass: 'bottom-[15%] md:bottom-[20%] right-[5%] md:right-[15%] w-[65%] md:w-[40%] aspect-[4/3]', textClass: 'top-[15%] md:top-[20%] left-[5%] md:left-[15%]' },
+    'variant-5': { imgClass: 'top-[15%] right-[10%] md:right-[20%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'bottom-[20%] md:bottom-[30%] left-[5%] md:left-[15%]' }
   };
 
   const [activeSpot, setActiveSpot] = useState(null);
@@ -2113,7 +2115,7 @@ function SpotsSection() {
       bgContainerRef.current.appendChild(newImg);
       
       gsap.to(newImg, {
-        opacity: 0.4,
+        opacity: 0.2,
         duration: 1.2,
         ease: 'power2.out',
         onComplete: () => {
@@ -2124,17 +2126,22 @@ function SpotsSection() {
         }
       });
     } else {
-      const imgs = bgContainerRef.current.querySelectorAll('img');
-      if (imgs.length > 0) {
-        gsap.to(imgs, {
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          onComplete: () => {
-            imgs.forEach(img => img.remove());
+      const newImg = document.createElement('img');
+      newImg.src = '/asset/rainforest_bridge.png';
+      newImg.className = 'absolute inset-0 w-full h-full object-cover opacity-0 transition-none';
+      bgContainerRef.current.appendChild(newImg);
+      
+      gsap.to(newImg, {
+        opacity: 0.8,
+        duration: 1.2,
+        ease: 'power2.out',
+        onComplete: () => {
+          const imgs = bgContainerRef.current.querySelectorAll('img');
+          for (let i = 0; i < imgs.length - 1; i++) {
+            imgs[i].remove();
           }
-        });
-      }
+        }
+      });
     }
   }, [activeSpot]);
 
@@ -2218,14 +2225,49 @@ function SpotsSection() {
   return (
     <section id="spots" className="relative w-full h-screen bg-[#020807] overflow-hidden">
       {/* Background Layer */}
-      <div ref={bgContainerRef} className="absolute inset-0 z-0"></div>
-      <div className="absolute inset-0 z-0 bg-black/60 backdrop-blur-[2px]"></div>
+      <div ref={bgContainerRef} className="absolute inset-0 z-0">
+        <img src="/asset/rainforest_bridge.png" className="absolute inset-0 w-full h-full object-cover opacity-80" alt="Background" />
+      </div>
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#1a4a5a]/80 to-[#0a192f]/95 mix-blend-multiply"></div>
+      
+      {/* Center Default Title */}
+      <div 
+        className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000 z-10 ${activeSpot ? 'opacity-0' : 'opacity-100'}`}
+      >
+        <div className="flex items-center gap-6">
+          <span 
+            className="font-serif italic text-[12rem] md:text-[18rem] leading-none drop-shadow-2xl"
+            style={{
+              background: 'linear-gradient(135deg, #E6C2BF 0%, #C88D83 40%, #A25C54 100%)',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.5))'
+            }}
+          >
+            5
+          </span>
+          <div className="flex flex-col justify-center gap-1">
+            <span 
+              className="font-serif text-4xl md:text-6xl drop-shadow-xl"
+              style={{ color: '#C88D83' }}
+            >
+              Best Spots
+            </span>
+            <span 
+              className="font-serif italic text-5xl md:text-7xl drop-shadow-xl"
+              style={{ color: '#C88D83' }}
+            >
+              to Visit
+            </span>
+          </div>
+        </div>
+      </div>
       
       {/* Navigation List (Z-20) */}
       <div className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20 pointer-events-auto">
-        <div className="eyebrow mb-4 opacity-50">
-          <span className="eyebrow__line w-8" />
-          <span className="eyebrow__text tracking-[0.2em] text-[#6b9f7a]">Archive</span>
+        <div className="eyebrow mb-4 opacity-70">
+          <span className="eyebrow__line w-8 bg-[#C88D83]" />
+          <span className="eyebrow__text tracking-[0.2em] font-sans text-[#C88D83]">ARCHIVE</span>
         </div>
         
         <div className="flex flex-col gap-5 items-start">
@@ -2234,8 +2276,8 @@ function SpotsSection() {
               key={spot.id}
               onMouseEnter={() => handleMouseEnter(spot)}
               onMouseLeave={handleMouseLeave}
-              className={`text-left font-mono text-sm md:text-base tracking-[0.25em] uppercase transition-all duration-500 hover:text-[#e2f0e6] hover:translate-x-2 ${
-                activeSpot && activeSpot.id === spot.id ? 'text-[#e2f0e6] translate-x-2' : 'text-[#6b9f7a]'
+              className={`text-left font-sans font-medium text-sm md:text-base tracking-[0.25em] uppercase transition-all duration-500 hover:text-[#E6C2BF] hover:translate-x-2 ${
+                activeSpot && activeSpot.id === spot.id ? 'text-[#E6C2BF] translate-x-2' : 'text-[#C88D83]'
               }`}
             >
               {spot.name}
@@ -2253,9 +2295,8 @@ function SpotsSection() {
         
         {/* Preview Text */}
         <div ref={previewTextRef} className="absolute flex flex-col gap-3 opacity-0">
-          <p className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-[#6b9f7a]">Location</p>
           <h3 ref={titleRef} className="font-display italic text-5xl md:text-6xl text-[#e2f0e6]"></h3>
-          <p ref={descRef} className="font-body text-sm md:text-base text-[#6b9f7a] leading-relaxed max-w-sm"></p>
+          <p ref={descRef} className="font-body text-sm md:text-base text-[#6b9f7a] leading-relaxed max-w-sm text-justify mt-4"></p>
         </div>
       </div>
     </section>
@@ -2333,26 +2374,25 @@ function VisualNovelSection() {
 
 function JungleSecretsSection() {
   var SECRETS = [
-    { id: 'sec-1', name: 'Rafflesia Arnoldii', img: '/asset/bat_cave.png', subtitle: 'THE CORPSE FLOWER', desc: 'A rare and magnificent parasitic plant known for producing the largest individual flower on Earth, with a very unique odor.' },
-    { id: 'sec-2', name: 'Thomas Leaf Monkey', img: '/asset/forest_trail.png', subtitle: 'THE CANOPY ACROBAT', desc: 'Endemic to northern Sumatra, these primates are known for their distinct punk-rock hairstyles and incredible agility in the trees.' },
-    { id: 'sec-3', name: 'Sumatran Tiger', img: '/asset/elephant_camp.png', subtitle: 'THE APEX PREDATOR', desc: 'The smallest of all tiger subspecies, highly elusive and critically endangered, roaming the deep primary forests.' },
-    { id: 'sec-4', name: 'Banyan Tree', img: '/asset/hot_springs.png', subtitle: 'THE ANCIENT GIANT', desc: 'Massive fig trees with intricate aerial root systems that can cover huge areas, often considered sacred by local communities.' }
+    { id: 'sec-1', name: 'Prologue', img: '/asset/TheStoryofTangkahan1.jpeg', subtitle: '', desc: "For decades, Tangkahan faced severe threats from rampant illegal logging. They live depended entirely on exploiting the forest." },
+    { id: 'sec-2', name: 'The Turning Point:', img: '/asset/TheStoryofTangkahan2.jpeg', subtitle: '', desc: "Realizing the destruction, the local community took a bold step. In 2001, they formed the Tangkahan Tourism Institute (LPT) and officially banned illegal logging. They chose a sustainable path, transforming their village into an eco-tourism destination." },
+    { id: 'sec-3', name: 'After That...', img: '/asset/TheStoryofTangkahan3.jpeg', subtitle: '', desc: "To safeguard the area, the community welcomed a team of trained captive elephants and their mahouts (elephant handlers). Together, they established the legendary Tangkahan Elephant Patrol, actively scouting the jungle to deter illegal loggers, protect the wildlife." },
+    { id: 'sec-4', name: 'Now Its Up to Us:', img: '/asset/TheStoryofTangkahan4.jpeg', subtitle: '', desc: "This story isn't over yet. Now, it's up to us to protect this land together. The local community works tirelessly to preserve this environment, but they cannot do it alone. As a visitor, your help is crucial. By respecting nature and leaving no trace, you become a vital partner in keeping this place alive for the future." }
   ];
 
   return (
     <section id="jungle-secrets" className="relative w-full bg-gradient-to-b from-[#020807] to-[#0a1f12] py-24 border-t border-[rgba(74,222,128,0.05)] overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img src="/asset/BACKGROUNDJungleSecretsSection.webp" alt="Jungle Secrets Background" className="w-full h-full object-cover opacity-70" />
+      </div>
       
       {/* Title */}
       <div className="text-center mb-12 lg:mb-24 px-4 relative z-20">
-        <div className="eyebrow mb-6 justify-center">
-          <span className="eyebrow__line w-8" />
-          <span className="eyebrow__text tracking-[0.25em]">Flora & Fauna</span>
-          <span className="eyebrow__line w-8" />
-        </div>
+
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.02em' }}>
-          Jungle
+          The Story of
           <br />
-          <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.5)' }}>Secrets</span>
+          <span className="text-tangkahan-gold">Tangkahan</span>
         </h2>
       </div>
 
@@ -2387,10 +2427,10 @@ function JungleSecretsSection() {
                     <p className="font-mono text-[0.6rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-[#4ade80] mb-3">
                       {secret.subtitle}
                     </p>
-                    <h3 className="font-display italic text-4xl md:text-5xl text-[#e2f0e6] mb-4">
+                    <h3 className="font-display italic text-4xl md:text-5xl text-[#c8b07a] mb-4">
                       {secret.name}
                     </h3>
-                    <p className="font-body text-sm md:text-base text-[#c4dccb] leading-relaxed opacity-90">
+                    <p className="font-body text-sm md:text-base text-[#c4dccb] leading-relaxed opacity-90 text-justify">
                       {secret.desc}
                     </p>
                   </div>
@@ -2663,7 +2703,7 @@ function LocationMapSection() {
               
               {/* Description text */}
               <p className="font-body text-sm md:text-base text-[#9ca3af] leading-[1.8] text-justify">
-                Tangkahan, also known as ‘The Hidden Paradise’ was established as a biodiversity conservation area to implement sustainable solutions; helping us to protect the purity of the rainforest and support responsible tourism.
+                Tangkahan, also known as ‘The Hidden Paradise’, is a well-known ecotourism destination in North Sumatra that borders Gunung Leuser National Park. Administratively, it is located in the villages of Namo Sialang and Sei Serdang, Batang Serangan Subdistrict, Langkat Regency.
               </p>
 
               {/* Mini stats */}
@@ -3804,7 +3844,7 @@ Card.displayName = 'Card';
 const makeSlot = (i, distX, distY, total) => ({
   x: i * distX,
   y: -i * distY,
-  z: -i * distX * 1.5,
+  scale: 1 - (i * 0.05),
   zIndex: total - i
 });
 
@@ -3812,7 +3852,7 @@ const placeNow = (el, slot, skew) =>
   gsap.set(el, {
     x: slot.x,
     y: slot.y,
-    z: slot.z,
+    scale: slot.scale,
     xPercent: -50,
     yPercent: -50,
     skewY: skew,
@@ -3899,7 +3939,7 @@ const CardSwap = ({
           {
             x: slot.x,
             y: slot.y,
-            z: slot.z,
+            scale: slot.scale,
             duration: config.durMove,
             ease: config.ease
           },
@@ -3921,7 +3961,7 @@ const CardSwap = ({
         {
           x: backSlot.x,
           y: backSlot.y,
-          z: backSlot.z,
+          scale: backSlot.scale,
           duration: config.durReturn,
           ease: config.ease
         },
@@ -3933,10 +3973,14 @@ const CardSwap = ({
       });
     };
 
+    const node = container.current;
     intervalRef.current = window.setInterval(swap, delay);
 
-    if (pauseOnHover) {
-      const node = container.current;
+    if (node) {
+      node.addEventListener('click', swap);
+    }
+
+    if (pauseOnHover && node) {
       const pause = () => {
         tlRef.current?.pause();
         clearInterval(intervalRef.current);
@@ -3948,12 +3992,17 @@ const CardSwap = ({
       node.addEventListener('mouseenter', pause);
       node.addEventListener('mouseleave', resume);
       return () => {
+        node.removeEventListener('click', swap);
         node.removeEventListener('mouseenter', pause);
         node.removeEventListener('mouseleave', resume);
         clearInterval(intervalRef.current);
       };
     }
-    return () => clearInterval(intervalRef.current);
+    
+    return () => {
+      if (node) node.removeEventListener('click', swap);
+      clearInterval(intervalRef.current);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
 
@@ -4041,16 +4090,23 @@ function InformationSection() {
       
       <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center w-full h-full">
         <div className="w-full md:w-1/2 pl-4 sm:pl-10 lg:pl-20 mb-20 md:mb-0 relative z-20">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] mb-4 transition-colors duration-[1500ms] ease-in-out" style={{ color: activeColor }}>Essential Lore</p>
-          <h2 className="font-display italic text-6xl md:text-8xl text-[#e2f0e6] leading-[0.9]">
-            <span className="text-tangkahan-gold">Tangkahan</span><br/>
-            <span className="text-transparent transition-colors duration-[1500ms] ease-in-out" style={{ WebkitTextStroke: `1px ${strokeColorMap[activeColor]}` }}>Archives</span>
+          <p className="font-mono text-xs uppercase tracking-[0.3em] mb-4 transition-colors duration-[1500ms] ease-in-out" style={{ color: activeColor }}>FAQ</p>
+          <h2 className="font-display italic text-6xl md:text-8xl leading-[0.9]">
+            <span className="text-white">All About</span><br/>
+            <span className="text-tangkahan-gold">Tangkahan</span>
           </h2>
+          <p className="mt-8 font-mono text-[0.65rem] tracking-[0.2em] text-[#c4dccb] uppercase flex items-center gap-3 opacity-80">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4ade80]"></span>
+            </span>
+            Hover to pause &bull; Click to swap
+          </p>
         </div>
         <div className="w-full md:w-1/2 h-full relative">
-          <CardSwap width={400} height={450} delay={4000} onActiveChange={(idx) => setActiveIndex(idx)}>
+          <CardSwap width={400} height={450} delay={4000} pauseOnHover={true} onActiveChange={(idx) => setActiveIndex(idx)}>
             {infoData.map((item, i) => (
-              <Card key={i} customClass="!bg-[rgba(10,31,18,0.7)] backdrop-blur-2xl border shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 flex flex-col justify-center transition-colors duration-1000" style={{ borderColor: i === activeIndex ? strokeColorMap[activeColor] : 'rgba(74,222,128,0.1)' }}>
+              <Card key={i} customClass="!bg-[rgba(10,31,18,0.7)] backdrop-blur-2xl border shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 flex flex-col justify-center transition-colors duration-1000 cursor-pointer" style={{ borderColor: i === activeIndex ? strokeColorMap[activeColor] : 'rgba(74,222,128,0.1)' }}>
                 <p className="font-mono text-[0.65rem] tracking-[0.2em] mb-4 uppercase transition-colors duration-1000" style={{ color: item.color }}>{item.category}</p>
                 <h3 className="font-display italic text-3xl md:text-4xl text-white mb-6 leading-[1.1]">{item.title}</h3>
                 <p className="font-body text-[#c4dccb] leading-relaxed text-sm">{item.desc}</p>
@@ -4847,10 +4903,9 @@ function App() {
         <BeyondSection />
         <LocationMapSection />
         <ElephantGallery />
-
         <HistorySlider />
-        <SpotsSection />
         <JungleSecretsSection />
+        <SpotsSection />
         <StarterPackSection />
         <VisualNovelSection />
         <InformationSection />

@@ -80,13 +80,13 @@ function HistorySlider() {
       <div className="relative z-10 mx-auto max-w-6xl mb-12 flex flex-col items-center">
         <div className="eyebrow mb-6">
           <span className="eyebrow__line" />
-          <span className="eyebrow__text">The Transformation</span>
+          <span className="eyebrow__text">The Turning Point</span>
           <span className="eyebrow__line" />
         </div>
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9] text-center" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.02em' }}>
-          Tangkahan's
+          <span className="inline-block -translate-x-12 sm:-translate-x-24">From Them to Us:</span>
           <br />
-          <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.6)' }}>Turning Point</span>
+          <span className="inline-block translate-x-12 sm:translate-x-24" style={{ color: '#c8b07a' }}>A Responsibility</span>
         </h2>
       </div>
 

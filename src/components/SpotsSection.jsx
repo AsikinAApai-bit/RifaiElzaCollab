@@ -610,7 +610,7 @@ function SpotsSection() {
           <span className="eyebrow__line w-8" />
         </div>
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.02em' }}>
-          Tangkahan
+          <span className="text-tangkahan-gold">Tangkahan</span>
           <br />
           <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.5)' }}>Spots</span>
         </h2>

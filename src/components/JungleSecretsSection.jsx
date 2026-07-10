@@ -3,26 +3,25 @@ import { ScrollStack, ScrollStackItem } from './ScrollStack';
 
 function JungleSecretsSection() {
   var SECRETS = [
-    { id: 'sec-1', name: 'Rafflesia Arnoldii', img: '/asset/bat_cave.png', subtitle: 'THE CORPSE FLOWER', desc: 'A rare and magnificent parasitic plant known for producing the largest individual flower on Earth, with a very unique odor.' },
-    { id: 'sec-2', name: 'Thomas Leaf Monkey', img: '/asset/forest_trail.png', subtitle: 'THE CANOPY ACROBAT', desc: 'Endemic to northern Sumatra, these primates are known for their distinct punk-rock hairstyles and incredible agility in the trees.' },
-    { id: 'sec-3', name: 'Sumatran Tiger', img: '/asset/elephant_camp.png', subtitle: 'THE APEX PREDATOR', desc: 'The smallest of all tiger subspecies, highly elusive and critically endangered, roaming the deep primary forests.' },
-    { id: 'sec-4', name: 'Banyan Tree', img: '/asset/hot_springs.png', subtitle: 'THE ANCIENT GIANT', desc: 'Massive fig trees with intricate aerial root systems that can cover huge areas, often considered sacred by local communities.' }
+    { id: 'sec-1', name: 'Prologue', img: '/asset/TheStoryofTangkahan1.jpeg', subtitle: '', desc: "For decades, Tangkahan faced severe threats from rampant illegal logging. They live depended entirely on exploiting the forest." },
+    { id: 'sec-2', name: 'The Turning Point:', img: '/asset/TheStoryofTangkahan2.jpeg', subtitle: '', desc: "Realizing the destruction, the local community took a bold step. In 2001, they formed the Tangkahan Tourism Institute (LPT) and officially banned illegal logging. They chose a sustainable path, transforming their village into an eco-tourism destination." },
+    { id: 'sec-3', name: 'After That...', img: '/asset/TheStoryofTangkahan3.jpeg', subtitle: '', desc: "To safeguard the area, the community welcomed a team of trained captive elephants and their mahouts (elephant handlers). Together, they established the legendary Tangkahan Elephant Patrol, actively scouting the jungle to deter illegal loggers, protect the wildlife." },
+    { id: 'sec-4', name: 'Now Its Up to Us:', img: '/asset/TheStoryofTangkahan4.jpeg', subtitle: '', desc: "This story isn't over yet. Now, it's up to us to protect this land together. The local community works tirelessly to preserve this environment, but they cannot do it alone. As a visitor, your help is crucial. By respecting nature and leaving no trace, you become a vital partner in keeping this place alive for the future." }
   ];
 
   return (
     <section id="jungle-secrets" className="relative w-full bg-gradient-to-b from-[#020807] to-[#0a1f12] py-24 border-t border-[rgba(74,222,128,0.05)] overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img src="/asset/BACKGROUNDJungleSecretsSection.webp" alt="Jungle Secrets Background" className="w-full h-full object-cover opacity-70" />
+      </div>
       
       {/* Title */}
       <div className="text-center mb-12 lg:mb-24 px-4 relative z-20">
-        <div className="eyebrow mb-6 justify-center">
-          <span className="eyebrow__line w-8" />
-          <span className="eyebrow__text tracking-[0.25em]">Flora & Fauna</span>
-          <span className="eyebrow__line w-8" />
-        </div>
+
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.02em' }}>
-          Jungle
+          The Story of
           <br />
-          <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.5)' }}>Secrets</span>
+          <span className="text-tangkahan-gold">Tangkahan</span>
         </h2>
       </div>
 
@@ -57,10 +56,10 @@ function JungleSecretsSection() {
                     <p className="font-mono text-[0.6rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-[#4ade80] mb-3">
                       {secret.subtitle}
                     </p>
-                    <h3 className="font-display italic text-4xl md:text-5xl text-[#e2f0e6] mb-4">
+                    <h3 className="font-display italic text-4xl md:text-5xl text-[#c8b07a] mb-4">
                       {secret.name}
                     </h3>
-                    <p className="font-body text-sm md:text-base text-[#c4dccb] leading-relaxed opacity-90">
+                    <p className="font-body text-sm md:text-base text-[#c4dccb] leading-relaxed opacity-90 text-justify">
                       {secret.desc}
                     </p>
                   </div>
