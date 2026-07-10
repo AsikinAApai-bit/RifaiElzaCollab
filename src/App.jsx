@@ -1007,7 +1007,7 @@ function HistorySlider() {
         </div>
 
         {/* Top Image (Before - 1990s) */}
-        <div ref={topImageWrapperRef} className="absolute inset-0 z-10 overflow-hidden" style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}>
+        <div ref={topImageWrapperRef} className="absolute inset-0 z-10 overflow-hidden" style={{ clipPath: 'polygon(0 0, 95% 0, 95% 100%, 0 100%)' }}>
           <img ref={topImageRef} src="/asset/asset7-before.jpeg" alt="1990s Deforestation" className="absolute inset-0 w-full h-full object-contain origin-center bg-[#0a1f12]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,31,18,0.8)] to-transparent pointer-events-none" />
 
@@ -1017,7 +1017,7 @@ function HistorySlider() {
         <div 
           ref={handleRef}
           className="absolute top-0 bottom-0 z-20 pointer-events-none"
-          style={{ left: '50%', transform: 'translateX(-50%)' }}
+          style={{ left: '95%', transform: 'translateX(-50%)' }}
         >
           {/* Vertical 1px Line */}
           <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-white opacity-40 shadow-[0_0_10px_rgba(255,255,255,0.8)] -translate-x-1/2" />
