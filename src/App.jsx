@@ -2229,8 +2229,8 @@ function Destinations() {
       }
       
       // Reset classes for the new variant
-      previewImgContainerRef.current.className = `absolute overflow-hidden shadow-2xl ${variant.imgClass}`;
-      previewTextRef.current.className = `absolute max-w-[280px] md:max-w-md ${variant.textClass}`;
+      previewImgContainerRef.current.className = `absolute overflow-hidden shadow-2xl rounded-2xl ${variant.imgClass}`;
+      previewTextRef.current.className = `absolute flex flex-col gap-3 p-6 md:p-12 max-w-[280px] md:max-w-md ${variant.textClass}`;
       
       if (!prevSpot) {
         // From null to activeSpot: Aperture reveal
