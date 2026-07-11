@@ -2373,15 +2373,15 @@ function Destinations() {
    SECTION: STARTER PACK — Editorial Asymmetric Grid
    ══════════════════════════════════════════════════ */
 var TOOLS = [
-  { id: 't1', name: 'Anti-bug Lotion', category: 'Protection', img: '/asset/STARTERPACKASSET/Anti-bug Lotion.webp', class: 'rotate-[-1deg] translate-y-4' },
-  { id: 't2', name: 'First Aid Kit', category: 'Safety', img: '/asset/STARTERPACKASSET/Basic First Aid Kit.webp', class: 'rotate-[2deg] translate-y-16' },
-  { id: 't3', name: 'Cash', category: 'Essential', img: '/asset/STARTERPACKASSET/Cash.webp', class: 'rotate-[-2deg]' },
-  { id: 't4', name: 'Animal Food', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Food for Animals.webp', class: 'rotate-[1deg] translate-y-12' },
-  { id: 't5', name: 'High Heels', category: 'Prohibited', img: '/asset/STARTERPACKASSET/High Heels.webp', class: 'rotate-[-1deg] translate-y-6' },
-  { id: 't6', name: 'Plastic Bottle', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Plastic Bottle.webp', class: 'rotate-[3deg] translate-y-20' },
-  { id: 't7', name: 'Raincoat', category: 'Clothing', img: '/asset/STARTERPACKASSET/Raincoat & Quick-Dry Outfit.webp', class: 'rotate-[-2deg] translate-y-8' },
-  { id: 't8', name: 'Styrofoam', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Styrofoam Food Containers.webp', class: 'rotate-[1deg] translate-y-16' },
-  { id: 't9', name: 'Sunscreen', category: 'Protection', img: '/asset/STARTERPACKASSET/Sunscreen.webp', class: 'rotate-[-1deg] translate-y-2' }
+  { id: 't1', name: 'Anti-bug Lotion', category: 'Protection', img: '/asset/STARTERPACKASSET/Anti-bug Lotion.webp', backImg: '/asset/back-kartuputar/lotion.jpg', class: 'rotate-[-1deg] translate-y-4' },
+  { id: 't2', name: 'First Aid Kit', category: 'Safety', img: '/asset/STARTERPACKASSET/Basic First Aid Kit.webp', backImg: '/asset/back-kartuputar/first aid.jpg', class: 'rotate-[2deg] translate-y-16' },
+  { id: 't3', name: 'Cash', category: 'Essential', img: '/asset/STARTERPACKASSET/Cash.webp', backImg: '/asset/back-kartuputar/cash.jpg', class: 'rotate-[-2deg]' },
+  { id: 't4', name: 'Animal Food', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Food for Animals.webp', backImg: '/asset/back-kartuputar/animal food.jpg', class: 'rotate-[1deg] translate-y-12' },
+  { id: 't5', name: 'High Heels', category: 'Prohibited', img: '/asset/STARTERPACKASSET/High Heels.webp', backImg: '/asset/back-kartuputar/heels.jpg', class: 'rotate-[-1deg] translate-y-6' },
+  { id: 't6', name: 'Plastic Bottle', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Plastic Bottle.webp', backImg: '/asset/back-kartuputar/plastic.jpg', class: 'rotate-[3deg] translate-y-20' },
+  { id: 't7', name: 'Raincoat', category: 'Clothing', img: '/asset/STARTERPACKASSET/Raincoat & Quick-Dry Outfit.webp', backImg: '/asset/back-kartuputar/raincoat.jpg', class: 'rotate-[-2deg] translate-y-8' },
+  { id: 't8', name: 'Styrofoam', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Styrofoam Food Containers.webp', backImg: '/asset/back-kartuputar/Styrofoam.jpg', class: 'rotate-[1deg] translate-y-16' },
+  { id: 't9', name: 'Sunscreen', category: 'Protection', img: '/asset/STARTERPACKASSET/Sunscreen.webp', backImg: '/asset/back-kartuputar/sunscreen.jpg', class: 'rotate-[-1deg] translate-y-2' }
 ];
 
 
@@ -2584,28 +2584,11 @@ function StarterPack() {
                     </div>
                   </div>
                   
-                  {/* Back Face (Gold card) */}
+                  {/* Back Face (Image from back-kartuputar) */}
                   <div 
-                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden p-8 flex flex-col items-center justify-center text-center shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
-                    style={{
-                      background: '#c8b07a',
-                      border: '1px solid rgba(0,0,0,0.1)'
-                    }}
+                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
                   >
-                    <div className="absolute inset-0 opacity-[0.04] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
-                    
-                    <h3 className="font-display font-bold text-[#0a1f12] text-2xl sm:text-3xl mb-6 relative z-10">
-                      {tool.name}
-                    </h3>
-                    
-                    <div className="flex gap-3 relative z-10 flex-wrap justify-center">
-                      <span className="px-4 py-2 rounded-full border border-[rgba(10,31,18,0.2)] font-mono text-[0.6rem] uppercase tracking-[0.1em] text-[#0a1f12] bg-[rgba(255,255,255,0.2)] transition-colors hover:bg-[rgba(255,255,255,0.4)]">
-                        {tool.category}
-                      </span>
-                      <span className="px-4 py-2 rounded-full border border-[rgba(10,31,18,0.2)] font-mono text-[0.6rem] uppercase tracking-[0.1em] text-[#0a1f12] bg-[rgba(255,255,255,0.2)] transition-colors hover:bg-[rgba(255,255,255,0.4)]">
-                        Item 0{i+1}
-                      </span>
-                    </div>
+                    <img src={tool.backImg} alt={`${tool.name} Back`} className="w-full h-full object-cover" />
                   </div>
 
                 </div>
