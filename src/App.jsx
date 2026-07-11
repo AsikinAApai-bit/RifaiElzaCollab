@@ -2522,6 +2522,8 @@ function StarterPack() {
             </h2>
             <p className="font-mono text-sm sm:text-base text-[#6b9f7a] mt-8 max-w-xl leading-relaxed">
               a game to test your responsibility: only click five items that would you bring to Tangkahan and count each of your points!
+              <br /><br />
+              <span className="text-[#f3d47c] font-semibold tracking-wide">can you get 50/50 points?</span>
             </p>
           </div>
           
