@@ -705,12 +705,12 @@ function SCROLL240FRAME(props) {
           >
             <TextType 
               text="The Hidden Paradise"
-              typingSpeed={40}
+              typingSpeed={25}
               pauseDuration={2400}
               showCursor={true}
               cursorCharacter="●"
               variableSpeedEnabled
-              variableSpeed={{ min: 30, max: 80 }}
+              variableSpeed={{ min: 15, max: 50 }}
               loop={false}
             />
           </div>
