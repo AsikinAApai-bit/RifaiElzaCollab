@@ -229,8 +229,8 @@ function Header() {
   ];
 
   const socialItems = [
-    { label: 'Instagram', link: '#' },
-    { label: 'WhatsApp', link: '#' },
+    { label: 'Instagram', link: 'https://www.instagram.com/tangkahan_?igsh=MWhzNHNjMW85dmw4aQ==' },
+    { label: 'WhatsApp', link: 'https://wa.me/6282285768277' },
   ];
 
   return (
