@@ -51,7 +51,7 @@ Website dipecah ke dalam beberapa komponen (*components*) agar struktur kode ber
 6. **Footer & Kontak:** Mengarahkan pengguna langsung ke jalur komunikasi resmi (WhatsApp dan Instagram) menggunakan metode tautan statis.
 
 ## 5. Ringkasan
-Proyek ini membuktikan bahwa dengan optimalisasi perangkat lunak yang tepat (React + Vite + Linux Debian), sebuah laptop harian spesifikasi Intel Core i3 generasi ke-10 dengan RAM 4GB sangat mampu digunakan secara produktif untuk membangun *web app* yang modern, rumit, dan sarat akan animasi grafis tanpa kendala berarti. Kerja sama tim yang solid antara 2 orang pengembang berhasil melahirkan antarmuka yang setara dengan standar web pariwisata profesional masa kini.
+Proyek ini membuktikan bahwa dengan optimalisasi perangkat lunak yang tepat (React + Vite + Linux Debian), sebuah laptop harian spesifikasi Intel Core i3 generasi ke-10 dengan RAM 8GB sangat mampu digunakan secara produktif untuk membangun *web app* yang modern, rumit, dan sarat akan animasi grafis tanpa kendala berarti. Kerja sama tim yang solid antara 2 orang pengembang berhasil melahirkan antarmuka yang setara dengan standar web pariwisata profesional masa kini.
 
 ## 6. Cara Menjalankan Proyek
 1. Pastikan Anda sudah menginstal Node.js.
