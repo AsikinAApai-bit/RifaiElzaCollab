@@ -2503,13 +2503,7 @@ function StarterPack() {
         {/* Asymmetrical Header */}
         <div className="relative mb-24 sm:mb-32 flex flex-col md:flex-row items-center md:items-start justify-between pl-4 sm:pl-20 lg:pl-32">
           
-          {/* Floating Decorative Icons */}
-          <div className="absolute left-[40%] -top-10 w-16 h-16 opacity-80 pointer-events-none animate-[float_4s_ease-in-out_infinite]">
-            <img src="/asset/tool_compass_1782866990189.png" className="w-full h-full object-contain filter brightness-125 sepia-[0.3] hue-rotate-[-30deg]" alt="Compass Icon" />
-          </div>
-          <div className="absolute right-[45%] top-[80%] w-16 h-16 opacity-80 pointer-events-none animate-[float_5s_ease-in-out_infinite_1s]">
-            <img src="/asset/tool_binoculars_1782866982113.png" className="w-full h-full object-contain filter brightness-125 sepia-[0.3] hue-rotate-[-30deg]" alt="Binoculars Icon" />
-          </div>
+          {/* Floating Decorative Icons Removed */}
 
           <div className="relative z-10 w-full md:w-3/5">
             <div className="eyebrow mb-4 flex items-center gap-4">
