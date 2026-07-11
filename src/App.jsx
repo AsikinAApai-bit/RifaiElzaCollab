@@ -239,8 +239,8 @@ function Header() {
     <>
       <header ref={headerRef} className="header">
         <div className="flex items-center justify-between h-full px-6 sm:px-10 lg:px-16 mx-auto" style={{ maxWidth: '1400px' }}>
-          <a href="#" className="group relative inline-flex items-baseline gap-1.5">
-            <span className="font-display text-3xl font-black text-[#678A44] leading-none italic transition-colors duration-300 group-hover:text-[#e2f0e6]">8</span>
+          <a href="#" className="group relative inline-flex items-center gap-2">
+            <img src="/favicon.svg" alt="Tangkahan Logo" className="h-8 w-auto brightness-0 invert opacity-80 transition-opacity duration-300 group-hover:opacity-100" style={{ filter: 'brightness(0) saturate(100%) invert(67%) sepia(8%) saturate(1512%) hue-rotate(50deg) brightness(92%) contrast(88%)' }} />
             <span className="font-body text-[0.8rem] font-semibold tracking-[0.22em] uppercase text-[#94B474]">Lephant</span>
             <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#4ade80] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
           </a>
