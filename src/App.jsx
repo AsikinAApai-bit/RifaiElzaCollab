@@ -96,8 +96,9 @@ function LoadingScreen(props) {
             {/* Elephant Ears */}
             <path d="M 50 20 Q 5 0 5 45 Q 5 70 35 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#122018" strokeWidth="1" filter="url(#innerShadow)" />
             <path d="M 50 20 Q 95 0 95 45 Q 95 70 65 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#122018" strokeWidth="1" filter="url(#innerShadow)" />
-            {/* Letter S */}
-            <text x="50" y="80" fontFamily="var(--f-display)" fontSize="80" fontWeight="900" fontStyle="italic" fill="url(#metalGradLight)" textAnchor="middle" stroke="#122018" strokeWidth="3" className="filter drop-shadow-[0_8px_10px_rgba(0,0,0,0.8)]">S</text>
+            {/* Number 8 */}
+            <path d="M 50 15 A 16 16 0 1 0 50 48 A 20 20 0 1 0 50 90 A 20 20 0 1 0 50 48 A 16 16 0 1 0 50 15" fill="none" stroke="url(#metalGradLight)" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" className="filter drop-shadow-[0_8px_10px_rgba(0,0,0,0.8)]" />
+            <path d="M 50 15 A 16 16 0 1 0 50 48 A 20 20 0 1 0 50 90 A 20 20 0 1 0 50 48 A 16 16 0 1 0 50 15" fill="none" stroke="#000" strokeWidth="2" opacity="0.6" />
           </svg>
         </div>
 
@@ -136,7 +137,7 @@ function LoadingScreen(props) {
         {/* Text Elements */}
         <div className="flex flex-col items-center gap-4 mt-2">
           <div className="flex items-baseline gap-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            <span className="font-display text-4xl font-black text-[#678A44] leading-none italic">S</span>
+            <span className="font-display text-4xl font-black text-[#678A44] leading-none italic">8</span>
             <span className="font-body text-lg font-semibold tracking-[0.25em] uppercase text-[#94B474]">Lephant</span>
           </div>
           <span ref={depthRef} className="font-mono text-[9px] tracking-[0.25em] text-[#4ade80] opacity-50">
@@ -239,7 +240,7 @@ function Header() {
       <header ref={headerRef} className="header">
         <div className="flex items-center justify-between h-full px-6 sm:px-10 lg:px-16 mx-auto" style={{ maxWidth: '1400px' }}>
           <a href="#" className="group relative inline-flex items-baseline gap-1.5">
-            <span className="font-display text-3xl font-black text-[#678A44] leading-none italic transition-colors duration-300 group-hover:text-[#e2f0e6]">S</span>
+            <span className="font-display text-3xl font-black text-[#678A44] leading-none italic transition-colors duration-300 group-hover:text-[#e2f0e6]">8</span>
             <span className="font-body text-[0.8rem] font-semibold tracking-[0.22em] uppercase text-[#94B474]">Lephant</span>
             <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#4ade80] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
           </a>
@@ -2461,54 +2462,56 @@ function Biodiversity() {
 
 
 function StarterPack() {
-  const [activeTab, setActiveTab] = React.useState('Protection');
-  const itemsRef = useRef([]);
+  var sectionRef = React.useRef(null);
+  var cardsRef = React.useRef([]);
 
-  useEffect(() => {
-    gsap.fromTo(itemsRef.current, 
-      { opacity: 0, y: 20, rotationZ: () => Math.random() * 10 - 5 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        rotationZ: () => Math.random() * 6 - 3,
-        duration: 0.8, 
-        stagger: 0.1,
-        ease: 'power2.out',
-        overwrite: true
-      }
-    );
-  }, [activeTab]);
+  React.useEffect(function() {
+    var cards = cardsRef.current;
+    if (!cards || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    
+    // Scroll Reveal
+    var tweens = [];
+    cards.forEach(function(card, i) {
+      if(!card) return;
+      var tw = gsap.fromTo(card, 
+        { y: 80, opacity: 0 },
+        { 
+          y: 0, opacity: 1, 
+          duration: 1.2, 
+          ease: 'sine.inOut',
+          delay: (i % 3) * 0.15,
+          scrollTrigger: { trigger: card, start: 'top 85%', once: true }
+        }
+      );
+      tweens.push(tw);
+    });
 
-  const filteredTools = TOOLS.filter(t => {
-    if (activeTab === 'Protection') return t.category === 'Protection';
-    if (activeTab === 'Safety') return t.category === 'Safety' || t.category === 'Prohibited';
-    return t.category === 'Essential' || t.category === 'Clothing';
-  });
+    return function() {
+      tweens.forEach(function(tw) {
+        if(tw.scrollTrigger) tw.scrollTrigger.kill();
+        tw.kill();
+      });
+    };
+  }, []);
 
   return (
-    <section id="starterpack" className="relative w-full min-h-screen px-6 sm:px-10 lg:px-16 overflow-hidden py-32 bg-[#101b13]">
-      {/* Topographic Background */}
-      <div className="absolute inset-0 pointer-events-none bg-[url('/asset/topographic_bg.png')] bg-repeat opacity-60 mix-blend-screen" style={{ backgroundSize: '600px' }} />
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 90% at 50% 50%, transparent 0%, rgba(16,27,19,0.9) 100%)' }} />
-
-      {/* Top Right Logo */}
-      <div className="absolute top-8 right-8 md:top-12 md:right-16 z-20 flex items-baseline gap-1.5 opacity-80">
-        <span className="font-display text-2xl md:text-3xl font-black text-[#678A44] leading-none italic drop-shadow-md">S</span>
-        <span className="font-body text-[0.7rem] md:text-[0.8rem] font-semibold tracking-[0.22em] uppercase text-[#94B474] drop-shadow-md">Lephant</span>
-        <span className="ml-2 font-light text-[#94B474] opacity-50">+</span>
-      </div>
+    <section id="starterpack" className="relative px-6 sm:px-10 lg:px-16 overflow-hidden py-40" style={{ background: '#0a1f12' }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 50% 50%, rgba(74,222,128,0.03) 0%, transparent 100%)' }} />
       
-      <div className="mx-auto relative z-10 h-full flex flex-col justify-between" style={{ maxWidth: '1400px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1400px' }}>
         
-        {/* Header & Main Graphic Area */}
-        <div className="relative mb-32 flex flex-col md:flex-row items-center md:items-start justify-between min-h-[50vh]">
+        {/* Asymmetrical Header */}
+        <div className="relative mb-24 sm:mb-32 flex flex-col md:flex-row items-center md:items-start justify-between pl-4 sm:pl-20 lg:pl-32">
           
-          {/* Vintage Letters (Left) */}
-          <div className="absolute left-[-5%] top-[10%] w-[250px] opacity-90 pointer-events-none transform -rotate-12">
-            <img src="/asset/vintage_letters.png" className="w-full h-auto filter drop-shadow-2xl mix-blend-screen" alt="Vintage Letters" />
+          {/* Floating Decorative Icons */}
+          <div className="absolute left-[40%] -top-10 w-16 h-16 opacity-80 pointer-events-none animate-[float_4s_ease-in-out_infinite]">
+            <img src="/asset/tool_compass_1782866990189.png" className="w-full h-full object-contain filter brightness-125 sepia-[0.3] hue-rotate-[-30deg]" alt="Compass Icon" />
+          </div>
+          <div className="absolute right-[45%] top-[80%] w-16 h-16 opacity-80 pointer-events-none animate-[float_5s_ease-in-out_infinite_1s]">
+            <img src="/asset/tool_binoculars_1782866982113.png" className="w-full h-full object-contain filter brightness-125 sepia-[0.3] hue-rotate-[-30deg]" alt="Binoculars Icon" />
           </div>
 
-          <div className="relative z-10 w-full md:w-1/2 pt-10 pl-4 sm:pl-20">
+          <div className="relative z-10 w-full md:w-3/5">
             <div className="eyebrow mb-4 flex items-center gap-4">
               <span className="h-[2px] bg-[#6b9f7a]" style={{ width: '60px' }} />
               <span className="font-mono text-sm text-[#6b9f7a] tracking-[0.2em] uppercase">are u ready to go?</span>
@@ -2519,105 +2522,102 @@ function StarterPack() {
               <span className="text-transparent ml-12 sm:ml-24 inline-block" style={{ WebkitTextStroke: '1.5px #f3d47c', textShadow: '0 0 15px rgba(243, 212, 124, 0.4), 0 0 30px rgba(243, 212, 124, 0.2)' }}>Starter Pack!</span>
             </h2>
             <p className="font-mono text-sm sm:text-base text-[#6b9f7a] mt-8 max-w-xl leading-relaxed">
-              a game to test your responsibility: only click five items that would you bring to Tangkahan and count each of your Current Selection: 0 / 5 Essentials
+              a game to test your responsibility: only click five items that would you bring to Tangkahan and count each of your points!
             </p>
-            {/* Selection Progress Bar */}
-            <div className="mt-4 w-64 h-[2px] bg-[rgba(107,159,122,0.3)] relative">
-              <div className="absolute left-0 top-0 h-full bg-[#6b9f7a] w-[0%]" />
-            </div>
           </div>
           
-          {/* Decorative Suitcase Asset with Glow & Tags */}
-          <div className="hidden md:block absolute right-[5%] top-0 w-[550px] pointer-events-none z-10">
-            {/* Glowing Backlight */}
-            <div className="absolute inset-0 bg-[#f3d47c] opacity-40 blur-[100px] rounded-full transform scale-90 translate-y-10" />
+          {/* Decorative Suitcase Asset with Glow */}
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[380px] lg:w-[500px] pointer-events-none z-0">
+            {/* Golden Glow */}
+            <div className="absolute inset-0 bg-[#f3d47c] opacity-30 blur-[80px] rounded-full transform scale-75 translate-x-10 translate-y-10" />
             
-            {/* Analog Compass */}
-            <div className="absolute -left-12 -top-10 w-32 h-32 opacity-100 z-20">
-              <img src="/asset/analog_compass.png" className="w-full h-full object-contain filter drop-shadow-2xl" alt="Analog Compass" />
-            </div>
-
-            {/* Binocular Line Icon (SVG) */}
-            <div className="absolute left-[-20%] bottom-10 w-20 h-20 opacity-80 z-20 text-[#6b9f7a]">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full drop-shadow-md">
-                <path d="M11 20v-5m2 5v-5m-6 3a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4zm-8-2h6m-3-6a3 3 0 100-6 3 3 0 000 6zm-8 4l2-8 3 1v7l-5 0zm16 0l-2-8-3 1v7l5 0z" />
-              </svg>
-            </div>
-
             <img 
               src="/asset/vintage_suitcase.png" 
               alt="Vintage Suitcase" 
-              className="relative w-full h-auto object-contain rotate-[5deg] filter drop-shadow-[0_40px_50px_rgba(0,0,0,0.8)] z-10" 
+              className="relative w-full h-auto object-contain rotate-[12deg] filter drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]" 
             />
-
-            {/* S Tags Hanging */}
-            <div className="absolute right-10 top-[-20px] w-16 h-24 bg-[#e3d5b8] shadow-lg rounded-sm transform rotate-12 z-20 border border-[#b8a078] flex items-center justify-center">
-              <div className="absolute top-2 w-2 h-2 rounded-full bg-gray-800" />
-              <span className="font-display font-black text-4xl text-[#8b7556] opacity-80">S</span>
-            </div>
-            <div className="absolute right-[-10px] top-[40px] w-16 h-24 bg-[#e3d5b8] shadow-lg rounded-sm transform rotate-[25deg] z-20 border border-[#b8a078] flex items-center justify-center">
-              <div className="absolute top-2 w-2 h-2 rounded-full bg-gray-800" />
-              <span className="font-display font-black text-4xl text-[#8b7556] opacity-80">S</span>
-            </div>
           </div>
         </div>
 
-        {/* Vintage Folder Tabs UI */}
-        <div className="relative z-20 w-full mt-auto">
-          {/* Tab Headers */}
-          <div className="flex justify-center md:justify-start gap-2 md:gap-4 px-4 sm:px-20 mb-[-2px] relative z-20">
-            {['PROTECTION', 'SAFETY', 'SELECTION'].map(tab => (
-              <button 
-                key={tab}
-                onClick={() => setActiveTab(tab === 'PROTECTION' ? 'Protection' : tab === 'SAFETY' ? 'Safety' : 'Selection')}
-                className={`relative px-8 py-4 rounded-t-xl font-mono text-sm tracking-widest uppercase transition-all duration-300 ${activeTab.toUpperCase() === tab ? 'bg-[#e3d5b8] text-[#122216] z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.3)]' : 'bg-[#a3977c] text-[rgba(18,34,22,0.6)] z-10 hover:bg-[#c2b69d] mt-2'}`}
-                style={{
-                  borderTop: '2px solid rgba(255,255,255,0.4)',
-                  borderLeft: '2px solid rgba(255,255,255,0.2)',
-                  borderRight: '2px solid rgba(0,0,0,0.2)'
+        {/* Custom Asymmetrical Masonry/Flex Layout */}
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-16 lg:gap-x-12 lg:gap-y-24 relative z-10">
+          {TOOLS.map(function(tool, i) {
+            return (
+              <div 
+                key={tool.id}
+                ref={function(el) { cardsRef.current[i] = el; }}
+                className={"relative w-full sm:w-[45%] lg:w-[28%] aspect-[4/5] rounded-3xl cursor-crosshair group " + tool.class}
+                style={{ 
+                  perspective: '1000px',
+                  opacity: 0 // for scroll reveal
                 }}
               >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          {/* Folder Content Area */}
-          <div 
-            className="w-full bg-[#e3d5b8] rounded-xl rounded-tl-none md:rounded-tl-xl md:rounded-tr-xl p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")`,
-              borderTop: '2px solid rgba(255,255,255,0.5)',
-              borderBottom: '4px solid rgba(0,0,0,0.2)'
-            }}
-          >
-            {/* Fake Ink Blots & Stamps */}
-            <div className="absolute top-4 right-10 w-16 h-16 rounded-full border-4 border-red-800/30 rotate-12 pointer-events-none flex items-center justify-center">
-              <span className="font-mono text-[8px] text-red-800/40 uppercase rotate-[-12deg]">Tangkahan<br/>Approved</span>
-            </div>
-            <div className="absolute bottom-10 left-10 w-24 h-24 bg-black opacity-[0.03] rounded-full blur-sm pointer-events-none" />
-
-            <div className="flex flex-wrap gap-8 justify-center min-h-[300px]">
-              {filteredTools.map((tool, i) => (
-                <div 
-                  key={tool.id}
-                  ref={el => itemsRef.current[i] = el}
-                  className="relative w-40 sm:w-48 aspect-square group cursor-pointer"
-                >
-                  <div className="absolute inset-0 bg-white shadow-md rounded-sm transform transition-transform group-hover:scale-105 group-hover:-rotate-3 flex flex-col p-3 border border-gray-200">
-                    <div className="w-full flex-1 bg-gray-100 overflow-hidden relative">
-                       <img src={tool.img} alt={tool.name} className="w-full h-full object-cover filter contrast-125 sepia-[0.2]" />
+                {/* Inner Card wrapper for 3D flip */}
+                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                  
+                  {/* Front Face (Image + overlay text) */}
+                  <div 
+                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+                    style={{
+                      background: 'rgba(2,8,7,0.4)',
+                      backdropFilter: 'blur(16px)',
+                      border: '1px solid rgba(74,222,128,0.1)'
+                    }}
+                  >
+                    <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
+                    
+                    <img 
+                      src={tool.img} 
+                      alt={tool.name} 
+                      className="absolute inset-0 w-full h-full object-cover z-0 opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700"
+                    />
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(2,8,7,0.9)] via-[rgba(2,8,7,0.2)] to-transparent z-10 pointer-events-none" />
+                    
+                    <div className="absolute inset-0 p-8 flex flex-col justify-between z-20 pointer-events-none">
+                      <div className="flex justify-between items-start w-full">
+                        <span className="font-mono text-[0.6rem] uppercase tracking-[0.25em] text-[#4ade80]">
+                          {tool.category}
+                        </span>
+                        <span className="font-mono text-[0.55rem] text-[rgba(255,255,255,0.4)]">
+                          0{i+1}
+                        </span>
+                      </div>
+                      
+                      <h3 className="font-display italic text-[#e2f0e6] text-3xl sm:text-4xl leading-none">
+                        {tool.name}
+                      </h3>
                     </div>
-                    <div className="mt-3 text-center">
-                      <span className="font-display font-bold text-gray-800 text-sm">{tool.name}</span>
-                    </div>
-                    {/* Add tape */}
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-[rgba(255,255,255,0.6)] backdrop-blur-sm border border-gray-300 shadow-sm rotate-[-5deg]" />
                   </div>
+                  
+                  {/* Back Face (Gold card) */}
+                  <div 
+                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden p-8 flex flex-col items-center justify-center text-center shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+                    style={{
+                      background: '#c8b07a',
+                      border: '1px solid rgba(0,0,0,0.1)'
+                    }}
+                  >
+                    <div className="absolute inset-0 opacity-[0.04] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
+                    
+                    <h3 className="font-display font-bold text-[#0a1f12] text-2xl sm:text-3xl mb-6 relative z-10">
+                      {tool.name}
+                    </h3>
+                    
+                    <div className="flex gap-3 relative z-10 flex-wrap justify-center">
+                      <span className="px-4 py-2 rounded-full border border-[rgba(10,31,18,0.2)] font-mono text-[0.6rem] uppercase tracking-[0.1em] text-[#0a1f12] bg-[rgba(255,255,255,0.2)] transition-colors hover:bg-[rgba(255,255,255,0.4)]">
+                        {tool.category}
+                      </span>
+                      <span className="px-4 py-2 rounded-full border border-[rgba(10,31,18,0.2)] font-mono text-[0.6rem] uppercase tracking-[0.1em] text-[#0a1f12] bg-[rgba(255,255,255,0.2)] transition-colors hover:bg-[rgba(255,255,255,0.4)]">
+                        Item 0{i+1}
+                      </span>
+                    </div>
+                  </div>
+
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>
