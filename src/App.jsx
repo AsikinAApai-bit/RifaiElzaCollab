@@ -2425,27 +2425,39 @@ function StarterPack() {
         
         {/* Asymmetrical Header */}
         <div className="relative mb-24 sm:mb-32 flex flex-col md:flex-row items-center md:items-start justify-between pl-4 sm:pl-20 lg:pl-32">
+          
+          {/* Floating Decorative Icons */}
+          <div className="absolute left-[40%] -top-10 w-16 h-16 opacity-80 pointer-events-none animate-[float_4s_ease-in-out_infinite]">
+            <img src="/asset/tool_compass_1782866990189.png" className="w-full h-full object-contain filter brightness-125 sepia-[0.3] hue-rotate-[-30deg]" alt="Compass Icon" />
+          </div>
+          <div className="absolute right-[45%] top-[80%] w-16 h-16 opacity-80 pointer-events-none animate-[float_5s_ease-in-out_infinite_1s]">
+            <img src="/asset/tool_binoculars_1782866982113.png" className="w-full h-full object-contain filter brightness-125 sepia-[0.3] hue-rotate-[-30deg]" alt="Binoculars Icon" />
+          </div>
+
           <div className="relative z-10 w-full md:w-3/5">
-            <div className="eyebrow mb-4">
-              <span className="eyebrow__line" style={{ width: '60px' }} />
-              <span className="eyebrow__text">are u ready to go?</span>
+            <div className="eyebrow mb-4 flex items-center gap-4">
+              <span className="h-[2px] bg-[#6b9f7a]" style={{ width: '60px' }} />
+              <span className="font-mono text-sm text-[#6b9f7a] tracking-[0.2em] uppercase">are u ready to go?</span>
             </div>
-            <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.02em' }}>
+            <h2 className="font-display italic text-[#e2f0e6] leading-[1.1] drop-shadow-xl" style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)', letterSpacing: '-0.02em' }}>
               Pick Your
               <br />
-              <span className="text-transparent ml-12 sm:ml-24" style={{ WebkitTextStroke: '1px #c8b07a' }}>Starter Pack!</span>
+              <span className="text-transparent ml-12 sm:ml-24 inline-block" style={{ WebkitTextStroke: '1.5px #f3d47c', textShadow: '0 0 15px rgba(243, 212, 124, 0.4), 0 0 30px rgba(243, 212, 124, 0.2)' }}>Starter Pack!</span>
             </h2>
-            <p className="font-mono text-sm sm:text-base text-[#6b9f7a] mt-6 max-w-xl">
+            <p className="font-mono text-sm sm:text-base text-[#6b9f7a] mt-8 max-w-xl leading-relaxed">
               a game to test your responsibility: only click five items that would you bring to Tangkahan and count each of your points!
             </p>
           </div>
           
-          {/* Decorative Asset */}
-          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[350px] lg:w-[450px] opacity-70 pointer-events-none z-0">
+          {/* Decorative Suitcase Asset with Glow */}
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[380px] lg:w-[500px] pointer-events-none z-0">
+            {/* Golden Glow */}
+            <div className="absolute inset-0 bg-[#f3d47c] opacity-30 blur-[80px] rounded-full transform scale-75 translate-x-10 translate-y-10" />
+            
             <img 
               src="/asset/vintage_suitcase.png" 
               alt="Vintage Suitcase" 
-              className="w-full h-auto object-contain rotate-[15deg] filter drop-shadow-2xl" 
+              className="relative w-full h-auto object-contain rotate-[12deg] filter drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]" 
             />
           </div>
         </div>

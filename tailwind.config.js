@@ -42,10 +42,15 @@ export default {
           "95%": { "clip-path": "inset(25% 0 35% 0)" },
           "100%": { "clip-path": "inset(30% 0 40% 0)" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-15px)" },
+        },
       },
       animation: {
         "glitch-after": "glitch var(--after-duration) infinite linear alternate-reverse",
         "glitch-before": "glitch var(--before-duration) infinite linear alternate-reverse",
+        "float": "float 4s ease-in-out infinite",
       },
     },
   },
