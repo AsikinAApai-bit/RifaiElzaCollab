@@ -2813,9 +2813,9 @@ function Footer() {
   var ref = useReveal('.rv');
   return (
     <footer className="relative bg-[#020503] w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image (Yggdrasil Tree) */}
+      {/* Background Image (Yggdrasil Tree / Forest) */}
       <div 
-        className="absolute inset-0 z-0 bg-center bg-cover bg-no-repeat opacity-60 mix-blend-screen"
+        className="absolute inset-0 z-0 bg-center bg-cover bg-no-repeat opacity-40"
         style={{ backgroundImage: "url('/asset/FOOTER.jpeg')" }} 
       />
       
