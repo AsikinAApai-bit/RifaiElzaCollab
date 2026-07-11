@@ -2340,7 +2340,7 @@ function Destinations() {
                 <span className="text-5xl md:text-7xl drop-shadow-xl text-white tracking-wide" style={{ fontFamily: 'Gradia' }}>
                   Best Spots
                 </span>
-                <span className="text-5xl md:text-7xl drop-shadow-xl text-white tracking-wide" style={{ fontFamily: 'LondonHistory' }}>
+                <span className="text-5xl md:text-7xl drop-shadow-xl text-[#c8b07a] tracking-wide" style={{ fontFamily: 'LondonHistory' }}>
                   to Visit
                 </span>
               </div>
