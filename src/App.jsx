@@ -2823,7 +2823,18 @@ function Footer() {
       <div className="absolute inset-0 z-0 bg-black/50" />
 
       {/* Main Content */}
-      <div ref={ref} className="rv mx-auto text-center relative z-10 flex flex-col items-center px-4 mt-12" style={{ maxWidth: '850px' }}>
+      <div 
+        ref={ref} 
+        className="rv mx-auto text-center relative z-10 flex flex-col items-center px-8 md:px-16 py-16 mt-12 rounded-3xl" 
+        style={{ 
+          maxWidth: '900px', 
+          background: 'linear-gradient(180deg, rgba(16,42,24,0.4) 0%, rgba(2,5,3,0.7) 100%)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          boxShadow: '0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1)'
+        }}
+      >
         <h2 className="font-display italic text-[#e2f0e6] leading-[1.15] mb-4 text-center select-none" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', textShadow: '0 4px 30px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8)' }}>
           Why all of this
           <br />
