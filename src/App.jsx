@@ -1011,11 +1011,7 @@ function Timeline() {
     <section id="history" className="relative px-6 sm:px-10 lg:px-16 overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '10rem', background: '#0a1f12' }}>
       
       <div className="relative z-10 mx-auto max-w-6xl mb-12 flex flex-col items-center">
-        <div className="eyebrow mb-6">
-          <span className="eyebrow__line" />
-          <span className="eyebrow__text">The Turning Point</span>
-          <span className="eyebrow__line" />
-        </div>
+
         <h2 className="font-display italic text-[#e2f0e6] leading-[0.9] text-center" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.02em' }}>
           <span className="inline-block -translate-x-12 sm:-translate-x-24">From Them to Us:</span>
           <br />
@@ -2614,11 +2610,7 @@ function LocationMap() {
         
         {/* ═══ MAP AREA (Hijau) ═══ */}
         <div className="w-full lg:w-[55%] flex flex-col">
-          {/* Section eyebrow */}
-          <div className="dossier-reveal flex items-center gap-3 mb-5">
-            <span className="block w-10 h-0.5 bg-[#4ade80]"></span>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#4ade80]">WHERE IS <span className="text-tangkahan-gold">TANGKAHAN</span></span>
-          </div>
+
           
           {/* Map container */}
           <div className="dossier-reveal relative flex-1 rounded-2xl lg:rounded-r-none overflow-hidden shadow-2xl" style={{ minHeight: '380px', border: '1px solid rgba(74,222,128,0.2)' }}>
