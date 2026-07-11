@@ -924,7 +924,7 @@ function BEHINDTHEPORTAL() {
             <span className="eyebrow__text text-[#678A44]">BEHIND THE PORTAL</span>
           </div>
           <p className="font-display text-2xl sm:text-3xl lg:text-[2.2rem] italic leading-relaxed text-[#e2f0e6]" style={{ letterSpacing: '-0.01em' }}>
-            The city is loud, but the rainforest knows how to listen. Follow the river deep into the trees and find a place where <span className="text-[#C4B088]">time </span><span className="text-[#678A44]">slows</span><span className="text-[#C4B088]"> down</span> to match your own <span className="text-[#C4B088]">peace</span>.
+            The city is loud, but the rainforest knows how to listen. Follow the river deep into the trees and find a place where <span className="text-[#C4B088]">time slows down</span> to match your own <span className="text-[#C4B088]">peace</span>.
           </p>
 
         </div>
