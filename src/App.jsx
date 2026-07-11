@@ -2184,8 +2184,8 @@ function Destinations() {
       bgContainerRef.current.appendChild(newImg);
       
       gsap.to(newImg, {
-        opacity: 0.2,
-        duration: 1.2,
+        opacity: 0.6,
+        duration: 0.5,
         ease: 'power2.out',
         onComplete: () => {
           if (!bgContainerRef.current) return;
@@ -2206,7 +2206,7 @@ function Destinations() {
       
       gsap.to(newImg, {
         opacity: 0.8,
-        duration: 1.2,
+        duration: 0.5,
         ease: 'power2.out',
         onComplete: () => {
           if (!bgContainerRef.current) return;
