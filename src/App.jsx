@@ -2577,6 +2577,11 @@ function StarterPack() {
                   borderRight: '2px solid rgba(0,0,0,0.2)'
                 }}
               >
+                {tab}
+              </button>
+            ))}
+          </div>
+
           {/* Folder Content Area */}
           <div 
             className="w-full bg-[#e3d5b8] rounded-xl rounded-tl-none md:rounded-tl-xl md:rounded-tr-xl p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10"
