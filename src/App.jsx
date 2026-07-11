@@ -2414,6 +2414,52 @@ function Biodiversity() {
       {/* Bottom Half: Scroll Stack */}
       <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-8 z-20 pointer-events-auto">
         <ScrollStack
+          useWindowScroll={true}
+          itemDistance={80}
+          itemStackDistance={35}
+          baseScale={0.8}
+        >
+          {SECRETS.map(function(secret, i) {
+            return (
+              <ScrollStackItem key={secret.id} itemClassName="overflow-hidden group border border-[rgba(74,222,128,0.15)] bg-[#020807]">
+                {/* Background Image Layer */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                  <img src={secret.img} alt={secret.name} className="w-full h-full object-cover transform transition-transform duration-1000 ease-out md:group-hover:scale-105 opacity-80 mix-blend-luminosity group-hover:mix-blend-normal" />
+                </div>
+
+                {/* Gradient Mask */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020807] via-[rgba(2,8,7,0.8)] to-transparent pointer-events-none"></div>
+
+                {/* Typography & Content */}
+                <div className="relative z-10 h-full min-h-[400px] md:min-h-[500px] flex flex-col justify-end p-8 md:p-12">
+                  {/* Top Right Asymmetry - Giant Faint Number */}
+                  <div className="absolute top-6 right-8 md:top-10 md:right-12 font-mono text-[6rem] md:text-[8rem] font-bold text-[rgba(255,255,255,0.03)] leading-none select-none pointer-events-none">
+                    0{i+1}
+                  </div>
+
+                  {/* Bottom Content */}
+                  <div className="max-w-md">
+                    <p className="font-mono text-[0.6rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-[#4ade80] mb-3">
+                      {secret.subtitle}
+                    </p>
+                    <h3 className="font-display italic text-4xl md:text-5xl text-[#c8b07a] mb-4">
+                      {secret.name}
+                    </h3>
+                    <p className="font-body text-sm md:text-base text-[#c4dccb] leading-relaxed opacity-90 text-justify">
+                      {secret.desc}
+                    </p>
+                  </div>
+                </div>
+              </ScrollStackItem>
+            );
+          })}
+        </ScrollStack>
+      </div>
+    </section>
+  );
+}
+
+
 function StarterPack() {
   const [activeTab, setActiveTab] = React.useState('Protection');
   const itemsRef = useRef([]);
