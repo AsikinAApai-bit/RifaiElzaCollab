@@ -2280,7 +2280,7 @@ function Destinations() {
             
             {/* Preview Text */}
             <div ref={previewTextRef} className="absolute flex flex-col gap-3 opacity-0 p-6 md:p-12">
-              <h3 ref={titleRef} className="font-display italic text-4xl md:text-6xl text-[#e2f0e6]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}></h3>
+              <h3 ref={titleRef} className="font-display italic text-4xl md:text-6xl text-tangkahan-gold" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}></h3>
               <p ref={descRef} className="font-body text-sm md:text-base text-gray-200 leading-relaxed max-w-sm text-justify mt-2 drop-shadow-md"></p>
             </div>
           </div>
