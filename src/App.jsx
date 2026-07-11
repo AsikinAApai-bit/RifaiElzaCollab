@@ -2259,7 +2259,7 @@ function Destinations() {
                 5
               </span>
               <div className="flex flex-col justify-center gap-1">
-                <span className="font-serif text-4xl md:text-6xl drop-shadow-xl text-white">
+                <span className="text-5xl md:text-7xl drop-shadow-xl text-white tracking-wide" style={{ fontFamily: 'Gradia' }}>
                   Best Spots
                 </span>
                 <span className="text-5xl md:text-7xl drop-shadow-xl text-white tracking-wide" style={{ fontFamily: 'LondonHistory' }}>

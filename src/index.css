@@ -18,6 +18,11 @@
   font-family: 'LondonHistory';
   src: url('/asset/fonts/LondonHistory.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Gradia';
+  src: url('/asset/fonts/Gradia.otf') format('opentype');
+}
+
 
 /* ═══════════════════════════════════════════
    DESIGN TOKENS — forest / river / portal
