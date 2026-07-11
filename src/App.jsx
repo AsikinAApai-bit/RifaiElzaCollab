@@ -136,9 +136,10 @@ function LoadingScreen(props) {
 
         {/* Text Elements */}
         <div className="flex flex-col items-center gap-4 mt-2">
-          <span className="font-display text-3xl tracking-[0.2em] font-bold filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style={{ background: 'linear-gradient(to bottom, #a7b8af, #41544a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            8LEPHANT
-          </span>
+          <div className="flex items-baseline gap-1.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            <span className="font-display text-4xl font-black text-[#678A44] leading-none italic">8</span>
+            <span className="font-body text-lg font-semibold tracking-[0.25em] uppercase text-[#94B474]">Lephant</span>
+          </div>
           <span ref={depthRef} className="font-mono text-[9px] tracking-[0.25em] text-[#4ade80] opacity-50">
             MEMUAT 0 FRAME
           </span>
