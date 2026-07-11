@@ -4996,10 +4996,10 @@ function DoAndDonts() {
 
         {/* Middle Text */}
         <div className="flex flex-col items-center justify-center z-10 mx-4 md:mx-8">
-          <h2 className="font-display text-5xl md:text-6xl lg:text-[5rem] text-[#e2f0e6] uppercase tracking-wider text-center flex flex-col gap-4 leading-none">
-            <span>DO</span>
+          <h2 className="font-display text-5xl md:text-6xl lg:text-[5rem] uppercase tracking-wider text-center flex flex-col gap-4 leading-none">
+            <span className="text-[#6b9f7a]">DO</span>
             <span className="text-[#8b9b8e] text-2xl md:text-3xl lg:text-4xl italic lowercase font-normal tracking-normal">and</span>
-            <span>DONT'S</span>
+            <span className="text-[#d97c7c]">DONT'S</span>
           </h2>
         </div>
 
