@@ -48,9 +48,7 @@ function LoadingScreen(props) {
         fillRef.current.style.strokeDashoffset = outerCirc - (outerCirc * p / 100);
       }
       
-      // Use 2.17 multiplier to reach 217 frames as requested in mockup
-      if (depthRef.current) depthRef.current.textContent = 'MEMUAT ' + Math.floor(p * 2.17) + ' FRAME';
-      
+      // Removed frame counter text update
       if (p >= 100) {
         clearInterval(checkIv);
         setTimeout(function () {
@@ -140,8 +138,8 @@ function LoadingScreen(props) {
             <span className="font-display text-4xl font-black text-[#678A44] leading-none italic">8</span>
             <span className="font-body text-lg font-semibold tracking-[0.25em] uppercase text-[#94B474]">Lephant</span>
           </div>
-          <span ref={depthRef} className="font-mono text-[9px] tracking-[0.25em] text-[#4ade80] opacity-50">
-            MEMUAT 0 FRAME
+          <span ref={depthRef} className="font-mono text-[9px] tracking-[0.25em] text-[#4ade80] opacity-50 uppercase">
+            Almost There...
           </span>
         </div>
       </div>
