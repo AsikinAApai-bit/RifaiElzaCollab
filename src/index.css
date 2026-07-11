@@ -14,6 +14,10 @@
   font-family: 'Baghdan';
   src: url('/asset/BAGHDAN.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'LondonHistory';
+  src: url('/asset/fonts/LondonHistory.ttf') format('truetype');
+}
 
 /* ═══════════════════════════════════════════
    DESIGN TOKENS — forest / river / portal

@@ -2262,7 +2262,7 @@ function Destinations() {
                 <span className="font-serif text-4xl md:text-6xl drop-shadow-xl text-white">
                   Best Spots
                 </span>
-                <span className="font-serif italic text-5xl md:text-7xl drop-shadow-xl text-white">
+                <span className="text-5xl md:text-7xl drop-shadow-xl text-white tracking-wide" style={{ fontFamily: 'LondonHistory' }}>
                   to Visit
                 </span>
               </div>
