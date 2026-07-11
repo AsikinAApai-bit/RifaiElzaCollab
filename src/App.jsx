@@ -4,6 +4,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import * as ogl from 'ogl';
 import StaggeredMenu from './components/StaggeredMenu';
+import GlitchText from './components/GlitchText';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -2255,9 +2256,9 @@ function Destinations() {
             className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000 z-10 ${activeSpot ? 'opacity-0' : 'opacity-100'}`}
           >
             <div className="flex items-center gap-6">
-              <span className="font-serif italic text-[12rem] md:text-[18rem] leading-none text-tangkahan-gold">
+              <GlitchText speed={2.7} enableShadows={true} enableOnHover={true} className="!text-tangkahan-gold !font-serif italic !text-[12rem] md:!text-[18rem] !leading-none !mx-0">
                 5
-              </span>
+              </GlitchText>
               <div className="flex flex-col justify-center gap-1">
                 <span className="text-5xl md:text-7xl drop-shadow-xl text-white tracking-wide" style={{ fontFamily: 'Gradia' }}>
                   Best Spots
