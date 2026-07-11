@@ -4953,6 +4953,94 @@ function TextPressureBanner() {
   );
 }
 
+/* ══════════════════════════════════════════════════
+   SECTION: DO AND DONT'S
+   ══════════════════════════════════════════════════ */
+function DoAndDonts() {
+  const sectionRef = useRef(null);
+  
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(sectionRef.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 80%" }}
+      );
+    });
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative py-32 px-4 md:px-8 lg:px-16 w-full min-h-screen flex items-center justify-center bg-transparent z-20">
+      <div className="max-w-[1400px] w-full mx-auto flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-24">
+        
+        {/* DO Card (Left) */}
+        <div className="relative w-64 md:w-72 lg:w-[22rem] aspect-[1/2] group cursor-pointer" style={{ perspective: '1200px' }}>
+          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
+            {/* Front Face */}
+            <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] border-2 border-[#6b9f7a] flex flex-col items-center justify-center p-6 bg-[#0f1d13] overflow-hidden">
+               <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
+               <div className="w-24 h-24 rounded-full border border-[#6b9f7a] flex items-center justify-center mb-6">
+                 <svg className="w-12 h-12 text-[#a3c9a6]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                 </svg>
+               </div>
+               <h3 className="font-display italic text-4xl text-[#e2f0e6]">Do</h3>
+            </div>
+            {/* Back Face */}
+            <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] border-2 border-[rgba(107,159,122,0.4)] flex flex-col items-center justify-center p-8 lg:p-10 bg-[#0a140d] overflow-hidden">
+               <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
+               <ul className="text-left font-mono text-[#8b9b8e] text-sm lg:text-base space-y-6">
+                 <li className="flex items-start gap-3"><span className="text-[#a3c9a6]">✦</span> Respect local customs and traditions</li>
+                 <li className="flex items-start gap-3"><span className="text-[#a3c9a6]">✦</span> Always hire local guides for jungle trekking</li>
+                 <li className="flex items-start gap-3"><span className="text-[#a3c9a6]">✦</span> Stay on marked trails to protect flora</li>
+                 <li className="flex items-start gap-3"><span className="text-[#a3c9a6]">✦</span> Keep a safe distance from wildlife</li>
+                 <li className="flex items-start gap-3"><span className="text-[#a3c9a6]">✦</span> Use eco-friendly sunscreens and soaps</li>
+               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Middle Text */}
+        <div className="flex flex-col items-center justify-center z-10 mx-4 md:mx-8">
+          <h2 className="font-display text-5xl md:text-6xl lg:text-[5rem] text-[#e2f0e6] uppercase tracking-wider text-center flex flex-col gap-4 leading-none">
+            <span>DO</span>
+            <span className="text-[#8b9b8e] text-2xl md:text-3xl lg:text-4xl italic lowercase font-normal tracking-normal">and</span>
+            <span>DONT'S</span>
+          </h2>
+        </div>
+
+        {/* DONT'S Card (Right) */}
+        <div className="relative w-64 md:w-72 lg:w-[22rem] aspect-[1/2] group cursor-pointer" style={{ perspective: '1200px' }}>
+          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
+            {/* Front Face */}
+            <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] border-2 border-gray-600 flex flex-col items-center justify-center p-6 bg-[#1a1c1a] overflow-hidden">
+               <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
+               <div className="w-24 h-24 rounded-full border border-gray-500 flex items-center justify-center mb-6">
+                 <svg className="w-12 h-12 text-[#999]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                 </svg>
+               </div>
+               <h3 className="font-display italic text-4xl text-[#e2f0e6]">Don't</h3>
+            </div>
+            {/* Back Face */}
+            <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] border-2 border-[rgba(200,100,100,0.3)] flex flex-col items-center justify-center p-8 lg:p-10 bg-[#0a140d] overflow-hidden">
+               <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
+               <ul className="text-left font-mono text-[#8b9b8e] text-sm lg:text-base space-y-6">
+                 <li className="flex items-start gap-3"><span className="text-[#d97c7c]">✦</span> Leave any trash or plastics behind</li>
+                 <li className="flex items-start gap-3"><span className="text-[#d97c7c]">✦</span> Feed wild animals or disturb their habitat</li>
+                 <li className="flex items-start gap-3"><span className="text-[#d97c7c]">✦</span> Use flash photography around sensitive species</li>
+                 <li className="flex items-start gap-3"><span className="text-[#d97c7c]">✦</span> Make excessive noise in the jungle</li>
+                 <li className="flex items-start gap-3"><span className="text-[#d97c7c]">✦</span> Collect plants, rocks, or artifacts</li>
+               </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 function Cover() {
   var loadedState = React.useState(false);
   var loaded = loadedState[0];
@@ -4976,6 +5064,7 @@ function Cover() {
         <Biodiversity />
         <Destinations />
         <StarterPack />
+        <DoAndDonts />
         <VisitorInfo />
         <ForestAtlas />
         <Footer />
