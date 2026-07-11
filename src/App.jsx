@@ -2818,15 +2818,18 @@ function Footer() {
         className="absolute inset-0 z-0 bg-center bg-cover bg-no-repeat"
         style={{ backgroundImage: "url('/asset/FOOTER.jpeg')" }} 
       />
+      
+      {/* Soft overlay to ensure text readability */}
+      <div className="absolute inset-0 z-0 bg-black/50" />
 
       {/* Main Content */}
       <div ref={ref} className="rv mx-auto text-center relative z-10 flex flex-col items-center px-4 mt-12" style={{ maxWidth: '850px' }}>
-        <h2 className="font-display italic text-[#e2e8f0] leading-[1.15] mb-4 text-center select-none" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 2px 4px rgba(255,255,255,0.15)' }}>
+        <h2 className="font-display italic text-[#e2f0e6] leading-[1.15] mb-4 text-center select-none" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', textShadow: '0 4px 30px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8)' }}>
           Why all of this
           <br />
-          imp<span className="relative inline-block">o<span className="absolute -inset-1 border border-[#4ade80] rounded-full scale-110 pointer-events-none shadow-[0_0_10px_rgba(74,222,128,0.6)] animate-pulse"></span></span>rtant?
+          important?
         </h2>
-        <p className="mt-4 mb-10 text-[0.85rem] sm:text-[0.95rem] text-[#86a890] max-w-2xl mx-auto leading-relaxed font-sans text-center">
+        <p className="mt-4 mb-10 text-[0.85rem] sm:text-[0.95rem] text-[#e2e8f0] max-w-2xl mx-auto leading-relaxed font-sans text-center" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.9)' }}>
           To protect a destination, you must first empower its people. When local communities thrive through responsible tourism, environmental preservation shifts from a financial burden to their most valuable asset. We bridge the gap between conscious travelers and local entrepreneurs, ensuring your visit actively funds the long-term survival of both the ecosystem and the economy.
         </p>
         <button 
