@@ -2376,7 +2376,7 @@ var TOOLS = [
   { id: 't1', name: 'Anti-bug Lotion', category: 'Protection', img: '/asset/STARTERPACKASSET/Anti-bug Lotion.webp', backImg: '/asset/back-kartuputar/lotion.jpg', class: 'rotate-[-1deg] translate-y-4' },
   { id: 't2', name: 'First Aid Kit', category: 'Safety', img: '/asset/STARTERPACKASSET/Basic First Aid Kit.webp', backImg: '/asset/back-kartuputar/first aid.jpg', class: 'rotate-[2deg] translate-y-16' },
   { id: 't3', name: 'Cash', category: 'Essential', img: '/asset/STARTERPACKASSET/Cash.webp', backImg: '/asset/back-kartuputar/cash.jpg', class: 'rotate-[-2deg]' },
-  { id: 't4', name: 'Animal Food', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Food for Animals.webp', backImg: '/asset/back-kartuputar/animal food.jpg', class: 'rotate-[1deg] translate-y-12' },
+  { id: 't4', name: 'Animal Food', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Food for Animals.webp', backImg: '/asset/back-kartuputar/animal-food.jpg', class: 'rotate-[1deg] translate-y-12' },
   { id: 't5', name: 'High Heels', category: 'Prohibited', img: '/asset/STARTERPACKASSET/High Heels.webp', backImg: '/asset/back-kartuputar/heels.jpg', class: 'rotate-[-1deg] translate-y-6' },
   { id: 't6', name: 'Plastic Bottle', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Plastic Bottle.webp', backImg: '/asset/back-kartuputar/plastic.jpg', class: 'rotate-[3deg] translate-y-20' },
   { id: 't7', name: 'Raincoat', category: 'Clothing', img: '/asset/STARTERPACKASSET/Raincoat & Quick-Dry Outfit.webp', backImg: '/asset/back-kartuputar/raincoat.jpg', class: 'rotate-[-2deg] translate-y-8' },
