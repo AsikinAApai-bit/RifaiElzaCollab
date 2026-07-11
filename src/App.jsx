@@ -2761,34 +2761,7 @@ function Footer() {
         </button>
       </div>
 
-      {/* Right UI Sidebar */}
-      <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 flex items-center gap-4 z-20">
-        {/* Floating Silver 4-point Diamond Star */}
-        <div className="animate-[bounce_3s_ease-in-out_infinite] opacity-70">
-          <svg className="w-4 h-4 text-gray-300 drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z" />
-          </svg>
-        </div>
 
-        {/* Track Panel */}
-        <div className="w-10 md:w-11 h-72 rounded-full bg-[#080d0a]/90 backdrop-blur-md border border-[#1b2f21] flex flex-col items-center justify-between py-5 shadow-2xl shadow-black/80 relative">
-          <span className="text-[0.55rem] font-mono tracking-[0.25em] text-[#425f4b] uppercase" style={{ writingMode: 'vertical-rl' }}>SCROLL</span>
-          
-          <div className="w-[1px] h-28 bg-[#16261b] relative my-3 flex flex-col items-center justify-end">
-             {/* Glowing Progress Fill */}
-             <div className="absolute bottom-0 w-full h-[99%] bg-[#4ade80] shadow-[0_0_10px_#4ade80]" />
-             
-             {/* Interactive circular target ring node */}
-             <div className="absolute bottom-[99%] -translate-y-1/2 flex items-center justify-center">
-               <div className="w-2.5 h-2.5 rounded-full bg-[#4ade80] shadow-[0_0_8px_#4ade80]" />
-               <div className="absolute w-5 h-5 rounded-full border border-[#4ade80]/60 animate-ping opacity-75" />
-               <div className="absolute w-5 h-5 rounded-full border border-[#4ade80]/40" />
-             </div>
-          </div>
-          
-          <span className="text-[0.6rem] font-mono tracking-widest text-[#a3c9b0]">99%</span>
-        </div>
-      </div>
     </footer>
   );
 }
