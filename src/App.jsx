@@ -2526,7 +2526,7 @@ function StarterPack() {
             <div className="absolute inset-0 bg-[#f3d47c] opacity-30 blur-[80px] rounded-full transform scale-75 translate-x-10 translate-y-10" />
             
             <img 
-              src="/asset/vintage_suitcase.png" 
+              src="/asset/koper.png" 
               alt="Vintage Suitcase" 
               className="relative w-full h-auto object-contain rotate-[12deg] filter drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]" 
             />
