@@ -2188,9 +2188,13 @@ function Destinations() {
         duration: 1.2,
         ease: 'power2.out',
         onComplete: () => {
-          const imgs = bgContainerRef.current.querySelectorAll('img');
-          for (let i = 0; i < imgs.length - 1; i++) {
-            imgs[i].remove();
+          if (!bgContainerRef.current) return;
+          const imgs = Array.from(bgContainerRef.current.children);
+          const currentIndex = imgs.indexOf(newImg);
+          if (currentIndex > 0) {
+            for (let i = 0; i < currentIndex; i++) {
+              imgs[i].remove();
+            }
           }
         }
       });
@@ -2205,9 +2209,13 @@ function Destinations() {
         duration: 1.2,
         ease: 'power2.out',
         onComplete: () => {
-          const imgs = bgContainerRef.current.querySelectorAll('img');
-          for (let i = 0; i < imgs.length - 1; i++) {
-            imgs[i].remove();
+          if (!bgContainerRef.current) return;
+          const imgs = Array.from(bgContainerRef.current.children);
+          const currentIndex = imgs.indexOf(newImg);
+          if (currentIndex > 0) {
+            for (let i = 0; i < currentIndex; i++) {
+              imgs[i].remove();
+            }
           }
         }
       });
@@ -2237,8 +2245,8 @@ function Destinations() {
         gsap.killTweensOf([previewImgContainerRef.current, previewTextRef.current]);
         
         gsap.fromTo(previewImgContainerRef.current, 
-          { clipPath: 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)' },
-          { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 1, ease: 'power3.out' }
+          { clipPath: 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)', opacity: 1 },
+          { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', opacity: 1, duration: 1, ease: 'power3.out' }
         );
         
         gsap.fromTo(previewTextRef.current,
@@ -2246,18 +2254,17 @@ function Destinations() {
           { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.2 }
         );
       } else if (prevSpot.id !== activeSpot.id) {
-        // Switching between spots: crossfade content
+        // Switching between spots: smooth fade up with clip path open
         gsap.killTweensOf([previewImgContainerRef.current, previewTextRef.current]);
         
         gsap.fromTo(previewImgContainerRef.current,
-          { opacity: 0.2 },
-          { opacity: 1, duration: 0.6, ease: 'power2.out' }
+          { opacity: 0, clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' },
+          { opacity: 1, duration: 0.8, ease: 'power2.out' }
         );
         gsap.fromTo(previewTextRef.current,
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.1 }
         );
-        gsap.set(previewImgContainerRef.current, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' });
       }
     } else if (prevSpot) {
       // Reverting to null
