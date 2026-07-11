@@ -2329,6 +2329,9 @@ function Biodiversity() {
           <br />
           <span className="text-tangkahan-gold">Tangkahan</span>
         </h2>
+        <p className="font-sans text-sm md:text-base text-[rgba(255,255,255,0.7)] mt-4 tracking-wide">
+          need your touch to make it colorful!
+        </p>
       </div>
 
       {/* Bottom Half: Scroll Stack */}
