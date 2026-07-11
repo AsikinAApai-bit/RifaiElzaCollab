@@ -718,7 +718,7 @@ function SCROLL240FRAME(props) {
                 </span>
               </div>
 
-              <span className="font-sans text-[0.65rem] text-[rgba(255,255,255,0.6)] -mt-24 md:-mt-28 text-center max-w-[80%] leading-relaxed tracking-wide">
+              <span className="font-sans text-[0.65rem] text-[rgba(255,255,255,0.6)] -mt-36 md:-mt-40 -translate-y-4 md:-translate-y-8 text-center max-w-[80%] leading-relaxed tracking-wide relative z-10">
                 Experience an authentic connection with nature and community-led conservation in the heart of Sumatra.
               </span>
             </div>
