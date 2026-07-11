@@ -74,15 +74,15 @@ function LoadingScreen(props) {
           <svg width="120" height="120" viewBox="0 0 100 100" className="filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.9)]">
             <defs>
               <linearGradient id="metalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#718096" />
-                <stop offset="30%" stopColor="#2d3748" />
-                <stop offset="60%" stopColor="#4a5568" />
-                <stop offset="100%" stopColor="#1a202c" />
+                <stop offset="0%" stopColor="#677b73" />
+                <stop offset="30%" stopColor="#2c3c35" />
+                <stop offset="60%" stopColor="#41544a" />
+                <stop offset="100%" stopColor="#122018" />
               </linearGradient>
               <linearGradient id="metalGradLight" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#cbd5e0" />
-                <stop offset="50%" stopColor="#718096" />
-                <stop offset="100%" stopColor="#2d3748" />
+                <stop offset="0%" stopColor="#a7b8af" />
+                <stop offset="50%" stopColor="#677b73" />
+                <stop offset="100%" stopColor="#2c3c35" />
               </linearGradient>
               <filter id="innerShadow">
                 <feOffset dx="0" dy="4"/>
@@ -94,8 +94,8 @@ function LoadingScreen(props) {
               </filter>
             </defs>
             {/* Elephant Ears */}
-            <path d="M 50 20 Q 5 0 5 45 Q 5 70 35 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#1a202c" strokeWidth="1" filter="url(#innerShadow)" />
-            <path d="M 50 20 Q 95 0 95 45 Q 95 70 65 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#1a202c" strokeWidth="1" filter="url(#innerShadow)" />
+            <path d="M 50 20 Q 5 0 5 45 Q 5 70 35 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#122018" strokeWidth="1" filter="url(#innerShadow)" />
+            <path d="M 50 20 Q 95 0 95 45 Q 95 70 65 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#122018" strokeWidth="1" filter="url(#innerShadow)" />
             {/* Number 8 */}
             <path d="M 50 15 A 16 16 0 1 0 50 48 A 20 20 0 1 0 50 90 A 20 20 0 1 0 50 48 A 16 16 0 1 0 50 15" fill="none" stroke="url(#metalGradLight)" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" className="filter drop-shadow-[0_8px_10px_rgba(0,0,0,0.8)]" />
             <path d="M 50 15 A 16 16 0 1 0 50 48 A 20 20 0 1 0 50 90 A 20 20 0 1 0 50 48 A 16 16 0 1 0 50 15" fill="none" stroke="#000" strokeWidth="2" opacity="0.6" />
@@ -136,7 +136,7 @@ function LoadingScreen(props) {
 
         {/* Text Elements */}
         <div className="flex flex-col items-center gap-4 mt-2">
-          <span className="font-display text-3xl tracking-[0.2em] font-bold text-gray-400 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style={{ background: 'linear-gradient(to bottom, #cbd5e0, #718096)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <span className="font-display text-3xl tracking-[0.2em] font-bold filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style={{ background: 'linear-gradient(to bottom, #a7b8af, #41544a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             8LEPHANT
           </span>
           <span ref={depthRef} className="font-mono text-[9px] tracking-[0.25em] text-[#4ade80] opacity-50">
