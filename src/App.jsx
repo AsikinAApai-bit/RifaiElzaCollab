@@ -3995,13 +3995,13 @@ function VisitorInfo() {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const infoData = [
-    { category: "FAQ", title: "Getting to Tangkahan", desc: "The journey from Medan takes about 3 to 4 hours. Entering the park is highly affordable: Rp 5,000 for WNI and around Rp 150,000 for WNA.", color: "#4ade80", img: "/asset/info_1.png" },
-    { category: "INITIATIVE", title: "Water Donation", desc: "a small action that goes directly toward maintaining the village's clean water infrastructure. By pitching in, you help protect the river's purity and ensure that both local families and eco-lodges have continuous access to safe, clean water.", link: "https://tangkahan.id/id/donate/", linkText: "click to learn more", color: "#0ea5e9", img: "/asset/info_2.png" },
-    { category: "FAQ", title: "Where to stay?", desc: "Cozy, rustic wooden bungalows built right along the riverbank. Top popular choices include Mega Inn, Tangkahan Jungle Lodge, and Green Lodge.", color: "#f59e0b", img: "/asset/info_3.png" },
-    { category: "FAQ", title: "Cash Preferred", desc: "There are still no physical ATMs in Tangkahan, but digital payments or transfers are often accepted now. However, it's best to bring some cash just in case the jungle signal drops.", color: "#ec4899", img: "/asset/info_4.png" },
-    { category: "SOUVENIR", title: "The Community Craft", desc: "Before you leave, make sure to stop by the Tangkahan Community Craft Center, located right near the main suspension bridge by the visitor center. Here u can buy; Pure Wild Honey, Unique Wood Carvings, Jungle Spa Soaps, Handwoven Bags, and many more handmade's craft!", color: "#ef4444", img: "/asset/info_5.png" },
-    { category: "FAQ", title: "Elephant Interaction", desc: "The herd is used to human interaction under mahout supervision. You can feed, bathe, and walk with them. Elephant rides are strictly not allowed.", color: "#a855f7", img: "/asset/info_6.png" },
-    { category: "ACTIVITY", title: "Jungle Trekking", desc: "Explore the dense Leuser ecosystem. Discover hidden waterfalls, unique flora, and perhaps spot wild orangutans swinging through the canopy above.", color: "#14b8a6", img: "/asset/info_7.png" }
+    { category: "FAQ", title: "Getting to Tangkahan", desc: "The journey from Medan takes about 3 to 4 hours. Entering the park is highly affordable: Rp 5,000 for WNI and around Rp 150,000 for WNA.", color: "#4ade80", img: "/asset/Getting-to-Tangkahan.jpeg" },
+    { category: "INITIATIVE", title: "Water Donation", desc: "a small action that goes directly toward maintaining the village's clean water infrastructure. By pitching in, you help protect the river's purity and ensure that both local families and eco-lodges have continuous access to safe, clean water.", link: "https://tangkahan.id/id/donate/", linkText: "click to learn more", color: "#0ea5e9", img: "/asset/Water-Donation.jpeg" },
+    { category: "FAQ", title: "Where to stay?", desc: "Cozy, rustic wooden bungalows built right along the riverbank. Top popular choices include Mega Inn, Tangkahan Jungle Lodge, and Green Lodge.", color: "#f59e0b", img: "/asset/Where-to-stay?.jpeg" },
+    { category: "FAQ", title: "Cash Preferred", desc: "There are still no physical ATMs in Tangkahan, but digital payments or transfers are often accepted now. However, it's best to bring some cash just in case the jungle signal drops.", color: "#ec4899", img: "/asset/Cash-Preferred.jpeg" },
+    { category: "SOUVENIR", title: "The Community Craft", desc: "Before you leave, make sure to stop by the Tangkahan Community Craft Center, located right near the main suspension bridge by the visitor center. Here u can buy; Pure Wild Honey, Unique Wood Carvings, Jungle Spa Soaps, Handwoven Bags, and many more handmade's craft!", color: "#ef4444", img: "/asset/The-Community-Craft.jpeg" },
+    { category: "FAQ", title: "Elephant Interaction", desc: "The herd is used to human interaction under mahout supervision. You can feed, bathe, and walk with them. Elephant rides are strictly not allowed.", color: "#a855f7", img: "/asset/vn_mahout.png" },
+    { category: "FAQ", title: "Duration & Stay", desc: "We recommend staying 3-5 days. Perfect for meeting locals, bonfire dinners, jungle trekking, and tubing river.", color: "#14b8a6", img: "/asset/Duration-&-Stay .jpeg" }
   ];
   
   const activeColor = infoData[activeIndex]?.color || '#4ade80';
@@ -4880,7 +4880,6 @@ function Cover() {
         <Biodiversity />
         <Destinations />
         <StarterPack />
-
         <VisitorInfo />
         <ForestAtlas />
         <Footer />
