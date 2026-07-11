@@ -1002,7 +1002,7 @@ function BEHINDTHEPORTAL() {
             <span className="eyebrow__text text-[#678A44]">BEHIND THE PORTAL</span>
           </div>
           <p className="font-display text-2xl sm:text-3xl lg:text-[2.2rem] italic leading-relaxed text-[#e2f0e6]" style={{ letterSpacing: '-0.01em' }}>
-            Sustainability is more than a concept; it is a commitment to local livelihoods. We created this space to connect you with destinations that prioritize environmental integrity, while actively funding the independent businesses that bring them to prosperity!
+            <span className="text-[#C4B088]">Sustainability</span> is more than a concept; it is <span className="text-[#C4B088]">a commitment</span> to local livelihoods. We created this space to connect you with destinations that prioritize environmental integrity, while actively funding the independent businesses that bring them to <span className="text-[#C4B088]">prosperity!</span>
           </p>
 
         </div>
