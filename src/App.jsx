@@ -2078,7 +2078,7 @@ function Destinations() {
 
   const VARIANTS = {
     'variant-1': { imgClass: 'top-[10%] right-[5%] md:right-[10%] md:top-[15%] w-[60%] md:w-[35%] aspect-[4/5]', textClass: 'bottom-[10%] md:bottom-[20%] left-[10%] md:left-[25%]' },
-    'variant-2': { imgClass: 'bottom-[10%] md:bottom-[15%] left-[5%] md:left-[15%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'top-[15%] md:top-[25%] right-[10%] md:right-[20%]' },
+    'variant-2': { imgClass: 'bottom-[10%] md:bottom-[15%] left-[5%] md:left-[15%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'top-[15%] md:top-[25%] right-[2%] md:right-[8%]' },
     'variant-3': { imgClass: 'top-[20%] left-[10%] md:left-[20%] w-[70%] md:w-[35%] aspect-square', textClass: 'bottom-[15%] md:bottom-[25%] right-[10%] md:right-[20%]' },
     'variant-4': { imgClass: 'bottom-[15%] md:bottom-[20%] right-[5%] md:right-[15%] w-[65%] md:w-[40%] aspect-[4/3]', textClass: 'top-[15%] md:top-[20%] left-[10%] md:left-[25%]' },
     'variant-5': { imgClass: 'top-[15%] right-[10%] md:right-[20%] w-[60%] md:w-[35%] aspect-[3/4]', textClass: 'bottom-[20%] md:bottom-[30%] left-[10%] md:left-[25%]' }
