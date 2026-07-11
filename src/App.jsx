@@ -444,7 +444,7 @@ function SCROLL240FRAME(props) {
       scrollTrigger: {
         trigger: wrapRef.current,
         start: 'top top',
-        end: '+=1400%', // Diperpanjang agar ada ruang untuk "magnet" di akhir
+        end: '+=700%', // Dipercepat dari +=1400%
         pin: true,
         scrub: 1,
         anticipatePin: 1,
@@ -462,7 +462,7 @@ function SCROLL240FRAME(props) {
     // Phase 3 (The Canvas Scrub)
     let frameObj = { frame: 0 };
     tl.to(frameObj, {
-      frame: 239,
+      frame: 154,
       ease: 'none',
       duration: 3, // Durasi relatif terhadap ScrollTrigger
       onUpdate: () => {
@@ -474,14 +474,14 @@ function SCROLL240FRAME(props) {
           renderFrame(images[closestIndex]);
         }
         
-        if (frameIndex >= 24 && frameIndex <= 150) {
+        if (frameIndex >= 24 && frameIndex <= 90) {
           if (paradiseRef.current !== 'active') {
              paradiseRef.current = 'active';
              setShowHiddenParadise(true);
              setParadiseOut(false);
              setTimeout(() => setParadiseIn(true), 50);
           }
-        } else if (frameIndex > 150) {
+        } else if (frameIndex > 90) {
           if (paradiseRef.current === 'active') {
              paradiseRef.current = 'after';
              setParadiseOut(true);
@@ -497,19 +497,19 @@ function SCROLL240FRAME(props) {
           }
         }
 
-        if (frameIndex >= 54 && frameIndex <= 150) {
+        if (frameIndex >= 40 && frameIndex <= 90) {
           if (harmonyRef.current !== 'active') {
             harmonyRef.current = 'active';
             setShowHarmony(true);
             setHarmonyOut(false);
             setTimeout(() => setHarmonyIn(true), 50);
           }
-        } else if (frameIndex > 150) {
+        } else if (frameIndex > 90) {
           if (harmonyRef.current === 'active') {
             harmonyRef.current = 'after';
             setHarmonyOut(true);
           }
-        } else if (frameIndex < 54) {
+        } else if (frameIndex < 40) {
           if (harmonyRef.current !== 'before') {
             harmonyRef.current = 'before';
             setHarmonyOut(false);
@@ -520,19 +520,19 @@ function SCROLL240FRAME(props) {
           }
         }
 
-        if (frameIndex >= 164 && frameIndex <= 240) {
+        if (frameIndex >= 95 && frameIndex <= 154) {
           if (tangkahanRef.current !== 'active') {
             tangkahanRef.current = 'active';
             setShowTangkahan(true);
             setTangkahanOut(false);
             setTimeout(() => setTangkahanIn(true), 150);
           }
-        } else if (frameIndex > 240) {
+        } else if (frameIndex > 154) {
           if (tangkahanRef.current === 'active') {
             tangkahanRef.current = 'after';
             setTangkahanOut(true);
           }
-        } else if (frameIndex < 164) {
+        } else if (frameIndex < 95) {
           if (tangkahanRef.current !== 'before') {
             tangkahanRef.current = 'before';
             setTangkahanOut(false);
