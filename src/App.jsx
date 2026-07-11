@@ -4,7 +4,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import * as ogl from 'ogl';
 import StaggeredMenu from './components/StaggeredMenu';
-import InteractiveStory from './components/InteractiveStory';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -147,7 +147,7 @@ function Header() {
     { label: 'Secrets', ariaLabel: 'Go to Jungle Secrets section', link: '#jungle-secrets' },
     { label: 'Spots', ariaLabel: 'Go to Spots section', link: '#spots' },
     { label: 'Starter Pack', ariaLabel: 'Go to Starter Pack section', link: '#starterpack' },
-    { label: 'Story', ariaLabel: 'Go to Interactive Story section', link: '#vn-branching' },
+
     { label: 'Information', ariaLabel: 'Go to Information section', link: '#information' },
     { label: 'Atlas', ariaLabel: 'Go to Forest Atlas section', link: '#atlas' },
   ];
@@ -185,32 +185,7 @@ function Header() {
   );
 }
 
-/* ══════════════════════════════════════════════════
-   DEPTH SIDEBAR
-   ══════════════════════════════════════════════════ */
 
-function DepthSidebar() {
-  var labelRef = React.useRef(null);
-  React.useEffect(function () {
-    function onScroll() {
-      var docH = document.documentElement.scrollHeight - window.innerHeight;
-      var pct = docH > 0 ? window.scrollY / docH : 0;
-      var depth = Math.floor(pct * 100);
-      if (labelRef.current) labelRef.current.textContent = depth + '%';
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return function () { window.removeEventListener('scroll', onScroll); };
-  }, []);
-
-  return (
-    <div className="depth-sidebar hidden sm:flex">
-      <span className="depth-sidebar__label" style={{ writingMode: 'vertical-rl' }}>Scroll</span>
-      <span className="depth-sidebar__line" />
-      <span className="depth-sidebar__dot" />
-      <span ref={labelRef} className="font-mono text-[0.55rem] text-[#4ade80] tracking-wider">0%</span>
-    </div>
-  );
-}
 
 /* ══════════════════════════════════════════════════
         maxDevicePixelRatio
@@ -2101,7 +2076,7 @@ function Destinations() {
     { id: 'spot-1', name: 'Elephant Camp', img: '/asset/ElephantCAMP.jpeg', desc: 'With only 250.000 - Rp 350.000 / pax, we can see the elephants up close, interact with them also help bathe them', variantClass: 'variant-1' },
     { id: 'spot-2', name: 'Hot springs and River', img: '/asset/hot-springs-and-river.jpeg', desc: 'To navigate the river on a tube and relax in the natural hot springs, you can pay 200.000 / pax (the river tubing trip, and tube rental, local guide, and hot spring access are included).', variantClass: 'variant-2' },
     { id: 'spot-3', name: 'Bat cave', img: '/asset/bat_cave.png', desc: 'Not far from Tangkahan, there is a natural cave inhabited by a colony of bats that only cost 50.000 - 100.000 / pax to explore!', variantClass: 'variant-3' },
-    { id: 'spot-4', name: 'Forest tracking trail', img: '/asset/forest_trail.png', desc: 'To explore the forest with a local certified guide and observe the biodiversity, you can spend 450.000 / pax (for the half-day trek, and national park entrance fees are included)', variantClass: 'variant-4' },
+    { id: 'spot-4', name: 'Forest tracking trail', img: '/asset/forest-tracking.jpeg', desc: 'To explore the forest with a local certified guide and observe the biodiversity, you can spend 450.000 / pax (for the half-day trek, and national park entrance fees are included)', variantClass: 'variant-4' },
     { id: 'spot-5', name: 'Suspension Bridge', img: '/asset/suspension-bridge.jpeg', desc: 'Take in the ultimate jungle perspective from the suspension bridge at a mere 5.000 / pax (includes the entry fee and endless sightseeing opportunities).', variantClass: 'variant-5' }
   ];
 
@@ -2257,8 +2232,8 @@ function Destinations() {
         {/* Left Nav (25% width) */}
         <div className="w-[30%] md:w-1/4 h-full flex flex-col justify-center pl-6 md:pl-12 z-20 pointer-events-auto relative">
           <div className="eyebrow mb-4 opacity-70">
-            <span className="eyebrow__line w-8 bg-[#C88D83]" />
-            <span className="eyebrow__text tracking-[0.2em] font-sans text-[#C88D83]">RECOMMENDATION</span>
+            <span className="eyebrow__line w-8 bg-[#4ade80]" />
+            <span className="eyebrow__text tracking-[0.2em] font-sans text-[#4ade80]">RECOMMENDATION</span>
           </div>
           
           <div className="flex flex-col gap-5 items-start">
@@ -2267,8 +2242,8 @@ function Destinations() {
                 key={spot.id}
                 onMouseEnter={() => handleMouseEnter(spot)}
                 onMouseLeave={handleMouseLeave}
-                className={`text-left font-sans font-medium text-sm md:text-base tracking-[0.25em] uppercase transition-all duration-500 hover:text-[#E6C2BF] hover:translate-x-2 ${
-                  activeSpot && activeSpot.id === spot.id ? 'text-[#E6C2BF] translate-x-2' : 'text-[#C88D83]'
+                className={`text-left font-sans font-medium text-sm md:text-base tracking-[0.25em] uppercase transition-all duration-500 hover:text-[#EAEAB9] hover:translate-x-2 ${
+                  activeSpot && activeSpot.id === spot.id ? 'text-[#EAEAB9] translate-x-2' : 'text-[#c8b07a]'
                 }`}
               >
                 {spot.name}
@@ -2324,15 +2299,15 @@ function Destinations() {
    SECTION: STARTER PACK — Editorial Asymmetric Grid
    ══════════════════════════════════════════════════ */
 var TOOLS = [
-  { id: 't1', name: 'Binoculars', category: 'Observation', img: '/asset/tool_binoculars_1782866982113.png', class: 'rotate-[-1deg] translate-y-4' },
-  { id: 't2', name: 'Headlamp', category: 'Illumination', img: '/asset/tool_headlamp_1782866999186.png', class: 'rotate-[2deg] translate-y-16' },
-  { id: 't3', name: 'Compass', category: 'Navigation', img: '/asset/tool_compass_1782866990189.png', class: 'rotate-[-2deg]' },
-  { id: 't4', name: 'Field Guide', category: 'Knowledge', img: '/asset/tool_flask_1782867009069.png', class: 'rotate-[1deg] translate-y-12' },
-  { id: 't5', name: 'Machete', category: 'Clearing', img: '/asset/tool_binoculars_1782866982113.png', class: 'rotate-[-1deg] translate-y-6' },
-  { id: 't6', name: 'First Aid', category: 'Safety', img: '/asset/tool_headlamp_1782866999186.png', class: 'rotate-[3deg] translate-y-20' },
-  { id: 't7', name: 'Water Flask', category: 'Hydration', img: '/asset/tool_flask_1782867009069.png', class: 'rotate-[-2deg] translate-y-8' },
-  { id: 't8', name: 'Paracord', category: 'Utility', img: '/asset/tool_compass_1782866990189.png', class: 'rotate-[1deg] translate-y-16' },
-  { id: 't9', name: 'Trek Boots', category: 'Footwear', img: '/asset/tool_binoculars_1782866982113.png', class: 'rotate-[-1deg] translate-y-2' }
+  { id: 't1', name: 'Anti-bug Lotion', category: 'Protection', img: '/asset/STARTERPACKASSET/Anti-bug Lotion.webp', class: 'rotate-[-1deg] translate-y-4' },
+  { id: 't2', name: 'First Aid Kit', category: 'Safety', img: '/asset/STARTERPACKASSET/Basic First Aid Kit.webp', class: 'rotate-[2deg] translate-y-16' },
+  { id: 't3', name: 'Cash', category: 'Essential', img: '/asset/STARTERPACKASSET/Cash.webp', class: 'rotate-[-2deg]' },
+  { id: 't4', name: 'Animal Food', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Food for Animals.webp', class: 'rotate-[1deg] translate-y-12' },
+  { id: 't5', name: 'High Heels', category: 'Prohibited', img: '/asset/STARTERPACKASSET/High Heels.webp', class: 'rotate-[-1deg] translate-y-6' },
+  { id: 't6', name: 'Plastic Bottle', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Plastic Bottle.webp', class: 'rotate-[3deg] translate-y-20' },
+  { id: 't7', name: 'Raincoat', category: 'Clothing', img: '/asset/STARTERPACKASSET/Raincoat & Quick-Dry Outfit.webp', class: 'rotate-[-2deg] translate-y-8' },
+  { id: 't8', name: 'Styrofoam', category: 'Prohibited', img: '/asset/STARTERPACKASSET/Styrofoam Food Containers.webp', class: 'rotate-[1deg] translate-y-16' },
+  { id: 't9', name: 'Sunscreen', category: 'Protection', img: '/asset/STARTERPACKASSET/Sunscreen.webp', class: 'rotate-[-1deg] translate-y-2' }
 ];
 
 
@@ -2452,13 +2427,16 @@ function StarterPack() {
         <div className="mb-24 sm:mb-32 pl-4 sm:pl-20 lg:pl-32 relative z-10">
           <div className="eyebrow mb-4">
             <span className="eyebrow__line" style={{ width: '60px' }} />
-            <span className="eyebrow__text">Preparation</span>
+            <span className="eyebrow__text">are u ready to go?</span>
           </div>
           <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.02em' }}>
-            Starter
+            Pick Your
             <br />
-            <span className="text-transparent ml-12 sm:ml-24" style={{ WebkitTextStroke: '1px rgba(74,222,128,0.7)' }}>Pack</span>
+            <span className="text-transparent ml-12 sm:ml-24" style={{ WebkitTextStroke: '1px #c8b07a' }}>Starter Pack!</span>
           </h2>
+          <p className="font-mono text-sm sm:text-base text-[#6b9f7a] mt-6 max-w-xl">
+            a game to test your responsibility: only click five items that would you bring to Tangkahan and count each of your points!
+          </p>
         </div>
 
         {/* Custom Asymmetrical Masonry/Flex Layout */}
@@ -2855,12 +2833,12 @@ const DEFAULT_IMAGES = [
   { src: '/asset/elephant_camp.png', alt: 'Elephant Camp' },
   { src: '/asset/hot_springs.png', alt: 'Hot Springs' },
   { src: '/asset/bat_cave.png', alt: 'Bat Cave' },
-  { src: '/asset/forest_trail.png', alt: 'Forest Trail' },
+  { src: '/asset/forest-tracking.jpeg', alt: 'Forest Trail' },
   { src: '/asset/elephant_hero.png', alt: 'Elephant Hero 2' },
   { src: '/asset/elephant_camp.png', alt: 'Elephant Camp 2' },
   { src: '/asset/hot_springs.png', alt: 'Hot Springs 2' },
   { src: '/asset/bat_cave.png', alt: 'Bat Cave 2' },
-  { src: '/asset/forest_trail.png', alt: 'Forest Trail 2' }
+  { src: '/asset/forest-tracking.jpeg', alt: 'Forest Trail 2' }
 ];
 
 const DEFAULTS = {
@@ -3779,7 +3757,7 @@ function ForestAtlas() {
           { src: '/asset/elephant_camp.png', alt: 'Elephant Camp' },
           { src: '/asset/hot_springs.png', alt: 'Hot Springs' },
           { src: '/asset/bat_cave.png', alt: 'Bat Cave' },
-          { src: '/asset/forest_trail.png', alt: 'Forest Trail' },
+          { src: '/asset/forest-tracking.jpeg', alt: 'Forest Trail' },
           { src: '/asset/history-before.png', alt: 'History Before' },
           { src: '/asset/history-after.png', alt: 'History After' },
           { src: '/asset/info_1.png', alt: 'Info 1' },
@@ -4112,7 +4090,7 @@ function VisitorInfo() {
             Hover to pause &bull; Click to swap
           </p>
         </div>
-        <div className="w-full md:w-1/2 h-full relative">
+        <div className="w-full md:w-1/2 h-full relative -translate-y-12 md:-translate-y-24">
           <CardSwap width={400} height={450} delay={4000} pauseOnHover={true} onActiveChange={(idx) => setActiveIndex(idx)}>
             {infoData.map((item, i) => (
               <Card key={i} customClass="!bg-[rgba(10,31,18,0.7)] backdrop-blur-2xl border shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 flex flex-col justify-center transition-colors duration-1000 cursor-pointer" style={{ borderColor: i === activeIndex ? strokeColorMap[activeColor] : 'rgba(74,222,128,0.1)' }}>
@@ -4919,7 +4897,6 @@ function Cover() {
       <FloatingOrbs />
       <div className="grain" />
       <Header />
-      <DepthSidebar />
       <main>
         <SCROLL240FRAME progressRef={progressRef} />
         <SedikitIlmu />
@@ -4930,7 +4907,7 @@ function Cover() {
         <Biodiversity />
         <Destinations />
         <StarterPack />
-        <InteractiveStory />
+
         <VisitorInfo />
         <ForestAtlas />
         <Footer />
