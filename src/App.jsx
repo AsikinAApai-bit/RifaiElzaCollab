@@ -40,9 +40,17 @@ function LoadingScreen(props) {
     var checkIv = setInterval(function () {
       var p = props.progressRef.current;
       if (pctRef.current) pctRef.current.textContent = Math.floor(p) + '%';
-      var circumference = 251.33;
-      if (fillRef.current) fillRef.current.style.strokeDashoffset = circumference - (circumference * p / 100);
-      if (depthRef.current) depthRef.current.textContent = 'Memuat ' + Math.floor(p * 2.4) + ' frame';
+      
+      // outer ring circumference = 2 * pi * 46 = 289.03
+      var outerCirc = 289.03;
+      
+      if (fillRef.current) {
+        fillRef.current.style.strokeDashoffset = outerCirc - (outerCirc * p / 100);
+      }
+      
+      // Use 2.17 multiplier to reach 217 frames as requested in mockup
+      if (depthRef.current) depthRef.current.textContent = 'MEMUAT ' + Math.floor(p * 2.17) + ' FRAME';
+      
       if (p >= 100) {
         clearInterval(checkIv);
         setTimeout(function () {
@@ -55,19 +63,87 @@ function LoadingScreen(props) {
   }, []);
 
   return (
-    <div ref={screenRef} className="loading-screen">
-      <div className="loading-ring">
-        <svg viewBox="0 0 88 88">
-          <circle className="loading-ring__track" cx="44" cy="44" r="40" />
-          <circle ref={fillRef} className="loading-ring__fill" cx="44" cy="44" r="40" />
-        </svg>
-        <span ref={pctRef} className="loading-ring__pct">0%</span>
+    <div ref={screenRef} className="loading-screen relative overflow-hidden bg-[#0a1510]">
+      {/* Background layer */}
+      <div className="absolute inset-0 z-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1518182170546-076616fdacfb?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay filter blur-[4px]" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-[#020807] to-[#020807] opacity-90" />
+      
+      <div className="relative z-10 flex flex-col items-center gap-10">
+        {/* Stylized Logo */}
+        <div className="flex flex-col items-center">
+          <svg width="120" height="120" viewBox="0 0 100 100" className="filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.9)]">
+            <defs>
+              <linearGradient id="metalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#718096" />
+                <stop offset="30%" stopColor="#2d3748" />
+                <stop offset="60%" stopColor="#4a5568" />
+                <stop offset="100%" stopColor="#1a202c" />
+              </linearGradient>
+              <linearGradient id="metalGradLight" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#cbd5e0" />
+                <stop offset="50%" stopColor="#718096" />
+                <stop offset="100%" stopColor="#2d3748" />
+              </linearGradient>
+              <filter id="innerShadow">
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="3" result="offset-blur"/>
+                <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
+                <feFlood floodColor="black" floodOpacity="0.7" result="color"/>
+                <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
+                <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+              </filter>
+            </defs>
+            {/* Elephant Ears */}
+            <path d="M 50 20 Q 5 0 5 45 Q 5 70 35 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#1a202c" strokeWidth="1" filter="url(#innerShadow)" />
+            <path d="M 50 20 Q 95 0 95 45 Q 95 70 65 65 L 50 48 Z" fill="url(#metalGrad)" stroke="#1a202c" strokeWidth="1" filter="url(#innerShadow)" />
+            {/* Number 8 */}
+            <path d="M 50 15 A 16 16 0 1 0 50 48 A 20 20 0 1 0 50 90 A 20 20 0 1 0 50 48 A 16 16 0 1 0 50 15" fill="none" stroke="url(#metalGradLight)" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" className="filter drop-shadow-[0_8px_10px_rgba(0,0,0,0.8)]" />
+            <path d="M 50 15 A 16 16 0 1 0 50 48 A 20 20 0 1 0 50 90 A 20 20 0 1 0 50 48 A 16 16 0 1 0 50 15" fill="none" stroke="#000" strokeWidth="2" opacity="0.6" />
+          </svg>
+        </div>
+
+        {/* Concentric Dual-Ring Loader */}
+        <div className="relative w-[130px] h-[130px] flex items-center justify-center mt-2">
+          <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full -rotate-90">
+            {/* Outer Track */}
+            <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(74, 222, 128, 0.15)" strokeWidth="4" />
+            {/* Inner Track */}
+            <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(74, 222, 128, 0.08)" strokeWidth="2" />
+            
+            {/* Outer Progress (glow) */}
+            <circle 
+              ref={fillRef}
+              cx="50" cy="50" r="46" 
+              fill="none" 
+              stroke="#68d391" 
+              strokeWidth="4" 
+              strokeLinecap="round" 
+              strokeDasharray="289.03" 
+              strokeDashoffset="289.03" 
+              className="transition-[stroke-dashoffset] duration-150 ease-linear filter drop-shadow-[0_0_10px_rgba(74,222,128,0.7)]"
+            />
+            {/* Inner Ring static pulse */}
+            <circle 
+              cx="50" cy="50" r="38" 
+              fill="none" 
+              stroke="#68d391" 
+              strokeWidth="2" 
+              opacity="0.4"
+            />
+          </svg>
+          <span ref={pctRef} className="font-mono text-[15px] font-bold text-[#68d391] tracking-wider filter drop-shadow-[0_0_6px_rgba(74,222,128,0.6)] z-10">0%</span>
+        </div>
+
+        {/* Text Elements */}
+        <div className="flex flex-col items-center gap-4 mt-2">
+          <span className="font-display text-3xl tracking-[0.2em] font-bold text-gray-400 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style={{ background: 'linear-gradient(to bottom, #cbd5e0, #718096)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            8LEPHANT
+          </span>
+          <span ref={depthRef} className="font-mono text-[9px] tracking-[0.25em] text-[#4ade80] opacity-50">
+            MEMUAT 0 FRAME
+          </span>
+        </div>
       </div>
-      <div className="loading-brand">
-        <span className="loading-brand__pre">8LEPHANT</span>
-        <span className="loading-brand__name"></span>
-      </div>
-      <span ref={depthRef} className="loading-depth">Memuat 0 frame</span>
     </div>
   );
 }
