@@ -3796,13 +3796,19 @@ function DomeGallery({
 function ForestAtlas() {
   return (
     <section id="atlas" className="relative w-full h-screen bg-[#020807] overflow-hidden">
-      <div className="absolute top-10 md:top-20 left-0 w-full z-20 px-4 sm:px-8 text-center pointer-events-none">
-        <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.02em' }}>
-          The Canopy Atlas
-        </h2>
-        <p className="font-mono text-[0.6rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-[#4ade80] mt-4">
-          DRAG TO EXPLORE &middot; CLICK TO ENLARGE
-        </p>
+      <div className="absolute top-8 md:top-16 left-0 w-full z-20 px-4 flex justify-center pointer-events-none">
+        <div className="flex flex-col items-center px-8 py-5 md:px-12 md:py-6 rounded-3xl border border-[#4ade80]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-md" style={{ background: 'linear-gradient(135deg, rgba(2,8,7,0.85) 0%, rgba(13,28,18,0.7) 100%)' }}>
+          <h2 className="font-display italic text-[#e2f0e6] leading-[0.9] drop-shadow-2xl" style={{ fontSize: 'clamp(2.5rem, 7vw, 6.5rem)', letterSpacing: '-0.02em', textShadow: '0 4px 30px rgba(0,0,0,0.8)' }}>
+            The Canopy Atlas
+          </h2>
+          <div className="mt-4 flex items-center gap-4">
+            <span className="h-[1px] w-8 md:w-12 bg-gradient-to-r from-transparent to-[#4ade80]/50" />
+            <p className="font-mono text-[0.55rem] md:text-[0.65rem] uppercase tracking-[0.3em] text-[#4ade80] drop-shadow-md">
+              DRAG TO EXPLORE &middot; CLICK TO ENLARGE
+            </p>
+            <span className="h-[1px] w-8 md:w-12 bg-gradient-to-l from-transparent to-[#4ade80]/50" />
+          </div>
+        </div>
       </div>
       <DomeGallery 
         images={[
