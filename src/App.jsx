@@ -2815,12 +2815,9 @@ function Footer() {
     <footer className="relative bg-[#020503] w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Background Image (Yggdrasil Tree / Forest) */}
       <div 
-        className="absolute inset-0 z-0 bg-center bg-cover bg-no-repeat opacity-40"
+        className="absolute inset-0 z-0 bg-center bg-cover bg-no-repeat"
         style={{ backgroundImage: "url('/asset/FOOTER.jpeg')" }} 
       />
-      
-      {/* Overlay gradient for blending */}
-      <div className="absolute inset-0 pointer-events-none z-0" style={{ background: 'radial-gradient(circle at center, transparent 15%, #020503 85%)' }} />
 
       {/* Main Content */}
       <div ref={ref} className="rv mx-auto text-center relative z-10 flex flex-col items-center px-4 mt-12" style={{ maxWidth: '850px' }}>
