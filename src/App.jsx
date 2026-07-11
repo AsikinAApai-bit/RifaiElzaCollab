@@ -2424,19 +2424,30 @@ function StarterPack() {
       <div className="mx-auto" style={{ maxWidth: '1400px' }}>
         
         {/* Asymmetrical Header */}
-        <div className="mb-24 sm:mb-32 pl-4 sm:pl-20 lg:pl-32 relative z-10">
-          <div className="eyebrow mb-4">
-            <span className="eyebrow__line" style={{ width: '60px' }} />
-            <span className="eyebrow__text">are u ready to go?</span>
+        <div className="relative mb-24 sm:mb-32 flex flex-col md:flex-row items-center md:items-start justify-between pl-4 sm:pl-20 lg:pl-32">
+          <div className="relative z-10 w-full md:w-3/5">
+            <div className="eyebrow mb-4">
+              <span className="eyebrow__line" style={{ width: '60px' }} />
+              <span className="eyebrow__text">are u ready to go?</span>
+            </div>
+            <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.02em' }}>
+              Pick Your
+              <br />
+              <span className="text-transparent ml-12 sm:ml-24" style={{ WebkitTextStroke: '1px #c8b07a' }}>Starter Pack!</span>
+            </h2>
+            <p className="font-mono text-sm sm:text-base text-[#6b9f7a] mt-6 max-w-xl">
+              a game to test your responsibility: only click five items that would you bring to Tangkahan and count each of your points!
+            </p>
           </div>
-          <h2 className="font-display italic text-[#e2f0e6] leading-[0.9]" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.02em' }}>
-            Pick Your
-            <br />
-            <span className="text-transparent ml-12 sm:ml-24" style={{ WebkitTextStroke: '1px #c8b07a' }}>Starter Pack!</span>
-          </h2>
-          <p className="font-mono text-sm sm:text-base text-[#6b9f7a] mt-6 max-w-xl">
-            a game to test your responsibility: only click five items that would you bring to Tangkahan and count each of your points!
-          </p>
+          
+          {/* Decorative Asset */}
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[350px] lg:w-[450px] opacity-70 pointer-events-none z-0">
+            <img 
+              src="/asset/vintage_suitcase.png" 
+              alt="Vintage Suitcase" 
+              className="w-full h-auto object-contain mix-blend-lighten rotate-[15deg] filter drop-shadow-2xl" 
+            />
+          </div>
         </div>
 
         {/* Custom Asymmetrical Masonry/Flex Layout */}
