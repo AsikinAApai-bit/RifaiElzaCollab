@@ -2445,7 +2445,7 @@ function StarterPack() {
             <img 
               src="/asset/vintage_suitcase.png" 
               alt="Vintage Suitcase" 
-              className="w-full h-auto object-contain mix-blend-lighten rotate-[15deg] filter drop-shadow-2xl" 
+              className="w-full h-auto object-contain rotate-[15deg] filter drop-shadow-2xl" 
             />
           </div>
         </div>
