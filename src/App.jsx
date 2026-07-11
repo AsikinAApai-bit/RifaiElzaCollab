@@ -2816,7 +2816,7 @@ function Footer() {
       {/* Background Image (Yggdrasil Tree) */}
       <div 
         className="absolute inset-0 z-0 bg-center bg-cover bg-no-repeat opacity-60 mix-blend-screen"
-        style={{ backgroundImage: "url('/asset/image_23.png')" }} 
+        style={{ backgroundImage: "url('/asset/FOOTER.jpeg')" }} 
       />
       
       {/* Overlay gradient for blending */}
