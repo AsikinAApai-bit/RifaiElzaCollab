@@ -2256,7 +2256,7 @@ function Destinations() {
             className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000 z-10 ${activeSpot ? 'opacity-0' : 'opacity-100'}`}
           >
             <div className="flex items-center gap-6">
-              <GlitchText speed={2.7} enableShadows={true} enableOnHover={true} className="!text-tangkahan-gold !font-serif italic !text-[12rem] md:!text-[18rem] !leading-none !mx-0">
+              <GlitchText speed={2.7} enableShadows={true} enableOnHover={true} className="text-tangkahan-gold font-serif italic text-[12rem] md:text-[18rem] leading-none mx-0">
                 5
               </GlitchText>
               <div className="flex flex-col justify-center gap-1">
