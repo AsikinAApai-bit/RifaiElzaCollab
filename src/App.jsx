@@ -4000,7 +4000,7 @@ function VisitorInfo() {
     { category: "FAQ", title: "Where to stay?", desc: "Cozy, rustic wooden bungalows built right along the riverbank. Top popular choices include Mega Inn, Tangkahan Jungle Lodge, and Green Lodge.", color: "#f59e0b", img: "/asset/Where-to-stay?.jpeg" },
     { category: "FAQ", title: "Cash Preferred", desc: "There are still no physical ATMs in Tangkahan, but digital payments or transfers are often accepted now. However, it's best to bring some cash just in case the jungle signal drops.", color: "#ec4899", img: "/asset/Cash-Preferred.jpeg" },
     { category: "SOUVENIR", title: "The Community Craft", desc: "Before you leave, make sure to stop by the Tangkahan Community Craft Center, located right near the main suspension bridge by the visitor center. Here u can buy; Pure Wild Honey, Unique Wood Carvings, Jungle Spa Soaps, Handwoven Bags, and many more handmade's craft!", color: "#ef4444", img: "/asset/The-Community-Craft.jpeg" },
-    { category: "FAQ", title: "Elephant Interaction", desc: "The herd is used to human interaction under mahout supervision. You can feed, bathe, and walk with them. Elephant rides are strictly not allowed.", color: "#a855f7", img: "/asset/vn_mahout.png" },
+    { category: "FAQ", title: "Elephant Interaction", desc: "The herd is used to human interaction under mahout supervision. You can feed, bathe, and walk with them. Elephant rides are strictly not allowed.", color: "#a855f7", img: "/asset/ELEPHANT-INTERACTION.png" },
     { category: "FAQ", title: "Duration & Stay", desc: "We recommend staying 3-5 days. Perfect for meeting locals, bonfire dinners, jungle trekking, and tubing river.", color: "#14b8a6", img: "/asset/Duration-&-Stay .jpeg" }
   ];
   
