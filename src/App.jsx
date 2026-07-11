@@ -2577,39 +2577,42 @@ function StarterPack() {
                   borderRight: '2px solid rgba(0,0,0,0.2)'
                 }}
               >
-                        {tool.name}
-                      </h3>
-                    </div>
-                  </div>
-                  
-                  {/* Back Face (Gold card) */}
-                  <div 
-                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden p-8 flex flex-col items-center justify-center text-center shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
-                    style={{
-                      background: '#c8b07a',
-                      border: '1px solid rgba(0,0,0,0.1)'
-                    }}
-                  >
-                    <div className="absolute inset-0 opacity-[0.04] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] pointer-events-none" />
-                    
-                    <h3 className="font-display font-bold text-[#0a1f12] text-2xl sm:text-3xl mb-6 relative z-10">
-                      {tool.name}
-                    </h3>
-                    
-                    <div className="flex gap-3 relative z-10 flex-wrap justify-center">
-                      <span className="px-4 py-2 rounded-full border border-[rgba(10,31,18,0.2)] font-mono text-[0.6rem] uppercase tracking-[0.1em] text-[#0a1f12] bg-[rgba(255,255,255,0.2)] transition-colors hover:bg-[rgba(255,255,255,0.4)]">
-                        {tool.category}
-                      </span>
-                      <span className="px-4 py-2 rounded-full border border-[rgba(10,31,18,0.2)] font-mono text-[0.6rem] uppercase tracking-[0.1em] text-[#0a1f12] bg-[rgba(255,255,255,0.2)] transition-colors hover:bg-[rgba(255,255,255,0.4)]">
-                        Item 0{i+1}
-                      </span>
-                    </div>
-                  </div>
+          {/* Folder Content Area */}
+          <div 
+            className="w-full bg-[#e3d5b8] rounded-xl rounded-tl-none md:rounded-tl-xl md:rounded-tr-xl p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")`,
+              borderTop: '2px solid rgba(255,255,255,0.5)',
+              borderBottom: '4px solid rgba(0,0,0,0.2)'
+            }}
+          >
+            {/* Fake Ink Blots & Stamps */}
+            <div className="absolute top-4 right-10 w-16 h-16 rounded-full border-4 border-red-800/30 rotate-12 pointer-events-none flex items-center justify-center">
+              <span className="font-mono text-[8px] text-red-800/40 uppercase rotate-[-12deg]">Tangkahan<br/>Approved</span>
+            </div>
+            <div className="absolute bottom-10 left-10 w-24 h-24 bg-black opacity-[0.03] rounded-full blur-sm pointer-events-none" />
 
+            <div className="flex flex-wrap gap-8 justify-center min-h-[300px]">
+              {filteredTools.map((tool, i) => (
+                <div 
+                  key={tool.id}
+                  ref={el => itemsRef.current[i] = el}
+                  className="relative w-40 sm:w-48 aspect-square group cursor-pointer"
+                >
+                  <div className="absolute inset-0 bg-white shadow-md rounded-sm transform transition-transform group-hover:scale-105 group-hover:-rotate-3 flex flex-col p-3 border border-gray-200">
+                    <div className="w-full flex-1 bg-gray-100 overflow-hidden relative">
+                       <img src={tool.img} alt={tool.name} className="w-full h-full object-cover filter contrast-125 sepia-[0.2]" />
+                    </div>
+                    <div className="mt-3 text-center">
+                      <span className="font-display font-bold text-gray-800 text-sm">{tool.name}</span>
+                    </div>
+                    {/* Add tape */}
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-[rgba(255,255,255,0.6)] backdrop-blur-sm border border-gray-300 shadow-sm rotate-[-5deg]" />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
         </div>
 
       </div>
